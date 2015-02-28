@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150228222241) do
     t.text     "description"
     t.string   "is_capital",           null: false
     t.string   "city_website"
+    t.integer  "region_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -40,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150228222241) do
     t.string   "native_language_name"
     t.text     "description"
     t.string   "region_website"
+    t.integer  "country_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

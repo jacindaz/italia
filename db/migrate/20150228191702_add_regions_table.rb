@@ -5,6 +5,7 @@ class AddRegionsTable < ActiveRecord::Migration
       t.string :native_language_name
       t.text :description
       t.string :region_website
+      t.integer :country_id
 
       t.timestamps
     end

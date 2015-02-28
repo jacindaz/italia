@@ -6,6 +6,7 @@ class AddCitiesTable < ActiveRecord::Migration
       t.text :description 
       t.string :is_capital, null: false
       t.string :city_website
+      t.integer :region_id
 
       t.timestamps
     end
