@@ -38,3 +38,10 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development, :test do
+  gem 'noisy_partials', git: 'git://github.com/gwshaw/noisy_partials.git'
+  gem 'method_source'
+  gem 'pry-nav'
+  gem 'better_errors'
+  gem 'binding_of_caller'    # for introspection of variables in better errors
+end
