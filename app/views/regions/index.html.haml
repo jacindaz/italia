@@ -1,5 +1,10 @@
-%h2 
-  = "Regions in #{@country.english_name}"
+.row.border-bottom.margin-bottom.padding-half-bottom
+  .col-md-8
+    %h2.no-spacing 
+      = "Regions in #{@country.english_name}"
+  .col-md-4
+    = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
+
 
 - if @regions
   .inner-div
