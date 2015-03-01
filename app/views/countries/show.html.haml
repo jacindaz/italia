@@ -1,3 +1,4 @@
+
 %h2.no-spacing
   = @country.native_language_name 
   - if @country.english_name != @country.native_language_name
@@ -5,9 +6,14 @@
 
 - if @regions
   %h2 Regions 
-  %ul
-  - @regions.each do |region| 
-    %li
-      = region.native_language_name 
-      - if region.english_name != region.native_language_name
-        = link_to "(#{region.english_name})", region_path(region)
+  .inner-div
+    - @regions.each do |region|
+      .media.margin
+        .media-left
+          = image_tag "italy-thumbnail.png", class: "media-object"
+        .media-body.padding-left
+          %h4.media-heading
+            = link_to region.native_language_name, region_path(region)
+            - if region.english_name != region.native_language_name
+              = "(#{region.english_name})"
+          = region.description
