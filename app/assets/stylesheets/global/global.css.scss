@@ -1,8 +1,10 @@
-body { background-color: #FFBF89; }
+$light-yellow: #f9f5c5;
+$yellow-ish-orange: #FFBF89;
+
+body { background-color: $light-yellow; }
 #body {
   margin: 0% 8% 5% 8%;
   padding: 40px 20px 20px 70px;
-  background-color: #fffdf9;
 }
 
 // Font Styles -------------------------------------------------
