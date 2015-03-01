@@ -8,7 +8,7 @@ class AddCitiesTable < ActiveRecord::Migration
       t.string :city_website
       t.integer :region_id
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

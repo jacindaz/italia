@@ -6,7 +6,7 @@ class AddCountriesTable < ActiveRecord::Migration
       t.text :description
       t.string :country_website
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

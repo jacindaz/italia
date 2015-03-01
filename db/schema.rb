@@ -16,34 +16,34 @@ ActiveRecord::Schema.define(version: 20150228222241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "cities", force: true do |t|
+  create_table "cities", force: :cascade do |t|
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
     t.string   "is_capital",           null: false
     t.string   "city_website"
     t.integer  "region_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  create_table "countries", force: true do |t|
+  create_table "countries", force: :cascade do |t|
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
     t.string   "country_website"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  create_table "regions", force: true do |t|
+  create_table "regions", force: :cascade do |t|
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
     t.string   "region_website"
     t.integer  "country_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
 end

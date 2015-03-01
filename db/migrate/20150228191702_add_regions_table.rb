@@ -7,7 +7,7 @@ class AddRegionsTable < ActiveRecord::Migration
       t.string :region_website
       t.integer :country_id
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end
