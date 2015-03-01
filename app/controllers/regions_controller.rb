@@ -5,8 +5,7 @@ class RegionsController < ApplicationController
   end
 
   def show
-    binding.pry
-    @country = Country.find(params[:id])
+    @country = Country.find(params[:country_id])
     @region = Region.find(params[:id])
     @cities = @region.cities
   end
