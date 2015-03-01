@@ -1,0 +1,4 @@
+%h2
+  = @country.native_language_name 
+  - if @country.english_name != @country.native_language_name
+    = "(english: #{@country.english_name})"

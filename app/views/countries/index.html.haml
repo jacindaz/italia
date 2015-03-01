@@ -1,0 +1,4 @@
+%h2 Countries
+- @countries.each do |country|
+  = link_to country.english_name, country_path(country)
+  
