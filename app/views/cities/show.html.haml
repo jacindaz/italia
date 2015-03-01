@@ -1,0 +1,10 @@
+.row.border-bottom.margin-bottom.padding-half-bottom
+  .col-md-8
+    %h2.no-spacing
+      = @city.native_language_name 
+      - if @city.english_name != @city.native_language_name
+        %h4.italic.inline.no-spacing= "(english: #{@city.english_name})"
+  .col-md-4
+    = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
+
+

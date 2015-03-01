@@ -10,4 +10,4 @@
     %li
       = city.native_language_name 
       - if city.english_name != city.native_language_name
-        = link_to "(#{city.english_name})", country_region_cities_path(@country, @region, city)
+        = link_to "(#{city.english_name})", country_region_city_path(city)

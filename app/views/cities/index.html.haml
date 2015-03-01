@@ -1,0 +1,4 @@
+%h2 Cities
+- @cities.each do |city|
+  = link_to city.english_name, country_region_city_path(city)
+  
