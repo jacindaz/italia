@@ -7,11 +7,11 @@ html {
 .italic { font-style: italic; }
 .oblique { font-style: oblique; }
 
-// Margin and Padding -------------------------------------------------
-.no-spacing{ margin: 0px; padding: 0px; }
-
 // Display and Visibility -----------------------------------------------
 .block { display: block; }
 .inline { display: inline; }
 .display-none { display: none; }
 .visibility-none { visibility: none; }
+
+// Divs -----------------------------------------------
+.inner-div { margin: 5% 15% 5% 0; }
