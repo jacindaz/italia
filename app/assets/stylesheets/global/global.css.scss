@@ -1,11 +1,14 @@
 $light-yellow: #f9f5c5;
 $yellow-ish-orange: #FFBF89;
+$blue: #5AAFD6;
 
 body { background-color: $light-yellow; }
 #body {
   margin: 0% 8% 5% 8%;
   padding: 40px 20px 20px 70px;
 }
+
+.border-bottom { border-bottom: 1px solid $blue; }
 
 // Font Styles -------------------------------------------------
 .normal { font-style: normal; }
@@ -20,3 +23,8 @@ body { background-color: $light-yellow; }
 
 // Divs -----------------------------------------------
 .inner-div { margin: 5% 15% 5% 0; }
+
+// Alignment ------------------------------------------------------
+.center { align: center; }
+.right { align: right; }
+.left { align: left; }
