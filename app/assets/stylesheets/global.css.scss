@@ -1,3 +1,17 @@
 html {
   margin: 2% 5% 2% 5%;
 }
+
+// Font Styles -------------------------------------------------
+.normal { font-style: normal; }
+.italic { font-style: italic; }
+.oblique { font-style: oblique; }
+
+// Margin and Padding -------------------------------------------------
+.no-spacing{ margin: 0px; padding: 0px; }
+
+// Display and Visibility -----------------------------------------------
+.block { display: block; }
+.inline { display: inline; }
+.display-none { display: none; }
+.visibility-none { visibility: none; }

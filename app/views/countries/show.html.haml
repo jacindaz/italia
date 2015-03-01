@@ -1,4 +1,4 @@
-%h2
+%h2.no-spacing
   = @country.native_language_name 
   - if @country.english_name != @country.native_language_name
-    = "(english: #{@country.english_name})"
+    %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
