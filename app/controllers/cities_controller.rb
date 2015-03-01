@@ -13,7 +13,6 @@ class CitiesController < ApplicationController
   def new
     @region = Region.find(params[:region_id])
     @city = City.new
-
     @city.region = @region
   end
 
