@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
 
   root 'countries#show', defaults: { id: "1"}
-  resources :countries, only: [:index, :show]
-  resources :regions, only: [:index, :show, :new]
+  resources :countries, only: [:index, :show] do 
+    resources :regions, only: [:index, :show, :new, :create]
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

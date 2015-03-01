@@ -1,19 +1,23 @@
-
-%h2.no-spacing
-  = @country.native_language_name 
-  - if @country.english_name != @country.native_language_name
-    %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
+.row
+  .col-md-8
+    %h2.no-spacing
+      = @country.native_language_name 
+      - if @country.english_name != @country.native_language_name
+        %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
+  .col-md-4
+    = link_to "Add a Region", new_country_region_path(@country)
 
 - if @regions
   %h2 Regions 
   .inner-div
     - @regions.each do |region|
-      .media.margin
+      .media.margin-all
         .media-left
           = image_tag "italy-thumbnail.png", class: "media-object"
         .media-body.padding-left
           %h4.media-heading
-            = link_to region.native_language_name, region_path(region)
+            = link_to region.native_language_name, country_region_path(@country, region)
             - if region.english_name != region.native_language_name
               = "(#{region.english_name})"
           = region.description
+          %p.margin-half-top= link_to region.region_website, region.region_website, target: '_blank'
