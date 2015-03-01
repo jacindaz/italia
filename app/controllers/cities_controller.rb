@@ -18,7 +18,6 @@ class CitiesController < ApplicationController
   end
 
   def create
-    binding.pry
     @city = City.new(strong_cities)
     current_region = Region.find(params[:region_id])
     @city.region = current_region

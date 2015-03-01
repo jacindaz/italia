@@ -3,8 +3,29 @@
     %h2.no-spacing
       = @city.native_language_name 
       - if @city.english_name != @city.native_language_name
-        %h4.italic.inline.no-spacing= "(english: #{@city.english_name})"
+        .italic.inline.no-spacing= "(#{@city.english_name})"
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
+// Region ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= Region
+  .col-md-9
+    = link_to @region.native_language_name, country_regions_path
+    .italic.inline.no-spacing= "(english: #{@region.english_name})" if @region.english_name != @region.native_language_name
+
+// Description ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= "About #{@city.native_language_name}"
+  .col-md-9
+    %p= @city.description
+
+// Website ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4 Website
+  .col-md-9
+    %p= link_to "#{@city.city_website}", @city.city_website
 

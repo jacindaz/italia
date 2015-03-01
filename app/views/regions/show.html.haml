@@ -10,3 +10,4 @@
     %li
       = link_to city.native_language_name, country_region_city_path(@country, @region, city) 
       .italic.inline= "(#{city.english_name})" if city.english_name != city.native_language_name
+      = " - capital" if city.is_capital
