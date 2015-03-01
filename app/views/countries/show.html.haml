@@ -5,7 +5,7 @@
       - if @country.english_name != @country.native_language_name
         %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
   .col-md-4
-    = render partial: "global_partials/sub_header", locals: { country: @country}
+    = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
 
 // doesn't work, not sure why, align: center gets crossed out
 .center

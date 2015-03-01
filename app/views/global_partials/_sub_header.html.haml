@@ -1,3 +1,5 @@
 %ul.list-style-none
-  %li.margin-quarter-bottom= link_to "Add a Region", new_country_region_path(country), class: "btn btn-success btn-sm", method: :post
-  %li= link_to "Add a City", new_country_region_city_path(country, region), class: "btn btn-success btn-sm", method: :post
+  - if country
+    %li.margin-quarter-bottom= link_to "Add a Region", new_country_region_path(country), class: "btn btn-success btn-sm"
+  - elsif country.present? && region.present?
+    %li= link_to "Add a City", new_country_region_city_path(country, region), class: "btn btn-success btn-sm"
