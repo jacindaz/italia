@@ -8,7 +8,9 @@
 </head>
 <body>
 
-    <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%" %>
+    <%= link_to image_path root_url do %>
+        <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%" %>
+    <% end %>
 
     <div id="body">
         <%= yield %>

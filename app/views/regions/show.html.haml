@@ -1,5 +1,5 @@
 %h2.no-spacing
-  = @region.native_language_name 
+  = link_to @region.native_language_name, country_regions_path
   - if @region.english_name != @region.native_language_name
     %h4.italic.inline.no-spacing= "(english: #{@region.english_name})"
 
@@ -8,6 +8,5 @@
   %ul
   - @cities.each do |city| 
     %li
-      = city.native_language_name 
-      - if city.english_name != city.native_language_name
-        = link_to "(#{city.english_name})", country_region_city_path(city)
+      = link_to city.native_language_name, country_region_city_path(@country, @region, city) 
+      .italic.inline= "(#{city.english_name})" if city.english_name != city.native_language_name

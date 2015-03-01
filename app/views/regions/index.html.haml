@@ -1,4 +1,18 @@
-%h2 Regions
-- @regions.each do |region|
-  = link_to region.english_name, region_path(region)
-  
+%h2 
+  = "Regions in #{@country.english_name}"
+
+- if @regions
+  .inner-div
+    - @regions.each do |region|
+      .media.margin-all
+        .media-left
+          = image_tag "italy-thumbnail.png", class: "media-object"
+        .media-body.padding-left
+          %h4.media-heading
+            = link_to region.native_language_name, country_region_path(@country, region)
+            - if region.english_name != region.native_language_name
+              = "(#{region.english_name})"
+          = region.description
+          %p.margin-half-top= link_to region.region_website, region.region_website, target: '_blank'
+- else
+  = "We're sorry! There isn't any region information for #{@country.english_name}"

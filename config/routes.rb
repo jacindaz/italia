@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root 'countries#show', defaults: { id: "1"}
   resources :countries, only: [:index, :show] do 
     resources :regions, only: [:index, :show, :new, :create] do 
-      resources :cities, only: [:index, :show]
+      resources :cities, only: [:index, :show, :new, :create]
     end
   end
 

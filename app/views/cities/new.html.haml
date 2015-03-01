@@ -1,0 +1,28 @@
+%h2 Add a City
+
+.inner-div
+  = form_for([@region, @city], url: country_region_cities_path(@region)) do |f|
+    - if @city.errors.any?
+      Your city couldn't be saved because:
+      %ul
+        - @city.errors.messages.each do |field, error|
+          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+    .form-group
+      = f.label "Name in English"
+      = f.text_field :english_name, class: "form-control"
+
+    .form-group
+      = f.label "Name in Native Language"
+      = f.text_field :native_language_name, class: "form-control" 
+
+    .form-group
+      = f.label "Description (400 words or fewer)"
+      = f.text_area :description, class: "form-control"
+
+    .form-group
+      = f.label "City Website (if any)"
+      = f.text_field :city_website, class: "form-control"
+
+    .form-group
+      = f.submit "Save", class: "btn btn-default"
