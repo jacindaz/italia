@@ -1,0 +1,26 @@
+$errors-font-color: red;
+$errors-font-size: 16px;
+
+@mixin errors {
+  border: 1px solid $errors-font-color;
+  border-radius: 10px;
+  padding: 2% 0 2% 2%;
+}
+
+.errors-client-side {
+  @include errors;
+  width: 100%;
+  margin-bottom: 15px;
+  margin-top: 30px;
+}
+.errors-server-side {
+  @include errors;
+  margin-bottom: 40px;
+  width: 40%;
+}
+
+.errors-colors {
+  color: $errors-font-color;
+  font-weight: 800;
+  font-size: $errors-font-size;
+}
