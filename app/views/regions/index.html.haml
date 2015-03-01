@@ -1,0 +1,4 @@
+%h2 Regions
+- @regions.each do |region|
+  = link_to region.english_name, region_path(region)
+  

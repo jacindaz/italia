@@ -2,3 +2,12 @@
   = @country.native_language_name 
   - if @country.english_name != @country.native_language_name
     %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
+
+- if @regions
+  %h2 Regions 
+  %ul
+  - @regions.each do |region| 
+    %li
+      = region.native_language_name 
+      - if region.english_name != region.native_language_name
+        = link_to "(#{region.english_name})", region_path(region)
