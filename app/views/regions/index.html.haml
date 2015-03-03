@@ -17,7 +17,7 @@
             = image_tag "italy-thumbnail.png", class: "media-object"
           .media-body.padding-left
             %h4.media-heading
-              = link_to region.native_language_name, country_region_path(@country, region)
+              = link_to region.native_language_name, country_region_path(@country, region), id: "#{region.native_language_name}"
               - if region.english_name != region.native_language_name
                 = "(#{region.english_name})"
             = region.description
