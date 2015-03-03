@@ -1,6 +1,6 @@
-$('#sidebar').affix offset:
-  top: 100,
-  bottom: ->
-    @bottom = $('.footer').outerHeight(true)
+$ ->
+	$('#sidebar').affix offset:
+	  top: 50,
+	  bottom: 50
     
   

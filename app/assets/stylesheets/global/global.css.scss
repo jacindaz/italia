@@ -22,7 +22,7 @@ body { background-color: $light-yellow; }
 .visibility-none { visibility: none; }
 
 // Divs -----------------------------------------------
-.inner-div { margin: 5% 15% 5% 0; }
+.inner-div { margin: 5% 10% 5% 0; }
 
 // Alignment ------------------------------------------------------
 .center { align: center; }
@@ -41,9 +41,8 @@ body { background-color: $light-yellow; }
 
 
 #sidebar {
-  // position: relative;
   width: 200px;
-  float: right;
+  float: left;
   text-align: left;
-  border: 1px solid black;
+  margin: 0px;
 }

@@ -1,4 +1,4 @@
-#sidebar.affix-top
+#sidebar
   %ul
     - regions.each do |region|
       %li.list-style-none= link_to region.native_language_name, country_region_path(country, region)
