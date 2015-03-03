@@ -40,3 +40,10 @@ body { background-color: $light-yellow; }
 .list-style-lower-alpha { list-style-type: lower-alpha; }
 
 
+#sidebar {
+  // position: relative;
+  width: 200px;
+  float: right;
+  text-align: left;
+  border: 1px solid black;
+}

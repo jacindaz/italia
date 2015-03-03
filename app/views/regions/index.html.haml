@@ -5,6 +5,7 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
 
+= render partial: "global_partials/sidebar", locals: { country: @country,regions: @regions}
 
 - if @regions
   .inner-div
