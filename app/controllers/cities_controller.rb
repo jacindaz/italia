@@ -32,6 +32,10 @@ class CitiesController < ApplicationController
 
   private
 
+  def find_city_id
+    binding.pry
+  end
+
   def strong_cities
     params.require(:city).permit(:english_name, :native_language_name, :description, :city_website)
   end

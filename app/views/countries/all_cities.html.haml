@@ -1,0 +1,7 @@
+%h2 Cities
+- @cities.each do |city|
+  - params[:region_id] = city.region.id
+  - params[:id] = city.id
+  - params[:country_id] = city.region.country.id
+  = link_to city.english_name, country_region_city_path(city.region.id, city)
+  
