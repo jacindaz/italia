@@ -7,21 +7,11 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
 
-// doesn't work, not sure why, align: center gets crossed out
-.center
-  = image_tag "italy-regions.gif"
-
-- if @regions
-  %h2 Regions 
-  .inner-div
-    - @regions.each do |region|
-      .media.margin-all
-        .media-left
-          = image_tag "italy-thumbnail.png", class: "media-object"
-        .media-body.padding-left
-          %h4.media-heading
-            = link_to region.native_language_name, country_region_path(@country, region)
-            - if region.english_name != region.native_language_name
-              = "(#{region.english_name})"
-          = region.description
-          %p.margin-half-top= link_to region.region_website, region.region_website, target: '_blank'
+.row.margin-bottom.padding-half-bottom
+  .col-md-4
+    %h4= link_to "All Regions", country_regions_path(@country)
+    %h4= link_to "All Cities", country_cities_path(@country)
+  .col-md-8
+    // doesn't work, not sure why, align: center gets crossed out
+    .center.padding-bottom
+      = image_tag "italy-regions.gif"

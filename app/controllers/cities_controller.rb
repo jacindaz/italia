@@ -1,7 +1,8 @@
 class CitiesController < ApplicationController
 
   def index
-    @cities = City.all
+    # @country = Country.find(params["country_id"])
+    @regions = Region.all
   end
 
   def show
@@ -31,6 +32,10 @@ class CitiesController < ApplicationController
   end
 
   private
+
+  def find_city_id
+    binding.pry
+  end
 
   def strong_cities
     params.require(:city).permit(:english_name, :native_language_name, :description, :city_website)
