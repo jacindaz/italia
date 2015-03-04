@@ -1,6 +1,8 @@
 %h2 Cities
-- @regions.each do |region|
-  - if region.cities
-    - region.cities.each do |city|
-      = link_to city.english_name, country_city_path(region, city)
+- if @regions
+  %ul
+  - @regions.each do |region|
+    - if region.cities
+      - region.cities.each do |city|
+        %li.list-style-none= link_to city.english_name, country_city_path(region, city)
   

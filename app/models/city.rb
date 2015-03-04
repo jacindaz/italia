@@ -5,6 +5,8 @@ class City < ActiveRecord::Base
   validates :native_language_name, presence: true
   validates_uniqueness_of :native_language_name
 
+  validates :is_capital, presence: true
+
   validates :english_name, presence: true
   validates :city_website, url: true
   validates :description, length: {
