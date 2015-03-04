@@ -7,7 +7,7 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
-- if @cities
+- if @cities.any?
   %h2 Cities 
   %ul
   - @cities.each do |city| 
@@ -15,3 +15,8 @@
       = link_to city.native_language_name, country_region_city_path(@country, @region, city) 
       .italic.inline= "(#{city.english_name})" if city.english_name != city.native_language_name
       = " - capital" if city.is_capital
+- else
+  %h4 
+    I'm sorry, there are no cities for this region yet. Please 
+    = link_to "add one!", new_country_city_path
+    

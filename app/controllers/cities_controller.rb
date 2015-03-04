@@ -13,9 +13,8 @@ class CitiesController < ApplicationController
 
   def new
     @country = Country.find(params[:country_id])
-    @region = Region.find(params[:region_id])
     @city = City.new
-    @city.region = @region
+    @region = @city.region
   end
 
   def create

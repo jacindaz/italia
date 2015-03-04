@@ -2,7 +2,7 @@
 
 .inner-div
   / - if !@region
-  = form_for([@region, @city], url: country_region_cities_path(@country, @region)) do |f|
+  = form_for([@region, @city], url: country_cities_path(@country, @region)) do |f|
     - if @city.errors.any?
       Your city couldn't be saved because:
       %ul
