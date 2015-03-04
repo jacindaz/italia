@@ -1,7 +1,8 @@
 class CitiesController < ApplicationController
 
   def index
-    @cities = City.all
+    # @country = Country.find(params["country_id"])
+    @regions = Region.all
   end
 
   def show

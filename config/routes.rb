@@ -2,11 +2,9 @@ Rails.application.routes.draw do
 
   root 'countries#show', defaults: { id: "1"}
   resources :countries, only: [:index, :show] do 
-    resources :regions, only: [:index, :show, :new, :create] do 
-      resources :cities, only: [:show, :new, :create]
+    resources :regions, only: [:index, :show, :new, :create]
+    resources :cities, only: [:index, :show, :new, :create]
     end
-
-    resources :cities, only: [:index]
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
@@ -63,4 +61,3 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-end

@@ -9,8 +9,8 @@
 
 .row.margin-bottom.padding-half-bottom
   .col-md-4
-    %h3= link_to "All Regions", country_regions_path(@country)
-    %h3= link_to "All Cities", all_cities_country_path(@country)
+    %h4= link_to "All Regions", country_regions_path(@country)
+    %h4= link_to "All Cities", country_cities_path(@country)
   .col-md-8
     // doesn't work, not sure why, align: center gets crossed out
     .center.padding-bottom
