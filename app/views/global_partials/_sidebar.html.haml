@@ -2,3 +2,4 @@
   %ul
     - regions.each do |region|
       %li.list-style-none= link_to region.native_language_name, country_regions_path(country, anchor: "#{region.native_language_name}")
+    %li.list-style-none= link_to "Back to Top", country_regions_path(country, anchor: "top")
