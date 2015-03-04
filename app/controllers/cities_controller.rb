@@ -6,8 +6,8 @@ class CitiesController < ApplicationController
   end
 
   def show
-    @region = Region.find(params[:region_id])
     @city = City.find(params[:id])
+    @region = @city.region
     @country = @city.region.country
   end
 

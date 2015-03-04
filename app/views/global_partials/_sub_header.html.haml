@@ -2,4 +2,4 @@
   - if country
     %li.margin-quarter-bottom= link_to "Add a Region", new_country_region_path(country), class: "btn btn-success btn-sm"
     - if region
-      %li= link_to "Add a City", new_country_region_city_path(country, region), class: "btn btn-success btn-sm"
+      %li= link_to "Add a City", new_country_city_path(country, region), class: "btn btn-success btn-sm"
