@@ -1,13 +1,8 @@
-$light-yellow: #f9f5c5;
-$yellow-ish-orange: #FFBF89;
-
-
 body { background-color: $light-yellow; }
 #body {
   margin: 0% 8% 5% 8%;
   padding: 40px 20px 20px 70px;
 }
-
 
 
 // Font Styles -------------------------------------------------
@@ -40,9 +35,3 @@ body { background-color: $light-yellow; }
 .list-style-lower-alpha { list-style-type: lower-alpha; }
 
 
-#sidebar {
-  width: 200px;
-  float: left;
-  text-align: left;
-  margin: 0px;
-}
