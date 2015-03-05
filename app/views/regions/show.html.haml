@@ -7,16 +7,38 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
+// Country ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= Country
+  .col-md-9
+    = link_to @country.native_language_name, country_path(@country)
+    .italic.inline.no-spacing= "(english: #{@country.english_name})" if @country.english_name != @country.native_language_name
+
+// Description ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= "About #{@region.native_language_name}"
+  .col-md-9
+    %p= @region.description
+
+// Website ------------------------------------
+.row.padding-half-bottom.border-bottom
+  .col-md-3
+    %h4 Website
+  .col-md-9
+    %p= link_to "#{@region.region_website}", @region.region_website
+
 - if @cities.any?
   %h2 Cities 
   %ul
   - @cities.each do |city| 
     %li
-      = link_to city.native_language_name, country_region_city_path(@country, @region, city) 
+      = link_to city.native_language_name, country_city_path(@country, @region, city) 
       .italic.inline= "(#{city.english_name})" if city.english_name != city.native_language_name
       = " - capital" if city.is_capital
 - else
-  %h4 
+  %h4.margin-top 
     I'm sorry, there are no cities for this region yet. Please 
     = link_to "add one!", new_country_city_path
     

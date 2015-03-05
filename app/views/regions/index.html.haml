@@ -23,4 +23,4 @@
             = region.description
             %p.margin-half-top= link_to region.region_website, region.region_website, target: '_blank'
 - else
-  = "We're sorry! There isn't any region information for #{@country.english_name}"
+  %p.margin-top= "We're sorry! There isn't any region information for #{@country.english_name}"
