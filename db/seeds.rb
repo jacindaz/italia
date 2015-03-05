@@ -58,26 +58,26 @@ regions = [
   region_website: "http://www.italia.it/en/discover-italy/campania.html"}
 ]
 
-if Country.where(english_name: "Italy")
-  countries.each do |country| 
-    Country.create!(
-        english_name: country[:english_name],
-        native_language_name: country[:native_language_name],
-        description: country[:description],
-        country_website: country[:country_website]
-      )
-  end
-end
+# if Country.where(english_name: "Italy")
+#   countries.each do |country| 
+#     Country.create!(
+#         english_name: country[:english_name],
+#         native_language_name: country[:native_language_name],
+#         description: country[:description],
+#         country_website: country[:country_website]
+#       )
+#   end
+# end
 
-regions.each do |region|
-  Region.create!(
-    english_name: region[:english_name],
-    native_language_name: region[:native_language_name],
-    description: region[:description],
-    region_website: region[:region_website],
-    country_id: 1
-  )
-end
+# regions.each do |region|
+#   Region.create!(
+#     english_name: region[:english_name],
+#     native_language_name: region[:native_language_name],
+#     description: region[:description],
+#     region_website: region[:region_website],
+#     country_id: 1
+#   )
+# end
 
 
 cities = [
