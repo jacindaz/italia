@@ -187,6 +187,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass
   coffee-rails
+  haml
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
