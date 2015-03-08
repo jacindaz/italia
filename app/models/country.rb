@@ -1,8 +1,7 @@
 class Country < ActiveRecord::Base
   has_many :regions
 
-  validates :native_language_name, presence: true
-  validates_uniqueness_of :native_language_name
+  validates :native_language_name, presence: true, uniqueness: true
   
   validates :english_name, presence: true
   validates :country_website, url: true

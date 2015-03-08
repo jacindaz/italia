@@ -2,8 +2,7 @@ class City < ActiveRecord::Base
   belongs_to :region
 
   validates :region_id, presence: true, numericality: { only_integer: true }
-  validates :native_language_name, presence: true
-  validates_uniqueness_of :native_language_name
+  validates :native_language_name, presence: true, uniqueness: true
 
   validates :is_capital, presence: true
 

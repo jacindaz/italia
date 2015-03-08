@@ -2,10 +2,16 @@ Rails.application.routes.draw do
 
   root 'countries#show', defaults: { id: "1"}
   resources :countries, only: [:index, :show] do 
+    get 'test' => 'countries#testing_map'
+    get 'test_haml' => 'countries#test_map_haml'
     resources :regions, only: [:index, :show, :new, :create]
     resources :cities, only: [:index, :show, :new, :create]
-    end
   end
+
+  resources :itineraries, only: [:index, :new, :create]
+end
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -16,6 +16,12 @@ class CountriesController < ApplicationController
     render "cities/index"
   end
 
+  def test_map_haml
+  end
+
+  def testing_map
+  end
+
   private
 
   def find_city_id

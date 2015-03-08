@@ -1,0 +1,51 @@
+:javascript
+  $(function() {
+    $( "#accordion" ).accordion();
+  });
+
+.row.border-bottom.margin-bottom.padding-half-bottom
+  .col-md-8
+    %h2.no-spacing Itineraries
+  .col-md-4
+    = render partial: "global_partials/sub_header", locals: { country: Country.where(english_name: "Italy").first , region: nil}
+
+- if @itineraries.any?
+  - @itineraries.each do |itinerary|
+    #accordion.panel.panel-success.three-quarter-width
+      .panel-heading
+        %h4= itinerary.name
+      .panel-body
+        - itinerary.cities.each do |city|
+          %h4
+            = link_to city.native_language_name, country_city_path(city.region.country, city)
+            - if city.english_name != city.native_language_name
+              = " (#{city.english_name})"
+          %hr
+
+          // Region ------------------------------------
+          .row.padding-half-bottom
+            .col-md-3
+              %h5= Region
+            .col-md-9
+              = link_to city.region.native_language_name, country_regions_path(city.region.country)
+              .italic.inline.no-spacing= "(english: #{city.region.english_name})" if city.region.english_name != city.region.native_language_name
+          // Description ------------------------------------
+          .row.padding-half-bottom
+            .col-md-3
+              %h5= "About #{city.native_language_name}"
+            .col-md-9
+              %p= city.description
+
+          // Website ------------------------------------
+          .row.padding-half-bottom
+            .col-md-3
+              %h5 Website
+            .col-md-9
+              %p= link_to "#{city.city_website}", city.city_website
+          %hr
+- else
+  %p I'm sorry, there aren't any itineraries yet! 
+
+  %h4.margin-top= link_to "Add a new Itinerary", new_itinerary_path
+
+
