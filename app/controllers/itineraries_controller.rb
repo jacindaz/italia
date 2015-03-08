@@ -16,7 +16,6 @@ class ItinerariesController < ApplicationController
 
     if @itinerary.save
       cities.each do |city|
-        binding.pry
         ItineraryCity.create(city_id: city.to_i, itinerary: @itinerary)
       end
       flash[:notice] = "Itinerary saved!"
