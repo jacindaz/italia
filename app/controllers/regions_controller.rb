@@ -17,14 +17,13 @@ class RegionsController < ApplicationController
   end
 
   def create
-    binding.pry
     @region = Region.new(strong_regions)
-    current_country = Country.find(params[:country_id])
-    @region.country = current_country
+    @country = Country.find(params[:country_id])
+    @region.country = @country
 
     if @region.save 
       flash[:notice] = "Region saved."
-      redirect_to country_regions_path(current_country)
+      redirect_to country_regions_path(@country)
     else
       flash[:notice] = "Unable to save region."
       render :'regions/new'

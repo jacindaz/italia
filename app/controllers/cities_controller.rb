@@ -27,7 +27,7 @@ class CitiesController < ApplicationController
 
     if @city.save 
       flash[:notice] = "City saved."
-      redirect_to country_region_cities_path(current_region)
+      redirect_to country_cities_path(@country)
     else
       flash[:notice] = "Unable to save city."
       render :'cities/new'
@@ -35,10 +35,6 @@ class CitiesController < ApplicationController
   end
 
   private
-
-  def find_city_id
-    binding.pry
-  end
 
   def strong_cities
     params.require(:city).permit(:english_name, :native_language_name, :description, :city_website, :is_capital)
