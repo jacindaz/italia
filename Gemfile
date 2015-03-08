@@ -57,3 +57,5 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'valid_attribute'
 end
+
+gem 'capybara-screenshot', :group => :test
