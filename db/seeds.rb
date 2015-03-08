@@ -58,26 +58,26 @@ regions = [
   region_website: "http://www.italia.it/en/discover-italy/campania.html"}
 ]
 
-# if Country.where(english_name: "Italy")
-#   countries.each do |country| 
-#     Country.create!(
-#         english_name: country[:english_name],
-#         native_language_name: country[:native_language_name],
-#         description: country[:description],
-#         country_website: country[:country_website]
-#       )
-#   end
-# end
+if Country.where(english_name: "Italy")
+  countries.each do |country| 
+    Country.create!(
+        english_name: country[:english_name],
+        native_language_name: country[:native_language_name],
+        description: country[:description],
+        country_website: country[:country_website]
+      )
+  end
+end
 
-# regions.each do |region|
-#   Region.create!(
-#     english_name: region[:english_name],
-#     native_language_name: region[:native_language_name],
-#     description: region[:description],
-#     region_website: region[:region_website],
-#     country_id: 1
-#   )
-# end
+regions.each do |region|
+  Region.create!(
+    english_name: region[:english_name],
+    native_language_name: region[:native_language_name],
+    description: region[:description],
+    region_website: region[:region_website],
+    country_id: 1
+  )
+end
 
 
 cities = [
@@ -86,14 +86,21 @@ cities = [
             description: "At the Province's center, in a basin crossed by the Arno River, stands the magnificent City of Florence, one of the most beautiful cities in Europe, filled with historical relics and artistic masterpieces by the greatest masters of Humanism and the Renaissance. These creative geniuses made an indelible mark on the world’s architecture and art: Giotto and Brunelleschi, Michelangelo and Vasari, Michelozzo and Leon Battista Alberti, just to mention a few.",
             is_capital: true,
             city_website: "http://www.italia.it/en/discover-italy/tuscany/florence",
-            region_id: 1},
+            region_id: Region.where(english_name: "Tuscany").first.id.to_int},
           { english_name: "Rome",
             native_language_name: "Roma",
             description: "The Province of Rome is a matching frame for the many treasures of the Capital, and the surrounding area has, more or less directly, experienced the influence of the history of the Eternal City. The Region of Lazio offers everything from sea and nature to good food and lovely villages rich in history and art. And around Rome, the hills, lakes, rivers and vineyards make for a kaleidoscope of diversity and attractions for nature lovers.",
             is_capital: true,
             city_website: "http://www.italia.it/en/discover-italy/lazio/rome.html",
             region_id: Region.where(english_name: "Lazio").first.id.to_int
-          }
+          },
+          { english_name: "Venice",
+            native_language_name: "Venezia",
+            description: "Situated in Italy's northeast, Veneto extends from the Dolomites to the Adriatic Sea, by way of an expansive range of hills and a valley furrowed by rivers, canals and the Po River Delta. The typical scenery of Veneto's coast is the Venetian lagoon, and, right on this very lagoon stands perhaps the most unique city in the entire world - Venice, visited by millions of tourists every year. ",
+            is_capital: true,
+            city_website: "http://www.italia.it/en/discover-italy/veneto.html",
+            region_id: Region.where(english_name: "Veneto").first.id.to_int},
+          
 ]
 
 cities.each do |city| 

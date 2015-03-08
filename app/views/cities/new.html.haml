@@ -10,16 +10,20 @@
           %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
     .form-group
-      = f.label "Name in English"
-      = f.text_field :english_name, class: "form-control"
-
-    .form-group
       = f.label "Select a Region"
       = f.collection_select :region_id, Region.all, :id, :english_name
 
     .form-group
+      = f.label "Name in English"
+      = f.text_field :english_name, class: "form-control"
+
+    .form-group
       = f.label "Name in Native Language"
       = f.text_field :native_language_name, class: "form-control" 
+
+    .form-group
+      = f.check_box :is_capital
+      = f.label "Is this the Region's capital?"
 
     .form-group
       = f.label "Description (400 words or fewer)"
