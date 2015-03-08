@@ -6,8 +6,11 @@ Rails.application.routes.draw do
     get 'test_haml' => 'countries#test_map_haml'
     resources :regions, only: [:index, :show, :new, :create]
     resources :cities, only: [:index, :show, :new, :create]
-    end
   end
+
+  resources :itineraries, only: [:index]
+end
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
