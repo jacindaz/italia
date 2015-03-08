@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :cities, only: [:index, :show, :new, :create]
   end
 
-  resources :itineraries, only: [:index]
+  resources :itineraries, only: [:index, :new, :create]
 end
 
 
