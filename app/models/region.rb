@@ -3,8 +3,7 @@ class Region < ActiveRecord::Base
   belongs_to :country 
 
   validates :country_id, presence: true, numericality: { only_integer: true }
-  validates :native_language_name, presence: true
-  validates_uniqueness_of :native_language_name
+  validates :native_language_name, presence: true, uniqueness: true
 
   validates :english_name, presence: true
   validates :region_website, url: true
