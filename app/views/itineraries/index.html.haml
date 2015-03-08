@@ -12,8 +12,8 @@
 - if @itineraries.any?
   - @itineraries.each do |itinerary|
     #accordion.panel.panel-success.three-quarter-width
-      .panel-heading
-        %h4= itinerary.name
+      %h3.panel-heading
+        = itinerary.name
       .panel-body
         - itinerary.cities.each do |city|
           %h4
