@@ -60,7 +60,7 @@ regions = [
 
 if Country.where(english_name: "Italy")
   countries.each do |country| 
-    Country.create!(
+    Country.find_or_create_by!(
         english_name: country[:english_name],
         native_language_name: country[:native_language_name],
         description: country[:description],
@@ -70,7 +70,7 @@ if Country.where(english_name: "Italy")
 end
 
 regions.each do |region|
-  Region.create!(
+  Region.find_or_create_by!(
     english_name: region[:english_name],
     native_language_name: region[:native_language_name],
     description: region[:description],
@@ -104,7 +104,7 @@ cities = [
 ]
 
 cities.each do |city| 
-  City.create!(
+  City.find_or_create_by!(
       english_name: city[:english_name],
       native_language_name: city[:native_language_name],
       description: city[:description],
