@@ -4,7 +4,7 @@ class City < ActiveRecord::Base
   validates :region_id, presence: true, numericality: { only_integer: true }
   validates :native_language_name, presence: true, uniqueness: true
 
-  validates :english_name, presence: true
+  validates :english_name, presence: true, uniqueness: true
   validates :city_website, url: true
   validates :description, length: {
     maximum: 400,

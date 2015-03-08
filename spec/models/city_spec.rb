@@ -23,4 +23,15 @@ describe "City" do
     expect(native_language_name_blank_city.errors[:native_language_name]).to include("can't be blank")
   end
 
+  it "allows unique records to be saved" do 
+    city1 = FactoryGirl.create(:city, english_name: "Venice", region: region)
+    city1_copy = FactoryGirl.build(:city, english_name: "Venice", region: region)
+    city2 = FactoryGirl.create(:city, english_name: "Naples", region: region)
+
+    expect(city1).to be_valid
+    expect(city2).to be_valid
+    expect(city1_copy).to_not be_valid
+    expect {city1_copy.save!}.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
 end
