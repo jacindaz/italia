@@ -15,9 +15,7 @@ class ItinerariesController < ApplicationController
     cities.reject! { |id| id.to_s.empty? }
 
     if @itinerary.save
-      cities.each do |city|
-        ItineraryCity.create(city_id: city.to_i, itinerary: @itinerary)
-      end
+      cities.each { |city| ItineraryCity.create(city_id: city.to_i, itinerary: @itinerary) }
       flash[:notice] = "Itinerary saved!"
       redirect_to itineraries_path
     else 
