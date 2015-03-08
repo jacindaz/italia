@@ -20,6 +20,7 @@ class ItinerariesController < ApplicationController
       redirect_to itineraries_path
     else 
       flash[:notice] = "Itinerary unable to be saved."
+      render :'itineraries/new'
     end
   end
 

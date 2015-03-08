@@ -27,6 +27,7 @@ class RegionsController < ApplicationController
       redirect_to country_regions_path(current_country)
     else
       flash[:notice] = "Unable to save region."
+      render :'regions/new'
     end
   end
 
