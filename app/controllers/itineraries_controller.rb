@@ -14,11 +14,8 @@ class ItinerariesController < ApplicationController
     cities = params[:itinerary][:id]
     cities.reject! { |id| id.to_s.empty? }
 
-    binding.pry
-
     if @itinerary.save
       cities.each do |city|
-        binding.pry
         ItineraryCity.create(city_id: city.to_i, itinerary: @itinerary)
       end
       flash[:notice] = "Itinerary saved!"
