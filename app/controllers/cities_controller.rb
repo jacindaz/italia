@@ -7,8 +7,8 @@ class CitiesController < ApplicationController
 
   def show
     @city = City.find(params[:id])
+    @country = Country.find(params[:country_id])
     @region = @city.region
-    @country = @city.region.country
   end
 
   def new
@@ -23,13 +23,9 @@ class CitiesController < ApplicationController
     current_region = Region.find(params[:city][:region_id])
     @city.region = current_region
 
-    binding.pry
-
     if @city.save 
-      flash[:notice] = "City saved."
-      redirect_to country_cities_path(@country)
+      redirect_to country_city_path(@country, @city)
     else
-      flash[:notice] = "Unable to save city."
       render :'cities/new'
     end
   end
