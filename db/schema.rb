@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308132704) do
+ActiveRecord::Schema.define(version: 20150310000734) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address",        null: false
+    t.integer  "phone_number"
+    t.integer  "cafe_id"
+    t.integer  "restaurant_id"
+    t.integer  "destination_id"
+    t.integer  "city_id",        null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
-    t.string   "is_capital",           null: false
+    t.boolean  "is_capital",           null: false
     t.string   "city_website"
     t.integer  "region_id"
     t.datetime "created_at",           null: false
@@ -34,6 +45,18 @@ ActiveRecord::Schema.define(version: 20150308132704) do
     t.string   "country_website"
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
+  end
+
+  create_table "destinations", force: :cascade do |t|
+    t.string   "name",                null: false
+    t.string   "category",            null: false
+    t.text     "description"
+    t.string   "destination_website"
+    t.integer  "cost"
+    t.datetime "hours_open"
+    t.datetime "hours_close"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "itineraries", force: :cascade do |t|
