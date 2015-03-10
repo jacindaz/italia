@@ -1,5 +1,6 @@
 class City < ActiveRecord::Base
   belongs_to :region
+  has_many :destinations
 
   validates :region_id, presence: true, numericality: { only_integer: true }
   validates :native_language_name, presence: true, uniqueness: true
