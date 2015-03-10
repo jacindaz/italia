@@ -8,11 +8,15 @@
         - @itinerary.errors.messages.each do |field, error|
           %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
-    .form-group
-      = f.label "Itinerary Name"
+    .form-group.margin-bottom
+      %h4 Itinerary Name
       = f.text_field :name, class: "form-control"
 
-      = f.collection_check_boxes :id, City.all, :id, :english_name
+    .form-group.margin-bottom
+      %h4 Cities
+      = f.collection_check_boxes :id, City.all, :id, :english_name do |checkbox|
+        = checkbox.check_box
+        = checkbox.label(class: 'padding-quarter-right')
 
     .form-group
       = f.submit "Save", class: "btn btn-default"
