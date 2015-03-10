@@ -11,18 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150310000734) do
+ActiveRecord::Schema.define(version: 20150310115641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string   "address",        null: false
+    t.string   "address",      null: false
     t.integer  "phone_number"
-    t.integer  "cafe_id"
-    t.integer  "restaurant_id"
-    t.integer  "destination_id"
-    t.integer  "city_id",        null: false
+    t.integer  "city_id",      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150310000734) do
     t.datetime "hours_close"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "address_id",          null: false
   end
 
   create_table "itineraries", force: :cascade do |t|
