@@ -1,5 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
-// @import "layouts/header.css.scss"
-// @import "layouts/sidebar.css.scss"
-@import "global/*"
+
+@import "layouts/header";
+@import "layouts/sidebar";
+
+@import "global/colors";
+@import "global/errors";
+@import "global/global";
+@import "global/margin-padding";
+@import "global/tables-grids-borders";
+
+
+

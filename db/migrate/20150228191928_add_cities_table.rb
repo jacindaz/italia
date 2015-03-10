@@ -4,7 +4,7 @@ class AddCitiesTable < ActiveRecord::Migration
       t.string :english_name, null: false 
       t.string :native_language_name
       t.text :description 
-      t.string :is_capital, null: false
+      t.boolean :is_capital, null: false
       t.string :city_website
       t.integer :region_id
 
