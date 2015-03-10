@@ -99,7 +99,7 @@ cities = [
             description: "Situated in Italy's northeast, Veneto extends from the Dolomites to the Adriatic Sea, by way of an expansive range of hills and a valley furrowed by rivers, canals and the Po River Delta. The typical scenery of Veneto's coast is the Venetian lagoon, and, right on this very lagoon stands perhaps the most unique city in the entire world - Venice, visited by millions of tourists every year. ",
             is_capital: true,
             city_website: "http://www.italia.it/en/discover-italy/veneto.html",
-            region_id: Region.where(english_name: "Veneto").first.id.to_int},
+            region_id: Region.where(english_name: "Veneto").first.id.to_int}
           
 ]
 
@@ -111,5 +111,21 @@ cities.each do |city|
       city_website: city[:city_website],
       region_id: city[:region_id],
       is_capital: city[:is_capital]
+    )
+end
+
+addresses = [{ 
+                address: "Viale Vaticano", 
+                phone_number: "0039 06 69884676 - 0039 06 69883145",
+                zip: "00165",
+                city_id: City.where(english_name: "Rome").first.id.to_int
+                }]
+
+addresses.each do |address| 
+  Address.find_or_create_by!(
+      address: address[:address],
+      phone_number: address[:phone_number],
+      zip: address[:zip],
+      city_id: address[:city_id]
     )
 end
