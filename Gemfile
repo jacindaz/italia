@@ -50,4 +50,12 @@ group :development, :test do
   gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'    # for introspection of variables in better errors
+
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'valid_attribute'
 end
+
+gem 'capybara-screenshot', :group => :test
