@@ -1,0 +1,39 @@
+%h2 Add a Destination
+
+.inner-div
+  = form_for(@destination, url: itineraries_path) do |f|
+    - if @destination.errors.any?
+      Your destination couldn't be saved because:
+      %ul
+        - @destination.errors.messages.each do |field, error|
+          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+    .form-group
+      = f.label "Destination Name"
+      = f.text_field :name, class: "form-control"
+
+    .form-group
+      = f.label "Website"
+      = f.text_field :destination_website, class: "form-control"
+
+    .form-group
+      = f.label "Description (400 words or fewer)"
+      = f.text_area :description, class: "form-control"
+
+    .form-group
+      = f.label "destination Website (if any)"
+      = f.text_field :destination_website, class: "form-control"
+
+    .form-inline.margin-half-top.margin-half-bottom
+      .form-group.margin-right
+        = f.label "Select an Address"
+        = f.collection_select :address_id, Address.all, :id, :address
+      .form-group.margin-right
+        = f.label "Category"
+        = f.select :category, options_for_select(Destination.categories_for_select)
+      .form-group
+        = f.label "Cost"
+        = f.text_field :cost, placeholder: "(in Euros)", class: "form-control"
+
+    .form-group
+      = f.submit "Save", class: "btn btn-default"
