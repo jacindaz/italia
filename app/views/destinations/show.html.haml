@@ -1,0 +1,29 @@
+.row.border-bottom.margin-bottom.padding-half-bottom
+  .col-md-8
+    %h2.no-spacing
+      = @destination.name 
+  .col-md-4
+    = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
+
+// Region ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= City
+  .col-md-9
+    = link_to @city.native_language_name, country_cities_path(@country)
+    .italic.inline.no-spacing= "(english: #{@city.english_name})" if @city.english_name != @city.native_language_name
+
+// Description ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= "About #{@destination.name}"
+  .col-md-9
+    %p= @destination.description
+
+// Website ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4 Website
+  .col-md-9
+    %p= link_to "#{@destination.destination_website}", @destination.destination_website
+

@@ -1,0 +1,4 @@
+%h2 Destinations
+- @destinations.each do |destination|
+  = link_to destination.name, destination_path(destination)
+ 

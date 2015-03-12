@@ -1,7 +1,7 @@
 %h2 Add a Destination
 
 .inner-div
-  = form_for(@destination, url: itineraries_path) do |f|
+  = form_for(@destination, url: destinations_path) do |f|
     - if @destination.errors.any?
       Your destination couldn't be saved because:
       %ul
@@ -20,20 +20,19 @@
       = f.label "Description (400 words or fewer)"
       = f.text_area :description, class: "form-control"
 
-    .form-group
-      = f.label "destination Website (if any)"
-      = f.text_field :destination_website, class: "form-control"
-
     .form-inline.margin-half-top.margin-half-bottom
       .form-group.margin-right
         = f.label "Select an Address"
-        = f.collection_select :address_id, Address.all, :id, :address
+        = f.select :address_id, options_for_select(Destination.addresses_for_select)
       .form-group.margin-right
         = f.label "Category"
         = f.select :category, options_for_select(Destination.categories_for_select)
       .form-group
         = f.label "Cost"
-        = f.text_field :cost, placeholder: "(in Euros)", class: "form-control"
+        .input-group
+          .input-group-addon.glyphicon.glyphicon-euro
+          = f.text_field :cost, class: "form-control"
+          .input-group-addon .00
 
     .form-group
       = f.submit "Save", class: "btn btn-default"
