@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313105234) do
+ActiveRecord::Schema.define(version: 20150313111159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,10 +65,10 @@ ActiveRecord::Schema.define(version: 20150313105234) do
   end
 
   create_table "hours", force: :cascade do |t|
-    t.string   "day_of_week",       null: false
+    t.string   "day_of_week",                       null: false
     t.integer  "hours_open"
     t.integer  "hours_close"
-    t.boolean  "closed_entire_day", null: false
+    t.boolean  "closed_entire_day", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
