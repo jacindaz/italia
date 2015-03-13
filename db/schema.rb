@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312121417) do
+ActiveRecord::Schema.define(version: 20150313105234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(version: 20150312121417) do
     t.datetime "updated_at",           null: false
   end
 
+  create_table "destination_hours", id: false, force: :cascade do |t|
+    t.integer "destination_id", null: false
+    t.integer "hour_id",        null: false
+  end
+
+  add_index "destination_hours", ["destination_id"], name: "index_destination_hours_on_destination_id", using: :btree
+  add_index "destination_hours", ["hour_id"], name: "index_destination_hours_on_hour_id", using: :btree
+
   create_table "destinations", force: :cascade do |t|
     t.string   "name",                null: false
     t.string   "category",            null: false
@@ -55,14 +63,6 @@ ActiveRecord::Schema.define(version: 20150312121417) do
     t.datetime "updated_at"
     t.integer  "address_id",          null: false
   end
-
-  create_table "destinations_hours", id: false, force: :cascade do |t|
-    t.integer "destination_id", null: false
-    t.integer "hour_id",        null: false
-  end
-
-  add_index "destinations_hours", ["destination_id"], name: "index_destinations_hours_on_destination_id", using: :btree
-  add_index "destinations_hours", ["hour_id"], name: "index_destinations_hours_on_hour_id", using: :btree
 
   create_table "hours", force: :cascade do |t|
     t.string   "day_of_week",       null: false
