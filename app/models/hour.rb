@@ -7,4 +7,6 @@
   validates :hours_open, inclusion: { in: 0..24 }
   validates :hours_close, inclusion: { in: 0..24 }
 
+  has_many :destinations, through: :destination_hour
+  has_many :destination_hour
 end

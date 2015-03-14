@@ -1,17 +1,37 @@
-categories = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store"]
-random_number = rand(0..(categories.length))
-random_category = categories[random_number]
+random_number = rand(0..(Destination::CATEGORIES.length - 1))
+random_cost = rand(5..40)
 
 FactoryGirl.define do
   factory :destination do
     sequence(:name) { |n| "#{n} destination name #{n}" }
-    category random_category
+    category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
-    cost 10
-    hours_open 9
-    hours_close 5
-    
+    cost random_cost
+    hours "These are the destination hours"
     association :address, factory: :address_with_city
   end
+
+  # factory :destination_hour do 
+  #   create(:destination)
+  #   create(:hour)
+  # end
+
+  # factory :destination_hour do 
+      
+  #   factory :destination_for_join_table, class: Destination do 
+  #     sequence(:name) { |n| "#{n} destination name for join table #{n}" }
+  #     category Destination::CATEGORIES[random_number]
+  #     sequence(:description) { |n| "#{n} destination description for join table blah blah #{n}" }
+  #     cost random_cost
+  #     association :address, factory: :address_with_city
+  #   end
+
+  #   factory :hour_for_join_table, class: Hour do 
+  #     day_of_week "Tuessssday"
+  #     hours_open 10
+  #     hours_close 20
+  #   end
+
+  # end
 
 end
