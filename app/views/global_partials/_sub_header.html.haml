@@ -2,4 +2,5 @@
   - if country.present?
     %li.margin-quarter-bottom= link_to "Add a Region", new_country_region_path(country), class: "btn btn-success btn-sm"
     %li.margin-quarter-bottom= link_to "Add a City", new_country_city_path(country, region), class: "btn btn-success btn-sm"
-  %li= link_to "Add an Itinerary", new_itinerary_path(Itinerary.new), class: "btn btn-success btn-sm"
+  %li.margin-quarter-bottom= link_to "Add an Itinerary", new_itinerary_path(Itinerary.new), class: "btn btn-success btn-sm"
+  %li= link_to "Add a Destination", new_destination_path(Destination.new), class: "btn btn-success btn-sm"
