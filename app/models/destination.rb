@@ -6,8 +6,6 @@ class Destination < ActiveRecord::Base
   validates :cost, numericality: { only_integer: true}
 
   belongs_to :address
-  has_many :hours, through: :destination_hour
-  has_many :destination_hour
 
   def self.categories_for_select
     Destination::CATEGORIES.map { |category| [category.titleize, category] }
