@@ -5,13 +5,27 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
-// Region ------------------------------------
+// City ------------------------------------
 .row.padding-half-bottom
   .col-md-3
     %h4= City
   .col-md-9
     = link_to @city.native_language_name, country_cities_path(@country)
     .italic.inline.no-spacing= "(english: #{@city.english_name})" if @city.english_name != @city.native_language_name
+
+// Hours ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4 Hours
+  .col-md-9
+    %p= @destination.hours
+
+// Cost ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4 Cost
+  .col-md-9
+    %p= @destination.cost
 
 // Description ------------------------------------
 .row.padding-half-bottom
