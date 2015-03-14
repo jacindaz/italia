@@ -1,6 +1,8 @@
 ## Roadmap!
 
 ### Features
+* uploading images for Destinations
+* uploading images for Regions/Cities
 * interactive map with Italy regions
 * add cafe/restaurant tables
 * days associated with Itinerary and Destinations
