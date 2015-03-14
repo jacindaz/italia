@@ -2,7 +2,15 @@ random_number = rand(0..(Destination::CATEGORIES.length - 1))
 random_cost = rand(5..40)
 
 FactoryGirl.define do
-  factory :destination do
+  factory :destination_no_address, class: Destination do
+    sequence(:name) { |n| "#{n} destination name #{n}" }
+    category Destination::CATEGORIES[random_number]
+    sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
+    cost random_cost
+    hours "These are the destination hours"
+  end
+
+  factory :destination_with_address, class: Destination do
     sequence(:name) { |n| "#{n} destination name #{n}" }
     category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
