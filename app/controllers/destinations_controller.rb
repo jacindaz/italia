@@ -15,6 +15,7 @@ class DestinationsController < ApplicationController
   end
 
   def create
+    binding.pry
     @destination = Destination.new(destination_params)
 
     if @destination.save
