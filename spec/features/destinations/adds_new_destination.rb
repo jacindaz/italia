@@ -4,24 +4,24 @@ feature 'saving a new destination' do
 
   context "with appropriate factories" do
     let(:destination_create) { FactoryGirl.create(:destination_with_address) }
-    let(:destination) { FactoryGirl.create(:destination_with_address) }
+    let(:destination) { FactoryGirl.build(:destination_with_address) }
 
     scenario 'user creates a new destination using a pre-existing address' do
       visit new_destination_path(destination)
 
-      within("form") do
+      within(".new-destination") do
         fill_in "Destination Name", with: destination.name
         fill_in "Hours", with: destination.hours
         fill_in "Website", with: destination.destination_website
         fill_in "Description", with: destination.description
 
-        within(".form-inline") do 
-          select "#{destination.address.address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
-          select destination.category.titleize, from: "Category"
-          fill_in "Cost", with: destination.cost
-        end
+        select "#{destination.address.address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
+        select destination.category.titleize, from: "Category"
+        fill_in "Cost", with: destination.cost
 
-        click_on "Save"
+        within(".existing-address-submit") do 
+          click_on "Save"
+        end
       end
 
       destination = Destination.last

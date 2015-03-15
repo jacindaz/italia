@@ -16,11 +16,16 @@ class DestinationsController < ApplicationController
   end
 
   def create
-    @destination = Destination.new(destination_params)
-    @address = Address.new(address_params)
-    @destination.address = @address
+    if !params[:destination][:address_id]
+      @destination = Destination.new(destination_params)
+      @address = Address.new(address_params)
+      @destination.address = @address
+      @address.save
+    else
+      @destination = Destination.new(destination_params(true))
+    end
 
-    if @destination.save && @address.save
+    if @destination.save
       redirect_to destination_path(@destination)
     else
       render :'destinations/new'
@@ -29,8 +34,12 @@ class DestinationsController < ApplicationController
 
   private
 
-  def destination_params
-    params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
+  def destination_params(has_address = false)
+    if has_address
+      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :address_id)
+    else
+      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
+    end
   end
 
   def address_params

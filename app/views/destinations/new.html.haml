@@ -1,48 +1,51 @@
 %h2 Add a Destination
 
 .inner-div
-  = form_for(@destination, url: destinations_path) do |f|
-    - if @destination.errors.any?
-      Your destination couldn't be saved because:
-      %ul
-        - @destination.errors.messages.each do |field, error|
-          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+  .new-destination
+    = form_for(@destination, url: destinations_path) do |f|
+      - if @destination.errors.any?
+        Your destination couldn't be saved because:
+        %ul
+          - @destination.errors.messages.each do |field, error|
+            %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
-    .form-group
-      = f.label :name, "Destination Name"
-      = f.text_field :name, class: "form-control"
-
-    .form-group
-      = f.label :hours, "Hours"
-      = f.text_area :hours, class: "form-control"
-
-    .form-group
-      = f.label :destination_website, "Website"
-      = f.text_field :destination_website, class: "form-control"
-
-    .form-group
-      = f.label :description, "Description (400 words or fewer)"
-      = f.text_area :description, class: "form-control"
-
-    .form-inline.margin-half-top.margin-half-bottom
-      .form-group.margin-right
-        = f.label :category, "Category"
-        = f.select :category, options_for_select(Destination.categories_for_select)
       .form-group
-        = f.label :cost, "Cost"
-        .input-group
-          .input-group-addon.glyphicon.glyphicon-euro
-          = f.text_field :cost, class: "form-control"
-          .input-group-addon .00
-      
-    .form-inline.margin-half-top.margin-half-bottom
-      .address-dropdown.form-group.margin-right
-        = f.label :address_id, "Select an Address"
-        = f.select :address_id, options_for_select(Destination.addresses_for_select)
-      .new-address-checkbox.form-group.margin-right
-        %label{ for: "address_check_box_tag"}
-          = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-          Enter a new Address
+        = f.label :name, "Destination Name"
+        = f.text_field :name, class: "form-control"
+
+      .form-group
+        = f.label :hours, "Hours"
+        = f.text_area :hours, class: "form-control"
+
+      .form-group
+        = f.label :destination_website, "Website"
+        = f.text_field :destination_website, class: "form-control"
+
+      .form-group
+        = f.label :description, "Description (400 words or fewer)"
+        = f.text_area :description, class: "form-control"
+
+      .form-inline.margin-half-top.margin-half-bottom
+        .form-group.margin-right
+          = f.label :category, "Category"
+          = f.select :category, options_for_select(Destination.categories_for_select)
+        .form-group
+          = f.label :cost, "Cost"
+          .input-group
+            .input-group-addon.glyphicon.glyphicon-euro
+            = f.text_field :cost, class: "form-control"
+            .input-group-addon .00
+        
+      .form-inline.margin-half-top.margin-half-bottom
+        .address-dropdown.form-group.margin-right
+          = f.label :address_id, "Select an Address"
+          = f.select :address_id, options_for_select(Destination.addresses_for_select)
+        .new-address-checkbox.form-group.margin-right
+          %label{ for: "address_check_box_tag"}
+            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
+            Enter a new Address
+      .existing-address-submit.form-group
+        = f.submit "Save", class: "btn btn-default"
 
     .new-address.display-none
       = form_for(@address, url: destinations_path) do |f|
@@ -68,7 +71,7 @@
           = f.label :zip, "Zipcode"
           = f.text_field :zip, class: "form-control"
 
-        .form-group
+        .new-address-submit.form-group
           = f.submit "Save", class: "btn btn-default"
 
 
