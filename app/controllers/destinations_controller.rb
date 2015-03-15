@@ -27,7 +27,7 @@ class DestinationsController < ApplicationController
   private
 
   def destination_params
-    params.require(:destination).permit(:name, :category, :cost, :hours_open, :hours_close, :description, :destination_website, :address_id)
+    params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :address_id)
   end
 
 end

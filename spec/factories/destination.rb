@@ -6,6 +6,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "#{n} destination name #{n}" }
     category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
+    destination_website "http://www.testdestination.com"
     cost random_cost
     hours "These are the destination hours"
   end
@@ -14,6 +15,7 @@ FactoryGirl.define do
     sequence(:name) { |n| "#{n} destination name #{n}" }
     category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
+    destination_website "http://www.testdestination.com"
     cost random_cost
     hours "These are the destination hours"
     association :address, factory: :address_with_city

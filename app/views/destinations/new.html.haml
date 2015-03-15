@@ -9,30 +9,30 @@
           %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
     .form-group
-      = f.label "Destination Name"
+      = f.label :name, "Destination Name"
       = f.text_field :name, class: "form-control"
 
     .form-group
-      = f.label "Hours"
+      = f.label :hours, "Hours"
       = f.text_area :hours, class: "form-control"
 
     .form-group
-      = f.label "Website"
+      = f.label :destination_website, "Website"
       = f.text_field :destination_website, class: "form-control"
 
     .form-group
-      = f.label "Description (400 words or fewer)"
+      = f.label :description, "Description (400 words or fewer)"
       = f.text_area :description, class: "form-control"
 
     .form-inline.margin-half-top.margin-half-bottom
       .form-group.margin-right
-        = f.label "Select an Address"
+        = f.label :address_id, "Select an Address"
         = f.select :address_id, options_for_select(Destination.addresses_for_select)
       .form-group.margin-right
-        = f.label "Category"
+        = f.label :category, "Category"
         = f.select :category, options_for_select(Destination.categories_for_select)
       .form-group
-        = f.label "Cost"
+        = f.label :cost, "Cost"
         .input-group
           .input-group-addon.glyphicon.glyphicon-euro
           = f.text_field :cost, class: "form-control"
