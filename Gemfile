@@ -50,6 +50,7 @@ group :development, :test do
   gem 'pry-nav'
   gem 'better_errors'
   gem 'binding_of_caller'    # for introspection of variables in better errors
+  gem 'awesome_print'
 
   gem 'rspec-rails'
   gem 'capybara'
