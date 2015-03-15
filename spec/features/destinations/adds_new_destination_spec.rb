@@ -49,7 +49,7 @@ feature 'saving a new destination' do
 
         check "Enter a new Address"
         within(".new_address") do 
-          fill_in "Street Address", with: street_address.address
+          fill_in "Street Address", with: address.street_address
           fill_in "Phone number", with: address.phone_number 
 
           select address.city.english_name, from: "Select a City"
