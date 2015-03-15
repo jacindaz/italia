@@ -1,6 +1,8 @@
 ## Roadmap!
 
 ### Features
+* rich text editor for all models with a "description" field
+* ability to edit Destinations
 * uploading images for Destinations
 * uploading images for Regions/Cities
 * interactive map with Italy regions
