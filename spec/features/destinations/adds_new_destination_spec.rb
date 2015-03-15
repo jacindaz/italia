@@ -15,7 +15,7 @@ feature 'saving a new destination' do
         fill_in "Website", with: destination.destination_website
         fill_in "Description", with: destination.description
 
-        select "#{destination.address.address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
+        select "#{destination.address.street_address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
         select destination.category.titleize, from: "Category"
         fill_in "Cost", with: destination.cost
 
@@ -49,7 +49,7 @@ feature 'saving a new destination' do
 
         check "Enter a new Address"
         within(".new_address") do 
-          fill_in "Street Address", with: address.address
+          fill_in "Street Address", with: address.street_address
           fill_in "Phone number", with: address.phone_number 
 
           select address.city.english_name, from: "Select a City"
@@ -64,7 +64,6 @@ feature 'saving a new destination' do
       within(".existing-address-submit") do 
         click_on "Save"
       end
-      # binding.pry
       # expect(current_path).to eq new_destination_path(destination)
       expect(page).to have_content "Your destination couldn't be saved because:"
     end

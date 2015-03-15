@@ -41,7 +41,7 @@
           = f.label :address_id, "Select an Address"
           = f.select :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
         .new-address-checkbox.form-group.margin-right
-          %label{ for: "address_check_box_tag"}
+          %label{ for: "address_check_box_tag" }
             = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
             Enter a new Address
       .existing-address-submit.form-group
@@ -56,8 +56,8 @@
               %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
         .form-group
-          = f.label :address, "Street Address"
-          = f.text_field :address, class: "form-control"
+          = f.label :street_address, "Street Address"
+          = f.text_field :street_address, class: "form-control"
 
         .form-group
           = f.label :phone_number, "Phone number"

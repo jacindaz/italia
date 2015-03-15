@@ -10,7 +10,7 @@
   .col-md-3
     %h4= Address
   .col-md-9
-    .block= @destination.address.address
+    .block= @destination.address.street_address
     = link_to @city.native_language_name, country_cities_path(@country)
     .italic.inline.no-spacing= "(#{@city.english_name})" if @city.english_name != @city.native_language_name
     .block= @destination.address.zip

@@ -10,8 +10,8 @@ describe "Address" do
   end
 
   it "allows unique records to be saved" do 
-    address1 = FactoryGirl.create(:address_with_city, address: "10 Fake Street", city: city)
-    address1_copy = FactoryGirl.build(:address_with_city, address: "10 Fake Street", city: city)
+    address1 = FactoryGirl.create(:address_with_city, street_address: "10 Fake Street", city: city)
+    address1_copy = FactoryGirl.build(:address_with_city, street_address: "10 Fake Street", city: city)
     address2 = FactoryGirl.create(:address_with_city)
 
     expect(address1).to be_valid
