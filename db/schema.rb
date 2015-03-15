@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150308132704) do
+ActiveRecord::Schema.define(version: 20150314155302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "address",      null: false
+    t.string   "phone_number"
+    t.integer  "city_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "zip"
+  end
 
   create_table "cities", force: :cascade do |t|
     t.string   "english_name",         null: false
@@ -35,6 +44,37 @@ ActiveRecord::Schema.define(version: 20150308132704) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  create_table "destination_hours", id: false, force: :cascade do |t|
+    t.integer "destination_id", null: false
+    t.integer "hour_id",        null: false
+  end
+
+  add_index "destination_hours", ["destination_id"], name: "index_destination_hours_on_destination_id", using: :btree
+  add_index "destination_hours", ["hour_id"], name: "index_destination_hours_on_hour_id", using: :btree
+
+  create_table "destinations", force: :cascade do |t|
+    t.string   "name",                null: false
+    t.string   "category",            null: false
+    t.text     "description"
+    t.string   "destination_website"
+    t.integer  "cost"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "address_id",          null: false
+    t.text     "hours"
+  end
+
+  create_table "hours", force: :cascade do |t|
+    t.string   "day_of_week",                       null: false
+    t.integer  "hours_open"
+    t.integer  "hours_close"
+    t.boolean  "closed_entire_day", default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hours", ["day_of_week"], name: "index_hours_on_day_of_week", using: :btree
 
   create_table "itineraries", force: :cascade do |t|
     t.string   "name",       null: false

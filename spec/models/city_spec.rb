@@ -5,9 +5,11 @@ describe "City" do
   let(:country) { FactoryGirl.create(:country) }
   let(:region) { FactoryGirl.create(:region, country: country) }
   let(:city) { FactoryGirl.create(:city, region: region) }
+  let(:city_with_region_country) { FactoryGirl.create(:city_with_region_country) }
 
   it "has a valid city factory" do
     expect(city).to be_valid
+    expect(city_with_region_country).to be_valid
   end
 
   it "is invalid when english or native language name is blank" do
