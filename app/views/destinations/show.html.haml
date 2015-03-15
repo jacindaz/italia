@@ -1,7 +1,9 @@
 .row.border-bottom.margin-bottom.padding-half-bottom
   .col-md-8
     %h2.no-spacing
-      = @destination.name 
+      = @destination.native_language_name 
+      - if @destination.english_name != @destination.native_language_name
+        .italic.inline.no-spacing= "(#{@destination.english_name})"
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
@@ -32,7 +34,7 @@
 // Description ------------------------------------
 .row.padding-half-bottom
   .col-md-3
-    %h4= "About #{@destination.name}"
+    %h4= "About #{@destination.english_name}"
   .col-md-9
     %p= @destination.description
 

@@ -10,8 +10,12 @@
             %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
       .form-group
-        = f.label :name, "Destination Name"
-        = f.text_field :name, class: "form-control"
+        = f.label :english_name, "Destination English Name"
+        = f.text_field :english_name, class: "form-control"
+
+      .form-group
+        = f.label :native_language_name, "Destination Native Language Name"
+        = f.text_field :native_language_name, class: "form-control"
 
       .form-group
         = f.label :hours, "Hours"

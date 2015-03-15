@@ -16,7 +16,7 @@
             %p Destination thumbnail
           .media-body.padding-left
             %h4.media-heading
-              = link_to destination.name, destination_path(destination)
+              = link_to destination.english_name, destination_path(destination)
             = destination.description
             %p.margin-half-top= link_to destination.destination_website, destination.destination_website, target: '_blank'
 - else

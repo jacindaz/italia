@@ -10,7 +10,8 @@ feature 'saving a new destination' do
       visit new_destination_path(destination)
 
       within(".new-destination") do
-        fill_in "Destination Name", with: destination.name
+        fill_in "Destination English Name", with: destination.english_name
+        fill_in "Destination Native Language Name", with: destination.native_language_name
         fill_in "Hours", with: destination.hours
         fill_in "Website", with: destination.destination_website
         fill_in "Description", with: destination.description
@@ -27,8 +28,9 @@ feature 'saving a new destination' do
       destination = Destination.last
       expect(current_path).to eq destination_path(destination)
 
-      expect(page).to have_content destination.name
-      expect(page).to have_content "About #{destination.name}"
+      expect(page).to have_content destination.english_name
+      expect(page).to have_content destination.native_language_name
+      expect(page).to have_content destination.description
       expect(page).to have_content destination.destination_website
     end
 
@@ -39,7 +41,8 @@ feature 'saving a new destination' do
       visit new_destination_path(:destination_no_address)
 
       within(".new-destination") do
-        fill_in "Destination Name", with: destination_no_address.name
+        fill_in "Destination English Name", with: destination.english_name
+        fill_in "Destination Native Language Name", with: destination.native_language_name
         fill_in "Hours", with: destination_no_address.hours
         fill_in "Website", with: destination_no_address.destination_website
         fill_in "Description", with: destination_no_address.description

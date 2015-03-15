@@ -37,7 +37,7 @@ class DestinationsController < ApplicationController
 
   def destination_params(has_address = false)
     if has_address
-      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :address_id)
+      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id)
     else
       params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
     end

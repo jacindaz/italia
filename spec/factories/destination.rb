@@ -3,7 +3,8 @@ random_cost = rand(5..40)
 
 FactoryGirl.define do
   factory :destination_no_address, class: Destination do
-    sequence(:name) { |n| "#{n} destination name #{n}" }
+    sequence(:english_name) { |n| "#{n} destination name #{n}" }
+    sequence(:native_language_name) { |n| "#{n} native lang name"}
     category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
     destination_website "http://www.testdestination.com"
@@ -12,7 +13,8 @@ FactoryGirl.define do
   end
 
   factory :destination_with_address, class: Destination do
-    sequence(:name) { |n| "#{n} destination name #{n}" }
+    sequence(:english_name) { |n| "#{n} destination name #{n}" }
+    sequence(:native_language_name) { |n| "#{n} native lang name"}
     category Destination::CATEGORIES[random_number]
     sequence(:description) { |n| "#{n} destination description blah blah #{n}" }
     destination_website "http://www.testdestination.com"
