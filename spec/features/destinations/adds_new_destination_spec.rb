@@ -15,7 +15,7 @@ feature 'saving a new destination' do
         fill_in "Website", with: destination.destination_website
         fill_in "Description", with: destination.description
 
-        select "#{destination.address.address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
+        select "#{destination.address.street_address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
         select destination.category.titleize, from: "Category"
         fill_in "Cost", with: destination.cost
 
