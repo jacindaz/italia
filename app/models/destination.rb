@@ -14,7 +14,7 @@ class Destination < ActiveRecord::Base
   def self.addresses_for_select
     Address.all.map do |address| 
       city = City.find(address.city_id)
-      ["#{address.address}, #{city.english_name} #{address.zip}, #{city.region.country.english_name}", 
+      ["#{address.street_address}, #{city.english_name} #{address.zip}, #{city.region.country.english_name}", 
         address.id]
     end
   end
