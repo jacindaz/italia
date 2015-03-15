@@ -28,7 +28,7 @@
       .form-inline.margin-half-top.margin-half-bottom
         .form-group.margin-right
           = f.label :category, "Category"
-          = f.select :category, options_for_select(Destination.categories_for_select)
+          = f.select :category, options_for_select(Destination.categories_for_select), prompt: ""
         .form-group
           = f.label :cost, "Cost"
           .input-group
@@ -39,7 +39,7 @@
       .form-inline.margin-half-top.margin-half-bottom
         .address-dropdown.form-group.margin-right
           = f.label :address_id, "Select an Address"
-          = f.select :address_id, options_for_select(Destination.addresses_for_select)
+          = f.select :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
         .new-address-checkbox.form-group.margin-right
           %label{ for: "address_check_box_tag"}
             = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"

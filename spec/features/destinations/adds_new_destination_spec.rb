@@ -36,8 +36,12 @@ feature 'saving a new destination' do
     end
 
     scenario 'user entering a blank destination should see appropriate errors' do
-      visit new_destination_path
-      click_on "Save"
+      visit new_destination_path(destination)
+      within(".existing-address-submit") do 
+        click_on "Save"
+      end
+      # binding.pry
+      # expect(current_path).to eq new_destination_path(destination)
       expect(page).to have_content "Your destination couldn't be saved because:"
     end
   end

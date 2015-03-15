@@ -28,6 +28,7 @@ class DestinationsController < ApplicationController
     if @destination.save
       redirect_to destination_path(@destination)
     else
+      @address = Address.new
       render :'destinations/new'
     end
   end
