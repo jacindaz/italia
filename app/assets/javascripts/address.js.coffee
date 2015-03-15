@@ -1,5 +1,10 @@
 $ -> 
-  $('#address_check_box_tag').on('click', ->
+  $('#address_check_box_tag').on('change', ->
     if @.checked
-      alert("Check box clicked")
+      $('.address-dropdown').hide()
+      $('.new-address-checkbox').addClass('margin-half-top')
+      $('.new-address').show()
+    else
+      $('.address-dropdown').show()
+      $('.new-address').hide()
     )

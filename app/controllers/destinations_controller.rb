@@ -12,13 +12,15 @@ class DestinationsController < ApplicationController
 
   def new
     @destination = Destination.new
+    @address = Address.new
   end
 
   def create
-    binding.pry
     @destination = Destination.new(destination_params)
+    @address = Address.new(address_params)
+    @destination.address = @address
 
-    if @destination.save
+    if @destination.save && @address.save
       redirect_to destination_path(@destination)
     else
       render :'destinations/new'
@@ -28,7 +30,11 @@ class DestinationsController < ApplicationController
   private
 
   def destination_params
-    params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :address_id)
+    params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
+  end
+
+  def address_params
+    params.require(:address).permit(:address, :phone_number, :city_id, :zip)
   end
 
 end

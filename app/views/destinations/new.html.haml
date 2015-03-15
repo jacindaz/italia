@@ -36,16 +36,40 @@
           .input-group-addon .00
       
     .form-inline.margin-half-top.margin-half-bottom
-      .form-group.margin-right
+      .address-dropdown.form-group.margin-right
         = f.label :address_id, "Select an Address"
         = f.select :address_id, options_for_select(Destination.addresses_for_select)
-      .form-group.margin-right
+      .new-address-checkbox.form-group.margin-right
         %label{ for: "address_check_box_tag"}
           = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
           Enter a new Address
 
-    .form-group
-      = f.submit "Save", class: "btn btn-default"
+    .new-address.display-none
+      = form_for(@address, url: destinations_path) do |f|
+        - if @address.errors.any?
+          Your address couldn't be saved because:
+          %ul
+            - @address.errors.messages.each do |field, error|
+              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+        .form-group
+          = f.label :address, "Street Address"
+          = f.text_field :address, class: "form-control"
+
+        .form-group
+          = f.label :phone_number, "Phone number"
+          = f.text_field :phone_number, class: "form-control"
+
+        .form-group
+          = f.label "Select a City"
+          = f.collection_select :city_id, City.all, :id, :english_name
+        
+        .form-group
+          = f.label :zip, "Zipcode"
+          = f.text_field :zip, class: "form-control"
+
+        .form-group
+          = f.submit "Save", class: "btn btn-default"
 
 
 
