@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  Mercury::Engine.routes
   root 'countries#show', defaults: { id: "1"}
   resources :countries, only: [:index, :show] do 
     get 'test' => 'countries#testing_map'
