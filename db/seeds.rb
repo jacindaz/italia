@@ -115,7 +115,7 @@ cities.each do |city|
 end
 
 addresses = [{ 
-                address: "Viale Vaticano", 
+                street_address: "Viale Vaticano", 
                 phone_number: "0039 06 69884676 - 0039 06 69883145",
                 zip: "00165",
                 city_id: City.where(english_name: "Rome").first.id.to_int
@@ -123,7 +123,7 @@ addresses = [{
 
 addresses.each do |address| 
   Address.find_or_create_by!(
-      address: address[:address],
+      street_address: address[:street_address],
       phone_number: address[:phone_number],
       zip: address[:zip],
       city_id: address[:city_id]
