@@ -64,7 +64,7 @@
           = f.text_field :phone_number, class: "form-control"
 
         .form-group
-          = f.label "Select a City"
+          = f.label :city_id, "Select a City"
           = f.collection_select :city_id, City.all, :id, :english_name
         
         .form-group
