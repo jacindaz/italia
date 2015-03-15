@@ -6,11 +6,14 @@
 * uploading images for Destinations
 * uploading images for Regions/Cities
 * interactive map with Italy regions
-* add cafe/restaurant tables
-* days associated with Itinerary and Destinations
+* Italian "word of the day"
+
+### Models
+* Cafe/Restaurant
+* Days associated with Itinerary and Destinations
 * Tours
 * Hotels
-* Italian "word of the day"
+* Directions for Destinations
 
 ### Technical Nice-to-Have's
 * templated partial for "new" forms
