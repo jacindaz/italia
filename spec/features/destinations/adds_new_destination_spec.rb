@@ -49,7 +49,7 @@ feature 'saving a new destination' do
 
         check "Enter a new Address"
         within(".new_address") do 
-          fill_in "Street Address", with: address.address
+          fill_in "Street Address", with: street_address.address
           fill_in "Phone number", with: address.phone_number 
 
           select address.city.english_name, from: "Select a City"
@@ -64,7 +64,6 @@ feature 'saving a new destination' do
       within(".existing-address-submit") do 
         click_on "Save"
       end
-      # binding.pry
       # expect(current_path).to eq new_destination_path(destination)
       expect(page).to have_content "Your destination couldn't be saved because:"
     end
