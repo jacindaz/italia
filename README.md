@@ -16,7 +16,7 @@
 * Directions for Destinations
 
 ### Technical Nice-to-Have's
-* Try out [![SkyBlue CSS Framework]](http://stanko.github.io/skyblue/)
+* Try out [SkyBlue CSS Framework](http://stanko.github.io/skyblue/)
 * templated partial for "new" forms
 * hours (destinations table) - use the hours table instead of text field
 * jQuery datepicker
