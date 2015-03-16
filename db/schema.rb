@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316100410) do
+ActiveRecord::Schema.define(version: 20150316100725) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20150316100410) do
     t.text     "hours"
     t.text     "native_language_name"
     t.text     "notes_about_visiting"
+    t.text     "closed_holidays",                   array: true
   end
 
   create_table "hours", force: :cascade do |t|
