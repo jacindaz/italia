@@ -15,3 +15,4 @@
 /log/*.log
 /tmp
 *.js.js
+public/system/*
