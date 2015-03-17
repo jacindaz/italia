@@ -1,8 +1,11 @@
 ## Roadmap!
 
+### Design
+* Add nav with all destinations, cities, regions, itineraries
+* fix _subheader partial, make 2 x 2 for buttons
+
 ### Features
 * rich text editor for all models with a "description" field
-* ability to edit Destinations
 * uploading images for Destinations
 * uploading images for Regions/Cities
 * interactive map with Italy regions
@@ -23,3 +26,7 @@
 * destinations API ?
 
 [ ![Codeship Status for jacindaz/italia](https://codeship.com/projects/466f27d0-a80d-0132-0efe-0a6f02942689/status?branch=master)](https://codeship.com/projects/67311)
+
+## Completed!
+* ability to edit Destinations
+* uploading images for existing destinations
