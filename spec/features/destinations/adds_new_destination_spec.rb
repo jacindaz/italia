@@ -67,9 +67,22 @@ feature 'saving a new destination' do
       within(".existing-address-submit") do 
         click_on "Save"
       end
-      # expect(current_path).to eq new_destination_path(destination)
       expect(page).to have_content "Your destination couldn't be saved because:"
     end
+
+  end 
+
+  scenario 'user is able to upload an image to an existing destination' do 
+    destination = FactoryGirl.create(:destination_with_address)
+    visit edit_destination_path(destination)
+    attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
+
+    within(".existing-address-submit") do 
+      click_on "Save"
+    end
+
+    expect(page).to have_css("img[src*='test.jpeg']")
   end
+
 
 end
