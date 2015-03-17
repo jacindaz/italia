@@ -153,7 +153,7 @@ destinations = [{
   cost: 16,
   hours: '(ticket office) Monday - Sunday, 9am - 4pm. The museum closes at 6pm.',
   notes_about_visiting: 'Every last Sunday of the month, entrance is free between 9am - 12:30pm, and the Museum closes at 2pm.',
-  :closed_holidays => ['January 1','January 6','February 11','March 19','April 5','April 6','May 1','June 29','August 15','December 8','December 25','December 26'],
+  closed_holidays: [],
   address_id: Address.where(street_address: "Via Ricasoli 58-60").first.id.to_int }
   # },{
   # english_name: ,

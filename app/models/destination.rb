@@ -7,6 +7,8 @@ class Destination < ActiveRecord::Base
 
   belongs_to :address
 
+  serialize :closed_holidays, Array
+
   def self.categories_for_select
     Destination::CATEGORIES.map { |category| [category.titleize, category] }
   end
