@@ -119,7 +119,12 @@ addresses = [{
                 phone_number: "0039 06 69884676 - 0039 06 69883145",
                 zip: "00165",
                 city_id: City.where(english_name: "Rome").first.id.to_int
-                }]
+                },
+                {street_address: "Via Ricasoli 58-60",
+                zip: "50122", 
+                city_id: City.where(english_name: "Florence").first.id.to_int},
+               
+                ]
 
 addresses.each do |address| 
   Address.find_or_create_by!(
@@ -127,5 +132,89 @@ addresses.each do |address|
       phone_number: address[:phone_number],
       zip: address[:zip],
       city_id: address[:city_id]
+    )
+end
+
+destinations = [{
+  english_name: "Accademia Gallery",
+  native_language_name: "Galleria dell'Academia",
+  category: "museum",
+  description: "The Galleria dell’Accademia, or Accademia Gallery, is without a doubt most famous for its sculptures by the great Renaissance artist, Michelangelo. His Prisoners (or Slaves), his St. Matthew and, above all, the magnificent statue of David within the Tribune are what first draw most of the hundreds of thousands of visitors the museum welcomes every year.", 
+  destination_website: "http://www.accademia.org/",
+  cost: 23,
+  hours: "open Tuesday through Sunday, 8:15am – 6:50pm",
+  address_id: Address.where(street_address: "Via Ricasoli 58-60").first.id.to_int
+  },{
+  english_name: "Vatican Museums",
+  native_language_name: "Musei Vaticani",
+  category: "museum",
+  description: "Vatican City, officially Vatican City State (Italian: Stato della Città del Vaticano) is a walled enclave within the city of Rome. With an area of approximately 44 hectares (110 acres), and a population of 842, it is the smallest internationally recognized independent state in the world by both area and population.", 
+  destination_website: 'http://mv.vatican.va/3_EN/pages/MV_Home.html',
+  cost: 16,
+  hours: '(ticket office) Monday - Sunday, 9am - 4pm. The museum closes at 6pm.',
+  notes_about_visiting: 'Every last Sunday of the month, entrance is free between 9am - 12:30pm, and the Museum closes at 2pm.',
+  :closed_holidays => ['January 1','January 6','February 11','March 19','April 5','April 6','May 1','June 29','August 15','December 8','December 25','December 26'],
+  address_id: Address.where(street_address: "Via Ricasoli 58-60").first.id.to_int }
+  # },{
+  # english_name: ,
+  # native_language_name: ,
+  # category: ,
+  # description: , 
+  # destination_website: ,
+  # cost: ,
+  # hours: ,
+  # notes_about_visiting: ,
+  # closed_holidays: ,
+  # address_id: 
+  # },{
+  # english_name: ,
+  # native_language_name: ,
+  # category: ,
+  # description: , 
+  # destination_website: ,
+  # cost: ,
+  # hours: ,
+  # notes_about_visiting: ,
+  # closed_holidays: ,
+  # address_id: 
+  # },{
+  # english_name: ,
+  # native_language_name: ,
+  # category: ,
+  # description: , 
+  # destination_website: ,
+  # cost: ,
+  # hours: ,
+  # notes_about_visiting: ,
+  # closed_holidays: ,
+  # address_id: 
+  # },{
+  # english_name: ,
+  # native_language_name: ,
+  # category: ,
+  # description: , 
+  # destination_website: ,
+  # cost: ,
+  # hours: ,
+  # notes_about_visiting: ,
+  # closed_holidays: ,
+  # address_id: 
+  # },
+]
+
+
+
+destinations.each do |destination| 
+  Destination.find_or_create_by!(
+      english_name: destination[:english_name],
+      native_language_name: destination[:native_language_name],
+      category: destination[:category],
+      description: destination[:description], 
+      destination_website: destination[:destination_website],
+      cost: destination[:cost],
+      hours: destination[:hours],
+      notes_about_visiting: destination[:notes_about_visiting],
+      closed_holidays: destination[:closed_holidays],
+      address_id: destination[:address_id]
     )
 end
