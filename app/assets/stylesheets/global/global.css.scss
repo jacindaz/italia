@@ -20,9 +20,9 @@ body { background-color: $light-yellow; }
 .inner-div { margin: 5% 10% 5% 0; }
 
 // Alignment ------------------------------------------------------
-.center { align: center; }
-.right { align: right; }
-.left { align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.left { text-align: left; }
 .vertical-align-center { vertical-align: center;}
 .vertical-align-top { vertical-align: top;}
 .vertical-align-bottom { vertical-align: bottom;}

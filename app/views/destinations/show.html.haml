@@ -4,6 +4,7 @@
       = @destination.native_language_name 
       - if @destination.english_name != @destination.native_language_name
         .italic.inline.no-spacing= "(#{@destination.english_name})"
+
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
@@ -35,4 +36,13 @@
     %p= @destination.description
 
 
-
+.row.margin-double-top
+  .col-md-1.border-right
+    %h5.italic.center
+      = link_to "Home", root_path
+  .col-md-1.border-right
+    %h5.italic.center
+      = link_to "Edit", edit_destination_path(@destination)
+  .col-md-1
+    %h5.italic.center
+      = link_to "Delete"
