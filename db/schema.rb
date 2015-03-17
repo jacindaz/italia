@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317110514) do
+ActiveRecord::Schema.define(version: 20150317113416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,22 +54,22 @@ ActiveRecord::Schema.define(version: 20150317110514) do
   add_index "destination_hours", ["hour_id"], name: "index_destination_hours_on_hour_id", using: :btree
 
   create_table "destinations", force: :cascade do |t|
-    t.string   "english_name",                        null: false
-    t.string   "category",                            null: false
+    t.string   "english_name",                      null: false
+    t.string   "category",                          null: false
     t.text     "description"
     t.string   "destination_website"
     t.integer  "cost"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "address_id",                          null: false
+    t.integer  "address_id",                        null: false
     t.text     "hours"
     t.text     "native_language_name"
     t.text     "notes_about_visiting"
-    t.text     "closed_holidays",        default: [],              array: true
-    t.string   "thumbnail_file_name"
-    t.string   "thumbnail_content_type"
-    t.integer  "thumbnail_file_size"
-    t.datetime "thumbnail_updated_at"
+    t.text     "closed_holidays",      default: [],              array: true
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "hours", force: :cascade do |t|
