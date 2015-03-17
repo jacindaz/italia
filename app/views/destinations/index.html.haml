@@ -13,7 +13,7 @@
       - @destinations.each do |destination|
         .media.margin-all
           .media-left
-            %p Destination thumbnail
+            = image_tag destination.image.url(:medium)
           .media-body.padding-left
             %h4.media-heading
               = link_to destination.english_name, destination_path(destination)
