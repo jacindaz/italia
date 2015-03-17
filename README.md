@@ -5,6 +5,7 @@
 * ability to edit Destinations
 * uploading images for Destinations
 * uploading images for Regions/Cities
+* uploading images via Amazon AWS
 * interactive map with Italy regions
 * Italian "word of the day"
 
