@@ -4,9 +4,14 @@ class Destination < ActiveRecord::Base
   validates :english_name, presence: true, uniqueness: { scope: :native_language_name}
   validates :category, presence: true, inclusion: { in: CATEGORIES}
   validates :cost, numericality: { only_integer: true}
+  
+  # Paperclip ReadMe includes this line, but currently blowing up
+  # attr_accessible :image    
 
+  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  
   belongs_to :address
-
   serialize :closed_holidays, Array
 
   def self.categories_for_select

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :itineraries, only: [:index, :new, :create]
-  resources :destinations, only: [:index, :show, :new, :create]
+  resources :destinations, only: [:index, :show, :edit, :update, :new, :create]
 end
 
 

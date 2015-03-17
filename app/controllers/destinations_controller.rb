@@ -15,6 +15,11 @@ class DestinationsController < ApplicationController
     @address = Address.new
   end
 
+  def edit
+    @destination = Destination.find(params[:id])
+    @address = @destination.address
+  end
+
   def create
     if !params[:destination][:address_id]
       @destination = Destination.new(destination_params)
@@ -22,7 +27,7 @@ class DestinationsController < ApplicationController
       @destination.address = @address
       @address.save
     else
-      @destination = Destination.new(destination_params(true))
+      @destination = Destination.new(destination_params)
     end
 
     if @destination.save
@@ -33,13 +38,30 @@ class DestinationsController < ApplicationController
     end
   end
 
+  def update
+    @destination = Destination.find(params[:id])
+    updated_address = Address.find(params[:destination][:address_id])
+
+    if updated_address == (@destination.address)
+      if @destination.update(destination_params)
+        redirect_to @destination
+      end
+    elsif updated_address != (@destination.address)
+      if @destination.update(destination_params) && updated_address.update(address_params)
+        redirect_to @destination
+      end
+    else
+      render 'edit'
+    end
+  end
+
   private
 
-  def destination_params(has_address = false)
+  def destination_params(has_address = true)
     if has_address
-      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id)
+      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id, :image)
     else
-      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
+      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :image)
     end
   end
 

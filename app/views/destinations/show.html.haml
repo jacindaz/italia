@@ -7,41 +7,32 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
-// Address ------------------------------------
-.row.padding-half-bottom
-  .col-md-3
-    %h4= Address
-  .col-md-9
-    .block= @destination.address.street_address
-    = link_to @city.native_language_name, country_cities_path(@country)
-    .italic.inline.no-spacing= "(#{@city.english_name})" if @city.english_name != @city.native_language_name
-    .block= @destination.address.zip
+.row.margin-bottom
+  .col-md-4
+    = image_tag @destination.image.url(:medium)
+  .col-md-8
+    %strong Address
+    %p
+      = "#{@destination.address.street_address}, "
+      = link_to @city.native_language_name, country_cities_path(@country)
+      = "(#{@city.english_name})" if @city.english_name != @city.native_language_name
+      = ", #{@destination.address.zip}"
 
-// Hours ------------------------------------
-.row.padding-half-bottom
-  .col-md-3
-    %h4 Hours
-  .col-md-9
+    %strong Hours
     %p= @destination.hours
 
-// Cost ------------------------------------
-.row.padding-half-bottom
-  .col-md-3
-    %h4 Cost
-  .col-md-9
+    %strong Cost
     %p= @destination.cost
 
-// Description ------------------------------------
-.row.padding-half-bottom
-  .col-md-3
-    %h4= "About #{@destination.english_name}"
-  .col-md-9
+    %strong Website
+    %p= link_to "#{@destination.destination_website}", @destination.destination_website
+
+
+.row.margin-half-top
+  .col-md-4
+    %h4= "About the #{@destination.english_name}"
+  .col-md-8
     %p= @destination.description
 
-// Website ------------------------------------
-.row.padding-half-bottom
-  .col-md-3
-    %h4 Website
-  .col-md-9
-    %p= link_to "#{@destination.destination_website}", @destination.destination_website
+
 
