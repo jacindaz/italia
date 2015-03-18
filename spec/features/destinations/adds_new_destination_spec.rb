@@ -34,7 +34,7 @@ feature 'saving a new destination' do
       expect(page).to have_content destination.destination_website
     end
 
-    scenario 'user creates a new destination with a new address' do 
+    scenario 'user creates a new destination with a new address with an image' do 
       city = FactoryGirl.create(:city_with_region_country)
       address = FactoryGirl.build(:address_no_city, city: city)
 
@@ -49,6 +49,7 @@ feature 'saving a new destination' do
 
         select destination_no_address.category.titleize, from: "Category"
         fill_in "Cost", with: destination_no_address.cost
+        attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
 
         check "Enter a new Address"
         within(".new_address") do 
@@ -60,6 +61,19 @@ feature 'saving a new destination' do
           click_on "Save"
         end
       end
+
+      destination = Destination.last
+
+      binding.pry
+      
+      expect(current_path).to eq destination_path(destination)
+
+      expect(page).to have_content destination.english_name
+      expect(page).to have_content destination.native_language_name
+      expect(page).to have_content destination.description
+      expect(page).to have_content destination_website
+      expect(page).to have_content destination.address.street_address
+      expect(page).to have_css("img[src*='test.jpeg']")
     end
 
     scenario 'user entering a blank destination should see appropriate errors' do

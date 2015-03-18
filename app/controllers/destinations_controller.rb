@@ -20,7 +20,9 @@ class DestinationsController < ApplicationController
     @address = @destination.address
   end
 
-  def create
+  def save_destinations_and_address
+    binding.pry
+
     if !params[:destination][:address_id]
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)

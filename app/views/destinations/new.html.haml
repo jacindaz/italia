@@ -2,85 +2,75 @@
 
 .inner-div
   .new-destination
-    = form_for(@destination, url: destinations_path, html: { multipart: true }) do |f|
-      - if @destination.errors.any?
-        Your destination couldn't be saved because:
-        %ul
-          - @destination.errors.messages.each do |field, error|
-            %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+  = form_tag('/save_destinations_and_address', multipart: true) do
 
+    .form-group
+      = label_tag :english_name, "Destination English Name"
+      = text_field_tag :english_name, nil, class: "form-control"
+
+    .form-group
+      = label_tag :native_language_name, "Destination Native Language Name"
+      = text_field_tag :native_language_name, nil, class: "form-control"
+
+    .form-group
+      = label_tag :hours, "Hours"
+      = text_area_tag :hours, nil, class: "form-control"
+
+    .form-group
+      = label_tag :destination_website, "Website"
+      = text_field_tag :destination_website, nil, class: "form-control"
+
+    .form-group
+      = label_tag :description, "Description (400 words or fewer)"
+      = text_area_tag :description, nil, class: "form-control"
+
+    .row.margin-half-top.margin-half-bottom
+      .col-md-3.form-group
+        .block= label_tag :category, "Category"
+        = select_tag :category, options_for_select(Destination.categories_for_select), prompt: ""
+      .col-md-4.form-group
+        .block= label_tag :cost, "Cost in Euros"
+        .input-group
+          .input-group-addon.glyphicon.glyphicon-euro
+          = text_field_tag :cost, nil, class: "form-control"
+          .input-group-addon .00
+
+      .col-md-5.form-group.padding-double-left
+        = label_tag :image, "Add a Thumbnail"
+        = file_field_tag :image
+      
+    .form-inline.margin-half-top.margin-half-bottom
+      .address-dropdown.form-group.margin-right
+        = label_tag :address_id, "Select an Address"
+        = select_tag :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
+      .new-address-checkbox.form-group.margin-right
+        %label{ for: "address_check_box_tag" }
+          = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
+          Enter a new Address
+    .existing-address-submit.form-group
+      = submit_tag "Save", class: "btn btn-default"
+
+  -# Address form ---------------------------------------------------------
+  .new-address.display-none
+
+    .form-group
+      = label_tag :street_address, "Street Address"
+      = text_field_tag :street_address, nil, class: 'form-control'
+
+    .form-group
+      = label_tag :phone_number, "Phone number"
+      = telephone_field_tag :phone_number, nil, class: 'form-control'
+
+    .form-inline.margin-half-bottom.margin-half-top
+      .form-group.margin-right
+        = label_tag :city_id, "Select a City"
+        = collection_select :address, :city_id, City.all, :id, :english_name
       .form-group
-        = f.label :english_name, "Destination English Name"
-        = f.text_field :english_name, class: "form-control"
+        = label_tag :zip, "Zipcode"
+        = text_field_tag :zip
 
-      .form-group
-        = f.label :native_language_name, "Destination Native Language Name"
-        = f.text_field :native_language_name, class: "form-control"
-
-      .form-group
-        = f.label :hours, "Hours"
-        = f.text_area :hours, class: "form-control"
-
-      .form-group
-        = f.label :destination_website, "Website"
-        = f.text_field :destination_website, class: "form-control"
-
-      .form-group
-        = f.label :description, "Description (400 words or fewer)"
-        = f.text_area :description, class: "form-control"
-
-      .row.margin-half-top.margin-half-bottom
-        .col-md-3.form-group
-          .block= f.label :category, "Category"
-          = f.select :category, options_for_select(Destination.categories_for_select), prompt: ""
-        .col-md-4.form-group
-          .block= f.label :cost, "Cost in Euros"
-          .input-group
-            .input-group-addon.glyphicon.glyphicon-euro
-            = f.text_field :cost, class: "form-control"
-            .input-group-addon .00
-
-        .col-md-5.form-group.padding-double-left
-          = f.label :image, "Add a Thumbnail"
-          = f.file_field :image
-        
-      .form-inline.margin-half-top.margin-half-bottom
-        .address-dropdown.form-group.margin-right
-          = f.label :address_id, "Select an Address"
-          = f.select :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
-        .new-address-checkbox.form-group.margin-right
-          %label{ for: "address_check_box_tag" }
-            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-            Enter a new Address
-      .existing-address-submit.form-group
-        = f.submit "Save", class: "btn btn-default"
-
-    .new-address.display-none
-      = form_for(@address, url: destinations_path) do |f|
-        - if @address.errors.any?
-          Your address couldn't be saved because:
-          %ul
-            - @address.errors.messages.each do |field, error|
-              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
-
-        .form-group
-          = f.label :street_address, "Street Address"
-          = f.text_field :street_address, class: "form-control"
-
-        .form-group
-          = f.label :phone_number, "Phone number"
-          = f.text_field :phone_number, class: "form-control"
-
-        .form-group
-          = f.label :city_id, "Select a City"
-          = f.collection_select :city_id, City.all, :id, :english_name
-        
-        .form-group
-          = f.label :zip, "Zipcode"
-          = f.text_field :zip, class: "form-control"
-
-        .new-address-submit.form-group
-          = f.submit "Save", class: "btn btn-default"
+    .new-address-submit.form-group
+      = submit_tag "Save", class: "btn btn-default"
 
 
 
