@@ -17,6 +17,8 @@
 * Directions for Destinations
 
 ### Technical Nice-to-Have's
+* Figure out how to add validations for new address
+* Try out [Wicked gem](https://github.com/schneems/wicked)
 * Try out [SkyBlue CSS Framework](http://stanko.github.io/skyblue/)
 * templated partial for "new" forms
 * hours (destinations table) - use the hours table instead of text field
