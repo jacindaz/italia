@@ -1,7 +1,5 @@
 
-[ ![Codeship Status for jacindaz/italia](https://codeship.com/projects/466f27d0-a80d-0132-0efe-0a6f02942689/status?branch=master)](https://codeship.com/projects/67311)
-
-[![Code Climate](https://codeclimate.com/github/jacindaz/italia/badges/gpa.svg)](https://codeclimate.com/github/jacindaz/italia)
+[ ![Codeship Status for jacindaz/italia](https://codeship.com/projects/466f27d0-a80d-0132-0efe-0a6f02942689/status?branch=master)](https://codeship.com/projects/67311) [![Code Climate](https://codeclimate.com/github/jacindaz/italia/badges/gpa.svg)](https://codeclimate.com/github/jacindaz/italia)
 
 ## Roadmap!
 
