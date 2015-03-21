@@ -9,6 +9,7 @@ body { background-color: $light-yellow; }
 .normal { font-style: normal; }
 .italic { font-style: italic; }
 .oblique { font-style: oblique; }
+.bold { font-weight: 800; }
 
 // Display and Visibility -----------------------------------------------
 .block { display: block; }
@@ -20,9 +21,9 @@ body { background-color: $light-yellow; }
 .inner-div { margin: 5% 10% 5% 0; }
 
 // Alignment ------------------------------------------------------
-.center { align: center; }
-.right { align: right; }
-.left { align: left; }
+.center { text-align: center; }
+.right { text-align: right; }
+.left { text-align: left; }
 .vertical-align-center { vertical-align: center;}
 .vertical-align-top { vertical-align: top;}
 .vertical-align-bottom { vertical-align: bottom;}

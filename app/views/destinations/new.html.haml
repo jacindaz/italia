@@ -1,83 +1,98 @@
 %h2 Add a Destination
 
 .inner-div
-  .new-destination
-    = form_for(@destination, url: destinations_path) do |f|
-      - if @destination.errors.any?
-        Your destination couldn't be saved because:
+  = form_tag({controller: :destinations, action: :save_destinations_and_address}, multipart: true) do
+    - if @destination.errors.any? || @address.errors.any?
+      .errors-client-side
+        %h5.bold Destination couldn't be saved because:
         %ul
           - @destination.errors.messages.each do |field, error|
-            %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+            - if field == :english_name
+              %li.errors-colors Destination english name can't be blank
+            - else
+              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+        .margin-half-top
+          %h5.bold Address couldn't be saved because:
+          %ul
+            - @address.errors.messages.each do |field, error|
+              - next if field == :city_id
+              - if field == :street_address
+                %li.errors-colors Street address can't be blank
+              - else
+                %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+            - if @address.errors.messages[:city_id].present?
+              %li.errors-colors A city must be selected
+
+    .new-destination
+      .form-group
+        -# label_tag's "for" must match the input tag's "id"
+        = label_tag :destination_english_name, "Destination English Name"
+        = text_field_tag "destination[english_name]", nil, class: "form-control"
 
       .form-group
-        = f.label :english_name, "Destination English Name"
-        = f.text_field :english_name, class: "form-control"
+        = label_tag :destination_native_language_name, "Destination Native Language Name"
+        = text_field_tag "destination[native_language_name]", nil, class: "form-control"
 
       .form-group
-        = f.label :native_language_name, "Destination Native Language Name"
-        = f.text_field :native_language_name, class: "form-control"
+        = label_tag :destination_hours, "Hours"
+        = text_area_tag "destination[hours]", nil, class: "form-control"
 
       .form-group
-        = f.label :hours, "Hours"
-        = f.text_area :hours, class: "form-control"
+        = label_tag :destination_destination_website, "Website"
+        = text_field_tag "destination[destination_website]", nil, class: "form-control"
 
       .form-group
-        = f.label :destination_website, "Website"
-        = f.text_field :destination_website, class: "form-control"
+        = label_tag :destination_description, "Description (400 words or fewer)"
+        = text_area_tag "destination[description]", nil, class: "form-control"
 
-      .form-group
-        = f.label :description, "Description (400 words or fewer)"
-        = f.text_area :description, class: "form-control"
-
-      .form-inline.margin-half-top.margin-half-bottom
-        .form-group.margin-right
-          = f.label :category, "Category"
-          = f.select :category, options_for_select(Destination.categories_for_select), prompt: ""
-        .form-group
-          = f.label :cost, "Cost"
+      .row.margin-half-top.margin-half-bottom
+        .col-md-3.form-group
+          .block= label_tag :destination_category, "Category"
+          = select_tag "destination[category]", options_for_select(Destination.categories_for_select), prompt: ""
+        .col-md-4.form-group
+          .block= label_tag :destination_cost, "Cost in Euros"
           .input-group
             .input-group-addon.glyphicon.glyphicon-euro
-            = f.text_field :cost, class: "form-control"
+            = text_field_tag "destination[cost]", nil, class: "form-control"
             .input-group-addon .00
+
+        .col-md-5.form-group.padding-double-left
+          = label_tag :destination_image, "Add a Thumbnail"
+          = file_field_tag "destination[image]"
         
       .form-inline.margin-half-top.margin-half-bottom
         .address-dropdown.form-group.margin-right
-          = f.label :address_id, "Select an Address"
-          = f.select :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
+          = label_tag :destination_address_id, "Select an Address"
+          = select_tag "destination[address_id]", options_for_select(Destination.addresses_for_select), prompt: ""
         .new-address-checkbox.form-group.margin-right
-          %label{ for: "address_check_box_tag" }
-            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-            Enter a new Address
-      .existing-address-submit.form-group
-        = f.submit "Save", class: "btn btn-default"
+          = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
+          %label{ for: "address_check_box_tag" } Enter a new Address
+            
 
+    -# Address form ---------------------------------------------------------
     .new-address.display-none
-      = form_for(@address, url: destinations_path) do |f|
-        - if @address.errors.any?
-          Your address couldn't be saved because:
-          %ul
-            - @address.errors.messages.each do |field, error|
-              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
+      .form-group
+        = label_tag :address_street_address, "Street Address"
+        = text_field_tag "address[street_address]", nil, class: 'form-control'
+
+      .form-group
+        = label_tag :address_phone_number, "Phone number"
+        = telephone_field_tag "address[phone_number]", nil, class: 'form-control'
+
+      .form-inline.margin-half-bottom.margin-half-top
+        .form-group.margin-right
+          = label_tag :address_city_id, "Select a City"
+          = collection_select "address", :city_id, City.all, :id, :english_name
         .form-group
-          = f.label :street_address, "Street Address"
-          = f.text_field :street_address, class: "form-control"
+          = label_tag :address_zip, "Zipcode"
+          = text_field_tag "address[zip]"
 
-        .form-group
-          = f.label :phone_number, "Phone number"
-          = f.text_field :phone_number, class: "form-control"
+      .new-address-submit.form-group
+        = submit_tag "Save", class: "btn btn-default"
 
-        .form-group
-          = f.label :city_id, "Select a City"
-          = f.collection_select :city_id, City.all, :id, :english_name
-        
-        .form-group
-          = f.label :zip, "Zipcode"
-          = f.text_field :zip, class: "form-control"
-
-        .new-address-submit.form-group
-          = f.submit "Save", class: "btn btn-default"
-
+    .existing-address-submit.form-group
+      = submit_tag "Save destination", class: "btn btn-default"
 
 
 

@@ -1,5 +1,5 @@
 $errors-font-color: $red;
-$errors-font-size: 16px;
+$errors-font-size: 14px;
 
 @mixin errors {
   border: 1px solid $errors-font-color;
@@ -10,8 +10,7 @@ $errors-font-size: 16px;
 .errors-client-side {
   @include errors;
   width: 100%;
-  margin-bottom: 15px;
-  margin-top: 30px;
+  margin-bottom: 20px;
 }
 .errors-server-side {
   @include errors;
@@ -21,6 +20,5 @@ $errors-font-size: 16px;
 
 .errors-colors {
   color: $errors-font-color;
-  font-weight: 800;
   font-size: $errors-font-size;
 }

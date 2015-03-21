@@ -15,36 +15,60 @@ class DestinationsController < ApplicationController
     @address = Address.new
   end
 
-  def create
-    if !params[:destination][:address_id]
+  def edit
+    @destination = Destination.find(params[:id])
+    @address = @destination.address
+  end
+
+  def save_destinations_and_address
+    if params[:commit] == "Save destination"
+      @destination = Destination.new(destination_params)
+      @address = params[:destination][:address_id].present? ? Address.find(params[:destination][:address_id]) : Address.new
+    else
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)
-      @destination.address = @address
-      @address.save
-    else
-      @destination = Destination.new(destination_params(true))
     end
-
-    if @destination.save
-      redirect_to destination_path(@destination)
+    
+    if @address.save
+      @destination.address_id = @address.id
+      @destination.save
+      if !@destination.errors.messages.present? && !@address.errors.messages.present? 
+        redirect_to destination_path(@destination)
+      end
     else
-      @address = Address.new
-      render :'destinations/new'
+      render 'new'
+    end
+  end
+
+  def update
+    @destination = Destination.find(params[:id])
+    updated_address = Address.find(params[:destination][:address_id])
+
+    if updated_address == (@destination.address)
+      if @destination.update(destination_params)
+        redirect_to @destination
+      end
+    elsif updated_address != (@destination.address)
+      if @destination.update(destination_params) && updated_address.update(address_params)
+        redirect_to @destination
+      end
+    else
+      render 'edit'
     end
   end
 
   private
 
-  def destination_params(has_address = false)
+  def destination_params(has_address = true)
     if has_address
-      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id)
+      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id, :image)
     else
-      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website)
+      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :image)
     end
   end
 
   def address_params
-    params.require(:address).permit(:address, :phone_number, :city_id, :zip)
+    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip)
   end
 
 end

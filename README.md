@@ -11,6 +11,7 @@
 * rich text editor for all models with a "description" field
 * uploading images for Destinations
 * uploading images for Regions/Cities
+* uploading images via Amazon AWS
 * interactive map with Italy regions
 * Italian "word of the day"
 
@@ -22,6 +23,8 @@
 * Directions for Destinations
 
 ### Technical Nice-to-Have's
+* Figure out how to add validations for new address
+* Try out [Wicked gem](https://github.com/schneems/wicked)
 * Try out [SkyBlue CSS Framework](http://stanko.github.io/skyblue/)
 * templated partial for "new" forms
 * hours (destinations table) - use the hours table instead of text field
