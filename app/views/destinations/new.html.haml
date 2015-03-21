@@ -4,69 +4,70 @@
   = form_tag({controller: :destinations, action: :save_destinations_and_address}) do
     .new-destination
       .form-group
-        = label_tag :english_name, "Destination English Name"
+        -# label_tag's "for" must match the input tag's "id"
+        = label_tag :destination_english_name, "Destination English Name"
         = text_field_tag "destination[english_name]", nil, class: "form-control"
 
-    .form-group
-      = label_tag :native_language_name, "Destination Native Language Name"
-      = text_field_tag :native_language_name, nil, class: "form-control"
+      .form-group
+        = label_tag :destination_native_language_name, "Destination Native Language Name"
+        = text_field_tag "destination[native_language_name]", nil, class: "form-control"
 
-    .form-group
-      = label_tag :hours, "Hours"
-      = text_area_tag :hours, nil, class: "form-control"
+      .form-group
+        = label_tag :destination_hours, "Hours"
+        = text_area_tag "destination[hours]", nil, class: "form-control"
 
-    .form-group
-      = label_tag :destination_website, "Website"
-      = text_field_tag :destination_website, nil, class: "form-control"
+      .form-group
+        = label_tag :destination_destination_website, "Website"
+        = text_field_tag "destination[destination_website]", nil, class: "form-control"
 
-    .form-group
-      = label_tag :description, "Description (400 words or fewer)"
-      = text_area_tag :description, nil, class: "form-control"
+      .form-group
+        = label_tag :destination_description, "Description (400 words or fewer)"
+        = text_area_tag "destination[description]", nil, class: "form-control"
 
-    .row.margin-half-top.margin-half-bottom
-      .col-md-3.form-group
-        .block= label_tag :category, "Category"
-        = select_tag :category, options_for_select(Destination.categories_for_select), prompt: ""
-      .col-md-4.form-group
-        .block= label_tag :cost, "Cost in Euros"
-        .input-group
-          .input-group-addon.glyphicon.glyphicon-euro
-          = text_field_tag :cost, nil, class: "form-control"
-          .input-group-addon .00
+      .row.margin-half-top.margin-half-bottom
+        .col-md-3.form-group
+          .block= label_tag :destination_category, "Category"
+          = select_tag "destination[category]", options_for_select(Destination.categories_for_select), prompt: ""
+        .col-md-4.form-group
+          .block= label_tag :destination_cost, "Cost in Euros"
+          .input-group
+            .input-group-addon.glyphicon.glyphicon-euro
+            = text_field_tag "destination[cost]", nil, class: "form-control"
+            .input-group-addon .00
 
-      .col-md-5.form-group.padding-double-left
-        = label_tag :image, "Add a Thumbnail"
-        = file_field_tag :image
-      
-    .form-inline.margin-half-top.margin-half-bottom
-      .address-dropdown.form-group.margin-right
-        = label_tag :address_id, "Select an Address"
-        = select_tag :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
-      .new-address-checkbox.form-group.margin-right
-        %label{ for: "address_check_box_tag" }
-          = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-          Enter a new Address
-    .existing-address-submit.form-group
-      = submit_tag "Save", class: "btn btn-default"
+        .col-md-5.form-group.padding-double-left
+          = label_tag :destination_image, "Add a Thumbnail"
+          = file_field_tag "destination[image]"
+        
+      .form-inline.margin-half-top.margin-half-bottom
+        .address-dropdown.form-group.margin-right
+          = label_tag :destination_address_id, "Select an Address"
+          = select_tag "destination[address_id]", options_for_select(Destination.addresses_for_select), prompt: ""
+        .new-address-checkbox.form-group.margin-right
+          %label{ for: "address_check_box_tag" }
+            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
+            Enter a new Address
+      .existing-address-submit.form-group
+        = submit_tag "Save", class: "btn btn-default"
 
   -# Address form ---------------------------------------------------------
   .new-address.display-none
 
     .form-group
-      = label_tag :street_address, "Street Address"
-      = text_field_tag :street_address, nil, class: 'form-control'
+      = label_tag :destination_street_address, "Street Address"
+      = text_field_tag "destination[street_address]", nil, class: 'form-control'
 
     .form-group
-      = label_tag :phone_number, "Phone number"
-      = telephone_field_tag :phone_number, nil, class: 'form-control'
+      = label_tag :destination_phone_number, "Phone number"
+      = telephone_field_tag "destination[phone_number]", nil, class: 'form-control'
 
     .form-inline.margin-half-bottom.margin-half-top
       .form-group.margin-right
-        = label_tag :city_id, "Select a City"
-        = collection_select :address, :city_id, City.all, :id, :english_name
+        = label_tag :destination_city_id, "Select a City"
+        = collection_select "destination[address]", :city_id, City.all, :id, :english_name
       .form-group
-        = label_tag :zip, "Zipcode"
-        = text_field_tag :zip
+        = label_tag :destination_zip, "Zipcode"
+        = text_field_tag "destination[zip]"
 
     .new-address-submit.form-group
       = submit_tag "Save", class: "btn btn-default"
