@@ -21,17 +21,17 @@ class DestinationsController < ApplicationController
   end
 
   def save_destinations_and_address
-    # existing address and new destination
     if params[:commit] == "Save destination"
       @destination = Destination.new(destination_params)
-      @address = Address.find(params[:destination][:address_id])
-    # new address and new destination
-    elsif params[:commit] == "Save"
+      @address = params[:destination][:address_id].present? ? Address.find(params[:destination][:address_id]) : Address.new
+    else
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)
     end
+    @destination.save
+    @address.save
 
-    if @destination.save && @address.save
+    if !@destination.errors.messages.present? || !@address.errors.messages.present? 
       redirect_to destination_path(@destination)
     else
       render :'destinations/new'

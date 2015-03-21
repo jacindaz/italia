@@ -47,21 +47,23 @@ feature 'saving a new destination' do
         fill_in "Hours", with: destination_no_address.hours
         fill_in "Website", with: destination_no_address.destination_website
         fill_in "Description", with: destination_no_address.description
-
         select destination_no_address.category.titleize, from: "Category"
         fill_in "Cost", with: destination_no_address.cost
         attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
 
         check "Enter a new Address"
-        within(".new_address") do 
-          fill_in "Street Address", with: address.street_address
-          fill_in "Phone number", with: address.phone_number 
-
-          select address.city.english_name, from: "Select a City"
-          fill_in "Zipcode", with: address.zip
-          click_on "Save"
-        end
       end
+      binding.pry
+
+      within(".new_address") do 
+        fill_in "Street Address", with: address.street_address
+        fill_in "Phone number", with: address.phone_number 
+
+        select address.city.english_name, from: "Select a City"
+        fill_in "Zipcode", with: address.zip
+        click_on "Save"
+      end
+      
 
       destination = Destination.last
 

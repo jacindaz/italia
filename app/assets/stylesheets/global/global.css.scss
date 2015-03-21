@@ -9,6 +9,7 @@ body { background-color: $light-yellow; }
 .normal { font-style: normal; }
 .italic { font-style: italic; }
 .oblique { font-style: oblique; }
+.bold { font-weight: 800; }
 
 // Display and Visibility -----------------------------------------------
 .block { display: block; }
