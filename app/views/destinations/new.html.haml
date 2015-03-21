@@ -2,6 +2,11 @@
 
 .inner-div
   = form_tag({controller: :destinations, action: :save_destinations_and_address}) do
+    - if @destination.errors.any?
+      Your destination couldn't be saved because:
+      %ul
+        - @destination.errors.messages.each do |field, error|
+          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
     .new-destination
       .form-group
         -# label_tag's "for" must match the input tag's "id"
@@ -52,6 +57,12 @@
 
   -# Address form ---------------------------------------------------------
   .new-address.display-none
+
+    - if @address.errors.any?
+      Your address couldn't be saved because:
+      %ul
+        - @address.errors.messages.each do |field, error|
+          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
     .form-group
       = label_tag :address_street_address, "Street Address"

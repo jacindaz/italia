@@ -21,8 +21,6 @@ class DestinationsController < ApplicationController
   end
 
   def save_destinations_and_address
-    binding.pry
-
     # existing address and new destination
     if params[:destination][:address_id].present?
       @destination = Destination.new(destination_params)
