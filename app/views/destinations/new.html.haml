@@ -1,7 +1,7 @@
 %h2 Add a Destination
 
 .inner-div
-  = form_tag({controller: :destinations, action: :save_destinations_and_address}) do
+  = form_tag({controller: :destinations, action: :save_destinations_and_address}, multipart: true) do
     - if @destination.errors.any? || @address.errors.any?
       .errors-client-side
         %h5.bold Destination couldn't be saved because:
@@ -83,7 +83,7 @@
       .form-inline.margin-half-bottom.margin-half-top
         .form-group.margin-right
           = label_tag :address_city_id, "Select a City"
-          = collection_select "address[city_id]", :city_id, City.all, :id, :english_name
+          = collection_select "address", :city_id, City.all, :id, :english_name
         .form-group
           = label_tag :address_zip, "Zipcode"
           = text_field_tag "address[zip]"

@@ -23,7 +23,7 @@ feature 'saving a new destination' do
 
       end
       within(".existing-address-submit") do 
-        click_on "Save"
+        click_on "Save destination"
       end
 
       destination = Destination.last
@@ -54,12 +54,11 @@ feature 'saving a new destination' do
         check "Enter a new Address"
       end
 
-      within(".new_address") do 
-        fill_in "Street Address", with: address.street_address
-        fill_in "Phone number", with: address.phone_number 
-
-        select address.city.english_name, from: "Select a City"
-        fill_in "Zipcode", with: address.zip
+      fill_in "Street Address", with: address.street_address
+      fill_in "Phone number", with: address.phone_number 
+      select address.city.english_name, from: "Select a City"
+      fill_in "Zipcode", with: address.zip
+      within(".new-address-submit") do
         click_on "Save"
       end
 
@@ -69,7 +68,7 @@ feature 'saving a new destination' do
       expect(page).to have_content destination.english_name
       expect(page).to have_content destination.native_language_name
       expect(page).to have_content destination.description
-      expect(page).to have_content destination_website
+      expect(page).to have_content destination.destination_website
       expect(page).to have_content destination.address.street_address
       expect(page).to have_css("img[src*='test.jpeg']")
     end
