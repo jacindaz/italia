@@ -21,9 +21,9 @@ feature 'saving a new destination' do
         select destination.category.titleize, from: "Category"
         fill_in "Cost", with: destination.cost
 
-        within(".existing-address-submit") do 
-          click_on "Save"
-        end
+      end
+      within(".existing-address-submit") do 
+        click_on "Save"
       end
 
       destination = Destination.last

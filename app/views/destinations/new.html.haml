@@ -49,40 +49,39 @@
           = label_tag :destination_address_id, "Select an Address"
           = select_tag "destination[address_id]", options_for_select(Destination.addresses_for_select), prompt: ""
         .new-address-checkbox.form-group.margin-right
-          %label{ for: "address_check_box_tag" }
-            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-            Enter a new Address
-      .existing-address-submit.form-group
+          = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
+          %label{ for: "address_check_box_tag" } Enter a new Address
+            
+
+    -# Address form ---------------------------------------------------------
+    .new-address.display-none
+      - if @address.errors.any?
+        Your address couldn't be saved because:
+        %ul
+          - @address.errors.messages.each do |field, error|
+            %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+      .form-group
+        = label_tag :address_street_address, "Street Address"
+        = text_field_tag "address[street_address]", nil, class: 'form-control'
+
+      .form-group
+        = label_tag :address_phone_number, "Phone number"
+        = telephone_field_tag "address[phone_number]", nil, class: 'form-control'
+
+      .form-inline.margin-half-bottom.margin-half-top
+        .form-group.margin-right
+          = label_tag :address_city_id, "Select a City"
+          = collection_select "address[city_id]", :city_id, City.all, :id, :english_name
+        .form-group
+          = label_tag :address_zip, "Zipcode"
+          = text_field_tag "address[zip]"
+
+      .new-address-submit.form-group
         = submit_tag "Save", class: "btn btn-default"
 
-  -# Address form ---------------------------------------------------------
-  .new-address.display-none
-
-    - if @address.errors.any?
-      Your address couldn't be saved because:
-      %ul
-        - @address.errors.messages.each do |field, error|
-          %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
-
-    .form-group
-      = label_tag :address_street_address, "Street Address"
-      = text_field_tag "address[street_address]", nil, class: 'form-control'
-
-    .form-group
-      = label_tag :address_phone_number, "Phone number"
-      = telephone_field_tag "address[phone_number]", nil, class: 'form-control'
-
-    .form-inline.margin-half-bottom.margin-half-top
-      .form-group.margin-right
-        = label_tag :address_city_id, "Select a City"
-        = collection_select "address[city_id]", :city_id, City.all, :id, :english_name
-      .form-group
-        = label_tag :address_zip, "Zipcode"
-        = text_field_tag "address[zip]"
-
-    .new-address-submit.form-group
-      = submit_tag "Save", class: "btn btn-default"
-
+    .existing-address-submit.form-group
+      = submit_tag "Save destination", class: "btn btn-default"
 
 
 
