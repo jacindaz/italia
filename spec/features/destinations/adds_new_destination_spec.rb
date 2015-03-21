@@ -53,7 +53,6 @@ feature 'saving a new destination' do
 
         check "Enter a new Address"
       end
-      binding.pry
 
       within(".new_address") do 
         fill_in "Street Address", with: address.street_address
@@ -63,12 +62,8 @@ feature 'saving a new destination' do
         fill_in "Zipcode", with: address.zip
         click_on "Save"
       end
-      
 
       destination = Destination.last
-
-      binding.pry
-      
       expect(current_path).to eq destination_path(destination)
 
       expect(page).to have_content destination.english_name
@@ -84,7 +79,8 @@ feature 'saving a new destination' do
       within(".existing-address-submit") do 
         click_on "Save"
       end
-      expect(page).to have_content "Your destination couldn't be saved because:"
+      expect(page).to have_content "Destination couldn't be saved because:"
+      expect(page).to have_content "Address couldn't be saved because:"
     end
 
   end 
