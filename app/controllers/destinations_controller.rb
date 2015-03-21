@@ -22,12 +22,11 @@ class DestinationsController < ApplicationController
 
   def save_destinations_and_address
     # existing address and new destination
-    if params[:destination][:address_id].present?
+    if params[:commit] == "Save destination"
       @destination = Destination.new(destination_params)
       @address = Address.find(params[:destination][:address_id])
-
     # new address and new destination
-    else
+    elsif params[:commit] == "Save"
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)
     end
