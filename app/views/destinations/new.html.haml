@@ -1,12 +1,11 @@
 %h2 Add a Destination
 
 .inner-div
-  .new-destination
-  = form_tag('/save_destinations_and_address', multipart: true) do
-
-    .form-group
-      = label_tag :english_name, "Destination English Name"
-      = text_field_tag :english_name, nil, class: "form-control"
+  = form_tag({controller: :destinations, action: :save_destinations_and_address}) do
+    .new-destination
+      .form-group
+        = label_tag :english_name, "Destination English Name"
+        = text_field_tag "destination[english_name]", nil, class: "form-control"
 
     .form-group
       = label_tag :native_language_name, "Destination Native Language Name"
