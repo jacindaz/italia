@@ -54,20 +54,20 @@
   .new-address.display-none
 
     .form-group
-      = label_tag :destination_street_address, "Street Address"
-      = text_field_tag "destination[street_address]", nil, class: 'form-control'
+      = label_tag :address_street_address, "Street Address"
+      = text_field_tag "address[street_address]", nil, class: 'form-control'
 
     .form-group
-      = label_tag :destination_phone_number, "Phone number"
-      = telephone_field_tag "destination[phone_number]", nil, class: 'form-control'
+      = label_tag :address_phone_number, "Phone number"
+      = telephone_field_tag "address[phone_number]", nil, class: 'form-control'
 
     .form-inline.margin-half-bottom.margin-half-top
       .form-group.margin-right
-        = label_tag :destination_city_id, "Select a City"
-        = collection_select "destination[address]", :city_id, City.all, :id, :english_name
+        = label_tag :address_city_id, "Select a City"
+        = collection_select "address[city_id]", :city_id, City.all, :id, :english_name
       .form-group
-        = label_tag :destination_zip, "Zipcode"
-        = text_field_tag "destination[zip]"
+        = label_tag :address_zip, "Zipcode"
+        = text_field_tag "address[zip]"
 
     .new-address-submit.form-group
       = submit_tag "Save", class: "btn btn-default"

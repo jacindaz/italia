@@ -23,19 +23,20 @@ class DestinationsController < ApplicationController
   def save_destinations_and_address
     binding.pry
 
-    if !params[:destination][:address_id]
+    # existing address and new destination
+    if params[:destination][:address_id].present?
+      @destination = Destination.new(destination_params)
+      @address = Address.find(params[:destination][:address_id])
+
+    # new address and new destination
+    else
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)
-      @destination.address = @address
-      @address.save
-    else
-      @destination = Destination.new(destination_params)
     end
 
-    if @destination.save
+    if @destination.save && @address.save
       redirect_to destination_path(@destination)
     else
-      @address = Address.new
       render :'destinations/new'
     end
   end

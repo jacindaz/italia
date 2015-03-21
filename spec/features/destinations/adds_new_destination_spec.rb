@@ -7,6 +7,7 @@ feature 'saving a new destination' do
     let(:destination_no_address) { FactoryGirl.build(:destination_no_address) }
 
     scenario 'user creates a new destination using a pre-existing address' do
+      destination = FactoryGirl.build(:destination_with_address)
       visit new_destination_path(destination)
 
       within(".new-destination") do
