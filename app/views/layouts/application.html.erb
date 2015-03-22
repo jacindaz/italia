@@ -15,7 +15,25 @@
     <% end %>
 
     <div id="body">
-        <%= yield %>
+      <div class="margin-bottom">
+        <div class="margin-right inline">
+          <h4 class="inline"><%= link_to "Home", root_path %></h4>
+        </div>
+        <div class="margin-right inline">
+          <h4 class="inline"><%= link_to "Regions", country_regions_path(Country.where(english_name: "Italy").first) %></h4>
+        </div>
+        <div class="margin-right inline">
+          <h4 class="inline"><%= link_to "Cities", country_cities_path(Country.where(english_name: "Italy").first) %></h4>
+        </div>
+        <div class="margin-right inline">
+          <h4 class="inline"><%= link_to "Itineraries", itineraries_path %></h4>
+        </div>
+        <div class="margin-right inline">
+          <h4 class="inline"><%= link_to "Destinations", destinations_path %></h4>
+        </div>
+      </div>
+
+      <%= yield %>
     </div>
 
 </body>

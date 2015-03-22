@@ -8,14 +8,9 @@
     = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
 
 .margin-top        
-  .float-left
-    %h4= link_to "Regions", country_regions_path(@country)
-    %h4= link_to "Cities", country_cities_path(@country)
-    %h4= link_to "Itineraries", itineraries_path
-    %h4= link_to "Destinations", destinations_path
 
   // current image size: 1200 width x 1500 height
-  .float-right= image_tag "italy-regions.gif", height: "750", width: "600", usemap: "#regions"
+  = image_tag "italy-regions.gif", height: "750", width: "600", usemap: "#regions"
   %map{ name: "regions"}
     %area{ href: "#", title: "test1", shape: "poly", cords: "137,145,142,140,145,139,151,146,159,151,164,153,169,159,173,157,180,162,185,160,187,163,193,160,192,157,200,154,206,157,207,160,212,159,210,166,212,175,221,177,223,180,233,179,235,182,231,186,226,193,226,195,223,198,229,204,223,207,223,209,219,214,220,224,213,231,214,237,208,243,205,242,205,247,200,252,190,250,186,253, 183,251,188,246,187,242,184,240,181,237,180,233,172,231,174,224,170,222,167,220,162,224,163,215,164,207,162,202,159,196,155,192,155,183,156,175,153,167,150,163,147,160,145,154,142,154, 137,145"}
 
