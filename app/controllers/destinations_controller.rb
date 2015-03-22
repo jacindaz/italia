@@ -36,7 +36,7 @@ class DestinationsController < ApplicationController
         redirect_to destination_path(@destination)
       end
     else
-      render 'new'
+      render :'destinations/new'
     end
   end
 
@@ -53,7 +53,7 @@ class DestinationsController < ApplicationController
         redirect_to @destination
       end
     else
-      render 'edit'
+      render :'destinations/edit'
     end
   end
 
