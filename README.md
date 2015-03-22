@@ -3,7 +3,11 @@
 
 ## Roadmap!
 
+### Testing To Do's
+* add view testing - does clicking from one view to another work?
+
 ### Design
+* make responsive!! looks horrible right now
 * Add nav with all destinations, cities, regions, itineraries
 * fix _subheader partial, make 2 x 2 for buttons
 
