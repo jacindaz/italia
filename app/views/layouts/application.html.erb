@@ -15,7 +15,24 @@
     <% end %>
 
     <div id="body">
-        <%= yield %>
+
+      <div class="row border-bottom padding-half-bottom">
+        <div class="col-md-8">
+          <h2 class="no-spacing">
+            <%= @country.native_language_name %>
+            <% if @country.english_name != @country.native_language_name %>
+              <h4 class="italic inline no-spacing">
+                <%= "(english: #{@country.english_name})" %>
+              </h4>
+            <% end %>
+          </h2>
+        </div>
+        <div class="col-md-4">
+          <%= render partial: "global_partials/sub_header", locals: { country: @country, region: nil} %>
+        </div>
+      </div>
+
+      <%= yield %>
     </div>
 
 </body>

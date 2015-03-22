@@ -1,12 +1,3 @@
-.row.border-bottom.padding-half-bottom
-  .col-md-8
-    %h2.no-spacing
-      = @country.native_language_name 
-      - if @country.english_name != @country.native_language_name
-        %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
-  .col-md-4
-    = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
-
 .margin-top        
   .float-left
     %h4= link_to "Regions", country_regions_path(@country)

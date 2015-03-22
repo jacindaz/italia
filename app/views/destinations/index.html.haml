@@ -1,7 +1,7 @@
 .row.border-bottom.margin-bottom.padding-half-bottom
-  .col-md-8
+  .col-md-10
     %h2.no-spacing Destinations
-  .col-md-4
+  .col-md-2
     = render partial: "global_partials/sub_header", locals: { country: Country.where(english_name: "Italy").first, region: nil, city: nil, destination: nil}
 
 - if @destinations.any?

@@ -1,11 +1,10 @@
-.row.border-bottom.margin-bottom.padding-half-bottom
-  .col-md-8
+.row.border-bottom.margin-bottom
+  .col-xs-12.col-sm-6.col-md-8
     %h2.no-spacing
       = @destination.native_language_name 
       - if @destination.english_name != @destination.native_language_name
         .italic.inline.no-spacing= "(#{@destination.english_name})"
-
-  .col-md-4
+  .col-xs-6.col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
 .row.margin-bottom
