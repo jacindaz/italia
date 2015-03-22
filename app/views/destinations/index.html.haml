@@ -5,20 +5,15 @@
     = render partial: "global_partials/sub_header", locals: { country: Country.where(english_name: "Italy").first, region: nil, city: nil, destination: nil}
 
 - if @destinations.any?
-  .row
-    .col-md-2
-      %p This is where the floating sidebar will go
-      -# = render partial: "global_partials/sidebar", locals: { country: @country,destinations: @destinations}
-    .col-md-10
-      - @destinations.each do |destination|
-        .media.margin-all
-          .media-left
-            = image_tag destination.image.url(:medium)
-          .media-body.padding-left
-            %h4.media-heading
-              = link_to destination.english_name, destination_path(destination)
-            = destination.description
-            %p.margin-half-top= link_to destination.destination_website, destination.destination_website, target: '_blank'
+  - @destinations.each do |destination|
+    .media.margin-all
+      .media-left
+        = image_tag destination.image.url(:medium)
+      .media-body.padding-left
+        %h4.media-heading
+          = link_to destination.english_name, destination_path(destination)
+        = destination.description
+        %p.margin-half-top= link_to destination.destination_website, destination.destination_website, target: '_blank'
 - else
   %h4.margin-top
     = "We're sorry! There aren't any destinations yet. Please"
