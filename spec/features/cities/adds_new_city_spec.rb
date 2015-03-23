@@ -8,10 +8,11 @@ feature 'saving a new city' do
     let(:city) { FactoryGirl.build(:city, region_id: region.id) }
 
     scenario 'user creates a new city using a form' do
-      visit new_country_city_path(country, city)
+      region = FactoryGirl.create(:region, country: country)
+      visit new_country_city_path(country)
 
       within("form") do
-        select region.english_name, from: "city_region_id"
+        select region.english_name, from: "Select a Region"
         fill_in "city_english_name", with: city.english_name
         fill_in "city_native_language_name", with: city.native_language_name
         fill_in "city_description", with: city.description
