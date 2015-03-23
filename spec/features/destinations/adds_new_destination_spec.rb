@@ -73,13 +73,23 @@ feature 'saving a new destination' do
       expect(page).to have_css("img[src*='test.jpeg']")
     end
 
-    scenario 'user entering a blank destination should see appropriate errors' do
+    scenario 'user submitting a blank destination without an address should see appropriate errors' do
       visit new_destination_path(destination_no_address)
       within(".existing-address-submit") do 
         click_on "Save"
       end
       expect(page).to have_content "Destination couldn't be saved because:"
       expect(page).to have_content "Address couldn't be saved because:"
+    end
+
+    scenario 'user selects an existing address but submits blank destination' do 
+      visit new_destination_path(destination)
+
+      select "#{destination.address.street_address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
+      within(".existing-address-submit") do 
+        click_on "Save"
+      end
+      expect(page).to have_content "Destination couldn't be saved because:"
     end
 
   end 

@@ -31,11 +31,15 @@ class DestinationsController < ApplicationController
     
     if @address.save
       @destination.address_id = @address.id
-      @destination.save
-      if !@destination.errors.messages.present? && !@address.errors.messages.present? 
-        redirect_to destination_path(@destination)
+      if @destination.save
+        if !@destination.errors.messages.present? && !@address.errors.messages.present? 
+          redirect_to destination_path(@destination)
+        end
+      else
+        render :'destinations/new'
       end
     else
+      @destination.save
       render :'destinations/new'
     end
   end

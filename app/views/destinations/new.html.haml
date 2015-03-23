@@ -4,24 +4,26 @@
   = form_tag({controller: :destinations, action: :save_destinations_and_address}, multipart: true) do
     - if @destination.errors.any? || @address.errors.any?
       .errors-client-side
-        %h5.bold Destination couldn't be saved because:
-        %ul
-          - @destination.errors.messages.each do |field, error|
-            - if field == :english_name
-              %li.errors-colors Destination english name can't be blank
-            - else
-              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
-        .margin-half-top
-          %h5.bold Address couldn't be saved because:
+        - if @destination.errors.any?
+          %h5.bold Destination couldn't be saved because:
           %ul
-            - @address.errors.messages.each do |field, error|
-              - next if field == :city_id
-              - if field == :street_address
-                %li.errors-colors Street address can't be blank
+            - @destination.errors.messages.each do |field, error|
+              - if field == :english_name
+                %li.errors-colors Destination english name can't be blank
               - else
                 %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
-            - if @address.errors.messages[:city_id].present?
-              %li.errors-colors A city must be selected
+        - if @address.errors.any?
+          .margin-half-top
+            %h5.bold Address couldn't be saved because:
+            %ul
+              - @address.errors.messages.each do |field, error|
+                - next if field == :city_id
+                - if field == :street_address
+                  %li.errors-colors Street address can't be blank
+                - else
+                  %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+              - if @address.errors.messages[:city_id].present?
+                %li.errors-colors A city must be selected
 
     .new-destination
       .form-group
