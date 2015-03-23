@@ -9,7 +9,7 @@
           %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
     .form-group.margin-bottom
-      %h4 Itinerary Name
+      = f.label :name, "Itinerary Name"
       = f.text_field :name, class: "form-control"
 
     .form-group.margin-bottom

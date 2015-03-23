@@ -12,7 +12,7 @@ feature 'saving a new itinerary' do
 
       visit new_itinerary_path(itinerary)
 
-      fill_in "itinerary_name", with: itinerary.name
+      fill_in "Itinerary Name", with: itinerary.name
       check "#{city1.english_name}"
       check "#{city2.english_name}"
       click_on "Save"
