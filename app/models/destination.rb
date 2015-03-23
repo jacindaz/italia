@@ -1,5 +1,5 @@
 class Destination < ActiveRecord::Base
-  CATEGORIES = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store"]
+  CATEGORIES = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store", "gelateria", "coffee shop", "restaurant"]
 
   validates :english_name, presence: true, uniqueness: { scope: :native_language_name}
   validates :category, presence: true, inclusion: { in: CATEGORIES}
