@@ -42,14 +42,14 @@ class DestinationsController < ApplicationController
 
   def update
     @destination = Destination.find(params[:id])
-    updated_address = Address.find(params[:destination][:address_id])
+    @updated_address = Address.find(params[:destination][:address_id])
 
-    if updated_address == (@destination.address)
+    if @updated_address == (@destination.address)
       if @destination.update(destination_params)
         redirect_to @destination
       end
-    elsif updated_address != (@destination.address)
-      if @destination.update(destination_params) && updated_address.update(address_params)
+    elsif @updated_address != (@destination.address)
+      if @destination.update(destination_params) && @updated_address.update(address_params)
         redirect_to @destination
       end
     else
