@@ -45,18 +45,38 @@ class DestinationsController < ApplicationController
   end
 
   def update
+    binding.pry
     @destination = Destination.find(params[:id])
-    @updated_address = Address.find(params[:destination][:address_id])
 
-    if @updated_address == (@destination.address)
+    # updating destination only
+    if params[:destination] && params[:destination][:address_id]
+      redirect_to @destination if @destination.update(destination_params)
+    # updating address or creating a new address
+    elsif params[:address] && params[:destination].nil?
+      # updating address
+      if 
+        old_address = Address.where(street_address: params[:address][:street_address])
+        @updated_address = old_address(address_params)
+        if @updated_address.update
+          redirect_to @destination
+        end
+      # creating new address
+      else
+      end
+    # updating destination and address
+    elsif !params[:destination][:address_id] && params[:destination] && params[:address]
       if @destination.update(destination_params)
-        redirect_to @destination
+        if @updated_address.update(address_params)
+          redirect_to @destination
+        end
       end
-    elsif @updated_address != (@destination.address)
-      if @destination.update(destination_params) && @updated_address.update(address_params)
-        redirect_to @destination
-      end
+    # not updating anything, submits the same data
     else
+      render :'destinations/edit'
+    end
+
+    # catch-all if any errors result from updating in the above if statements
+    if @destination.errors.messages.present? || @updated_address.errors.messages.present? 
       render :'destinations/edit'
     end
   end
