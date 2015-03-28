@@ -3,7 +3,6 @@ class ChangeDestinationAddressAssociation < ActiveRecord::Migration
     add_column :addresses, :destination_id, :integer
 
     Destination.all.each do |d|
-      binding.pry
       address = Address.find(d.address_id)
       address.destination_id = d.id
       address.save!

@@ -3,6 +3,5 @@ class Address < ActiveRecord::Base
   validates :city_id, presence: true, numericality: { only_integer: true }
 
   belongs_to :city
-  has_one :destination, inverse_of: :address
-  accepts_nested_attributes_for :destination
+  
 end

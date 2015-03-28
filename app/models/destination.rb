@@ -12,6 +12,9 @@ class Destination < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   
   serialize :closed_holidays, Array
+  
+  has_one :address
+  accepts_nested_attributes_for :address
 
   def self.categories_for_select
     Destination::CATEGORIES.map { |category| [category.titleize, category] }
