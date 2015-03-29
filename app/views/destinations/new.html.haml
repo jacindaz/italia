@@ -64,8 +64,8 @@
         
       .form-inline.margin-half-top.margin-half-bottom
         .address-dropdown.form-group.margin-right
-          = label_tag :destination_address_id, "Select an Address"
-          = select_tag "destination[address_id]", options_for_select(Destination.addresses_for_select), prompt: ""
+          = label_tag :destination_address, "Select an Address"
+          = select_tag "destination[address]", options_for_select(Destination.addresses_for_select), prompt: ""
         .new-address-checkbox.form-group.margin-right
           = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
           %label{ for: "address_check_box_tag" } Enter a new Address
