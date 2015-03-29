@@ -46,41 +46,40 @@
         
       .form-inline.margin-half-top.margin-half-bottom
         .address-dropdown.form-group.margin-right
-          = f.label :address_id, "Select an Address"
-          = f.select :address_id, options_for_select(Destination.addresses_for_select), prompt: ""
+          = f.label :address, "Select an Address"
+          = f.select :address, options_for_select(Destination.addresses_for_select, @destination.address.id)
         .new-address-checkbox.form-group.margin-right
           %label{ for: "address_check_box_tag" }
             = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-            Enter a new Address
-      .existing-address-submit.form-group
+            Edit the current address
+
+      .new-address.display-none
+        -# = form_for(@address, url: destination_path(@destination)) do |f|
+        = fields_for :address do |address_attributes|
+          - if @destination.address.errors.any?
+            Your address couldn't be saved because:
+            %ul
+              - address_attributes.errors.messages.each do |field, error|
+                %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+          .form-group
+            = address_attributes.label :street_address, "Street Address"
+            = address_attributes.text_field :street_address, class: "form-control"
+
+          .form-group
+            = address_attributes.label :phone_number, "Phone number"
+            = address_attributes.text_field :phone_number, class: "form-control"
+
+          .form-group
+            = address_attributes.label :city_id, "Select a City"
+            = address_attributes.collection_select :city_id, City.all, :id, :english_name
+          
+          .form-group
+            = address_attributes.label :zip, "Zipcode"
+            = address_attributes.text_field :zip, class: "form-control"
+
+      .form-group
         = f.submit "Save", class: "btn btn-default"
-
-    .new-address.display-none
-      = form_for(@address, url: destination_path(@destination)) do |f|
-        - if @address.errors.any?
-          Your address couldn't be saved because:
-          %ul
-            - @address.errors.messages.each do |field, error|
-              %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
-
-        .form-group
-          = f.label :street_address, "Street Address"
-          = f.text_field :street_address, class: "form-control"
-
-        .form-group
-          = f.label :phone_number, "Phone number"
-          = f.text_field :phone_number, class: "form-control"
-
-        .form-group
-          = f.label :city_id, "Select a City"
-          = f.collection_select :city_id, City.all, :id, :english_name
-        
-        .form-group
-          = f.label :zip, "Zipcode"
-          = f.text_field :zip, class: "form-control"
-
-        .new-address-submit.form-group
-          = f.submit "Save", class: "btn btn-default"
 
 
 

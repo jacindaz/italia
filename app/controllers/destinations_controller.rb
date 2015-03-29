@@ -17,13 +17,14 @@ class DestinationsController < ApplicationController
 
   def edit
     @destination = Destination.find(params[:id])
-    @address = @destination.address
   end
 
   def save_destinations_and_address
+    # new destination + existing address
     if params[:commit] == "Save destination"
       @destination = Destination.new(destination_params)
       @address = params[:destination][:address_id].present? ? Address.find(params[:destination][:address_id]) : Address.new
+    # new destination + new address
     else
       @destination = Destination.new(destination_params)
       @address = Address.new(address_params)
@@ -45,39 +46,39 @@ class DestinationsController < ApplicationController
   end
 
   def update
-    binding.pry
     @destination = Destination.find(params[:id])
+    @address = Address.find(params[:destination][:address]) || nil
 
     # updating destination only
-    if params[:destination] && params[:destination][:address_id]
-      redirect_to @destination if @destination.update(destination_params)
-    # updating address or creating a new address
-    elsif params[:address] && params[:destination].nil?
-      # updating address
-      if 
-        old_address = Address.where(street_address: params[:address][:street_address])
-        @updated_address = old_address(address_params)
-        if @updated_address.update
-          redirect_to @destination
-        end
-      # creating new address
-      else
+    if params[:destination]
+      if @address.nil?
+        @destination.address = Address.find(params[:destination][:address].to_i)
       end
-    # updating destination and address
-    elsif !params[:destination][:address_id] && params[:destination] && params[:address]
-      if @destination.update(destination_params)
-        if @updated_address.update(address_params)
-          redirect_to @destination
-        end
-      end
-    # not updating anything, submits the same data
-    else
-      render :'destinations/edit'
+      @destination.update(destination_params)
     end
 
-    # catch-all if any errors result from updating in the above if statements
-    if @destination.errors.messages.present? || @updated_address.errors.messages.present? 
+    # updating address or creating a new address
+    if params[:address]
+      # address = Address.find_or_initialize_by(street_address: params[:address][:street_address], city_id: params[:address][:city_id])
+      if params[:address][:street_address] == @address[:street_address] && params[:address][:city_id] == @address[:city_id] 
+        # updating existing address
+        @address.update(address_params)
+      else
+        # creating new address
+        @address = Address.new(address_params)
+        @address.destination_id = params[:id].to_i
+        @address.save
+      end
+    end
+
+    # if there are no errors, redirect
+    if @destination.errors.any? || @address.errors.any?
       render :'destinations/edit'
+    # if there are errors render
+    else
+      @destination.address = @address
+      @destination.save
+      redirect_to @destination
     end
   end
 
