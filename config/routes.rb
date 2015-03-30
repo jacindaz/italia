@@ -9,12 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :itineraries, only: [:index, :new, :create]
-  resources :destinations, controller: :destinations, only: [:index, :show, :edit, :update, :new] do 
-    collection do 
-      post 'save_destinations_and_address'
-      put 'save_destinations_and_address'
-    end
-  end
+  resources :destinations
 end
 
 

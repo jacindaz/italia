@@ -7,4 +7,6 @@ feature 'updating a destination' do
     scenario 'user creates a new destination using a pre-existing address' do
     end
 
+  end
+
 end
