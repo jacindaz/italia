@@ -50,51 +50,18 @@ class DestinationsController < ApplicationController
   end
 
   def update
-    @destination = Destination.find(params[:id]) || nil
-    @address = Address.find(params[:destination][:address]) || nil
-
-    # updating destination only
-    if params[:destination]
-      if @address.nil?
-        @destination.address = Address.find(params[:destination][:address].to_i)
-      end
-      @destination.update(destination_params)
-    end
-
-    # updating address or creating a new address
-    if params[:address][:street_address].present?
-      # address = Address.find_or_initialize_by(street_address: params[:address][:street_address], city_id: params[:address][:city_id])
-      if params[:address][:street_address] == @address[:street_address] && params[:address][:city_id] == @address[:city_id] 
-        # updating existing address
-        @address.update(address_params)
-      else
-        # creating new address
-        @address = Address.new(address_params)
-        @address.destination_id = params[:id].to_i
-        @address.save
-      end
-    end
-
-    # if there are no errors, redirect
-    if @destination.errors.any? || @address.errors.any?
-      render :'destinations/edit'
-    # if there are errors render
-    else
-      @destination.address = @address
-      @destination.save
+    @destination = Destination.find(params[:id])
+    if @destination.update(destination_params)
       redirect_to destination_path(@destination)
+    else
+      render :'destinations/edit'
     end
   end
 
   private
 
-  # ??? not sure how to do nested attributes
   def destination_params
-    params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, address_attributes: [:street_address, :phone_number, :city_id, :zip, :destination_id])
-  end
-
-  def address_params
-    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip, :destination_id)
+    params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, address_attributes: [:street_address, :phone_number, :city_id, :zip, :id])
   end
 
 end

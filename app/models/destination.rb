@@ -14,7 +14,7 @@ class Destination < ActiveRecord::Base
   serialize :closed_holidays, Array
   
   has_one :address
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, allow_destroy: true
 
   def self.categories_for_select
     Destination::CATEGORIES.map { |category| [category.titleize, category] }

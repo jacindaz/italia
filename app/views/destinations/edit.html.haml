@@ -1,8 +1,8 @@
-%h2 Add a Destination
+%h2 Edit Destination
 
 .inner-div
   .new-destination
-    = form_for(@destination, url: destination_path(@destination), method: :patch, html: { multipart: true }) do |f|
+    = form_for(@destination, method: :patch, html: { multipart: true }) do |f|
       - if @destination.errors.any?
         Your destination couldn't be saved because:
         %ul
@@ -45,22 +45,13 @@
           = f.file_field :image
         
       .form-inline.margin-half-top.margin-half-bottom
-        .address-dropdown.form-group.margin-right
-          = f.label :address, "Select an Address"
-          = f.select :address, options_for_select(Destination.addresses_for_select, @destination.address.id)
-        .new-address-checkbox.form-group.margin-right
+        .new-address-checkbox-js.form-group.margin-right
           %label{ for: "address_check_box_tag" }
             = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
             Edit the current address
 
-      .new-address.display-none
-        -# = form_for(@address, url: destination_path(@destination)) do |f|
-        = fields_for :address do |address_attributes|
-          - if @destination.address.errors.any?
-            Your address couldn't be saved because:
-            %ul
-              - address_attributes.errors.messages.each do |field, error|
-                %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+      .new-address-js.display-none
+        = f.fields_for :address do |address_attributes|
 
           .form-group
             = address_attributes.label :street_address, "Street Address"
