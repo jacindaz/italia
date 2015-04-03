@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150325113420) do
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
-    t.boolean  "is_capital",           null: false
+    t.string   "is_capital",           null: false
     t.string   "city_website"
     t.integer  "region_id"
     t.datetime "created_at",           null: false

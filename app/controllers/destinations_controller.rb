@@ -12,7 +12,6 @@ class DestinationsController < ApplicationController
 
   def new
     @destination = Destination.new
-    @address = Address.new
   end
 
   def edit
@@ -20,27 +19,11 @@ class DestinationsController < ApplicationController
   end
 
   def create
-    # new destination + new address
-    if params[:address][:street_address].present?
-      @destination = Destination.new(destination_params)
-      @address = Address.new(address_params)
-      @destination.save
-      @destination.address = @address
-      @address.save
-    # new destination + existing address    
-    elsif params[:destination][:address] && !params[:address][:street_address]
-      @destination = Destination.new(destination_params)
-      @address = Address.find(params[:destination][:address])
-      @destination.save
-      @destination.address = @address
-      @address.save
-    # blank destination + blank address
-    else
-      @destination = Destination.new
-      @address = Address.new
-      @destination.save
-      @address.save
-    end
+    @destination = Destination.new(destination_params)
+    @address = Address.new(address_params) if params[:address]
+    @destination.save
+    @destination.address = @address
+    @address.save unless @address.nil?
     
     if !@destination.errors.messages.present? && !@address.errors.messages.present? 
       redirect_to destination_path(@destination)
@@ -62,6 +45,10 @@ class DestinationsController < ApplicationController
 
   def destination_params
     params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, address_attributes: [:street_address, :phone_number, :city_id, :zip, :id])
+  end
+
+  def address_params
+    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip, :destination_id)
   end
 
 end

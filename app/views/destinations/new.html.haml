@@ -45,32 +45,23 @@
         .col-md-5.form-group.padding-double-left
           = f.label :image, "Add a Thumbnail"
           = f.file_field :image
-        
-      .form-inline.margin-half-top.margin-half-bottom
-        .address-dropdown.form-group.margin-right
-          = f.label :address, "Select an Address"
-          = f.select :address, options_for_select(Destination.addresses_for_select), prompt: ""
-        .new-address-checkbox.form-group.margin-right
-          %label{ for: "address_check_box_tag" }
-            = check_box_tag "addresses_to_create[]", true, false, id: "address_check_box_tag"
-            Enter a new address
 
-      .new-address.display-none
-        = fields_for :address do |address_attributes|
+      = fields_for :address do |address_attributes|
 
-          .form-group
-            = address_attributes.label :street_address, "Street Address"
-            = address_attributes.text_field :street_address, class: "form-control"
+        .form-group
+          = address_attributes.label :street_address, "Street Address"
+          = address_attributes.text_field :street_address, class: "form-control"
 
-          .form-group
-            = address_attributes.label :phone_number, "Phone number"
-            = address_attributes.text_field :phone_number, class: "form-control"
+        .form-group
+          = address_attributes.label :phone_number, "Phone number"
+          = address_attributes.text_field :phone_number, class: "form-control"
 
-          .form-group
-            = address_attributes.label :city_id, "Select a City"
+        .row.margin-half-top.margin-half-bottom
+          .col-md-3.form-inline
+            = address_attributes.label :city_id, "Select a City", class: "margin-quarter-right"
             = address_attributes.collection_select :city_id, City.all, :id, :english_name
           
-          .form-group
+          .col-md-6.form-inline
             = address_attributes.label :zip, "Zipcode"
             = address_attributes.text_field :zip, class: "form-control"
 
