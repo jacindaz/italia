@@ -1,12 +1,8 @@
 $(document).on('change', '#address_check_box_tag', ->
   if @.checked
-    $('.existing-address-submit').hide()
-    $('.address-dropdown').hide()
-    $('.new-address-checkbox').addClass('margin-half-top')
-    $('.new-address').show()
+    $('.new-address-checkbox-js').addClass('margin-half-top')
+    $('.new-address-js').show()
   else
-    $('.existing-address-submit').show()
-    $('.address-dropdown').show()
-    $('.new-address-checkbox').removeClass('margin-half-top')
-    $('.new-address').hide()
+    $('.new-address-checkbox-js').removeClass('margin-half-top')
+    $('.new-address-js').hide()
   )

@@ -11,8 +11,10 @@ class Destination < ActiveRecord::Base
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   
-  belongs_to :address
   serialize :closed_holidays, Array
+  
+  has_one :address
+  accepts_nested_attributes_for :address, allow_destroy: true
 
   def self.categories_for_select
     Destination::CATEGORIES.map { |category| [category.titleize, category] }

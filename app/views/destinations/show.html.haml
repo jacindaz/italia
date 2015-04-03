@@ -17,7 +17,7 @@
       = "#{@destination.address.street_address}, "
       = link_to @city.native_language_name, country_cities_path(@country)
       = "(#{@city.english_name})" if @city.english_name != @city.native_language_name
-      = ", #{@destination.address.zip}"
+      = ", #{@destination.address.zip} #{@destination.address.city.region.country.english_name}"
 
     %strong Hours
     %p= @destination.hours

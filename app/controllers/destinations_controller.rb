@@ -12,50 +12,30 @@ class DestinationsController < ApplicationController
 
   def new
     @destination = Destination.new
-    @address = Address.new
   end
 
   def edit
     @destination = Destination.find(params[:id])
-    @address = @destination.address
   end
 
-  def save_destinations_and_address
-    if params[:commit] == "Save destination"
-      @destination = Destination.new(destination_params)
-      @address = params[:destination][:address_id].present? ? Address.find(params[:destination][:address_id]) : Address.new
-    else
-      @destination = Destination.new(destination_params)
-      @address = Address.new(address_params)
-    end
+  def create
+    @destination = Destination.new(destination_params)
+    @address = Address.new(address_params) if params[:address]
+    @destination.save
+    @destination.address = @address
+    @address.save unless @address.nil?
     
-    if @address.save
-      @destination.address_id = @address.id
-      if @destination.save
-        if !@destination.errors.messages.present? && !@address.errors.messages.present? 
-          redirect_to destination_path(@destination)
-        end
-      else
-        render :'destinations/new'
-      end
+    if !@destination.errors.messages.present? && !@address.errors.messages.present? 
+      redirect_to destination_path(@destination)
     else
-      @destination.save
       render :'destinations/new'
     end
   end
 
   def update
     @destination = Destination.find(params[:id])
-    @updated_address = Address.find(params[:destination][:address_id])
-
-    if @updated_address == (@destination.address)
-      if @destination.update(destination_params)
-        redirect_to @destination
-      end
-    elsif @updated_address != (@destination.address)
-      if @destination.update(destination_params) && @updated_address.update(address_params)
-        redirect_to @destination
-      end
+    if @destination.update(destination_params)
+      redirect_to destination_path(@destination)
     else
       render :'destinations/edit'
     end
@@ -63,16 +43,12 @@ class DestinationsController < ApplicationController
 
   private
 
-  def destination_params(has_address = true)
-    if has_address
-      params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :address_id, :image)
-    else
-      params.require(:destination).permit(:name, :category, :cost, :hours, :description, :destination_website, :image)
-    end
+  def destination_params
+    params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, address_attributes: [:street_address, :phone_number, :city_id, :zip, :id])
   end
 
   def address_params
-    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip)
+    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip, :destination_id)
   end
 
 end

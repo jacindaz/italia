@@ -6,35 +6,6 @@ feature 'saving a new destination' do
     let(:destination) { FactoryGirl.build(:destination_with_address) }
     let(:destination_no_address) { FactoryGirl.build(:destination_no_address) }
 
-    scenario 'user creates a new destination using a pre-existing address' do
-      destination = FactoryGirl.build(:destination_with_address)
-      visit new_destination_path(destination)
-
-      within(".new-destination") do
-        fill_in "Destination English Name", with: destination.english_name
-        fill_in "Destination Native Language Name", with: destination.native_language_name
-        fill_in "Hours", with: destination.hours
-        fill_in "Website", with: destination.destination_website
-        fill_in "Description", with: destination.description
-
-        select "#{destination.address.street_address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
-        select destination.category.titleize, from: "Category"
-        fill_in "Cost", with: destination.cost
-
-      end
-      within(".existing-address-submit") do 
-        click_on "Save destination"
-      end
-
-      destination = Destination.last
-      expect(current_path).to eq destination_path(destination)
-
-      expect(page).to have_content destination.english_name
-      expect(page).to have_content destination.native_language_name
-      expect(page).to have_content destination.description
-      expect(page).to have_content destination.destination_website
-    end
-
     scenario 'user creates a new destination with a new address with an image' do 
       city = FactoryGirl.create(:city_with_region_country)
       address = FactoryGirl.build(:address_no_city, city: city)
@@ -50,17 +21,13 @@ feature 'saving a new destination' do
         select destination_no_address.category.titleize, from: "Category"
         fill_in "Cost", with: destination_no_address.cost
         attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
-
-        check "Enter a new Address"
       end
 
       fill_in "Street Address", with: address.street_address
       fill_in "Phone number", with: address.phone_number 
       select address.city.english_name, from: "Select a City"
       fill_in "Zipcode", with: address.zip
-      within(".new-address-submit") do
-        click_on "Save"
-      end
+      click_on "Save"
 
       destination = Destination.last
       expect(current_path).to eq destination_path(destination)
@@ -75,21 +42,8 @@ feature 'saving a new destination' do
 
     scenario 'user submitting a blank destination without an address should see appropriate errors' do
       visit new_destination_path(destination_no_address)
-      within(".existing-address-submit") do 
-        click_on "Save"
-      end
-      expect(page).to have_content "Destination couldn't be saved because:"
-      expect(page).to have_content "Address couldn't be saved because:"
-    end
-
-    scenario 'user selects an existing address but submits blank destination' do 
-      visit new_destination_path(destination)
-
-      select "#{destination.address.street_address}, #{destination.address.city.english_name} #{destination.address.zip}, #{destination.address.city.region.country.english_name}", from: "Select an Address"
-      within(".existing-address-submit") do 
-        click_on "Save"
-      end
-      expect(page).to have_content "Destination couldn't be saved because:"
+      click_on "Save"
+      expect(page).to have_content "Your destination couldn't be saved because:"
     end
 
   end 
@@ -98,11 +52,9 @@ feature 'saving a new destination' do
     destination = FactoryGirl.create(:destination_with_address)
     visit edit_destination_path(destination)
     attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
+    click_on "Save"
 
-    within(".existing-address-submit") do 
-      click_on "Save"
-    end
-
+    expect(current_path).to eq destination_path(Destination.last)
     expect(page).to have_css("img[src*='test.jpeg']")
   end
 
