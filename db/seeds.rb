@@ -180,7 +180,27 @@ destinations = [{
 
 
 destinations.each do |destination| 
-  Destination.find_or_create_by!(
+  puts "===================="
+  puts "Saving destination..."
+  puts "Street destination: #{destination[:english_name]}"
+  puts "===================="
+
+  find_destination = Destination.where(english_name: destination[:english_name]).first
+
+  if find_destination.present?
+    Destination.update(find_destination.id,
+        english_name: destination[:english_name],
+        native_language_name: destination[:native_language_name],
+        category: destination[:category],
+        description: destination[:description], 
+        destination_website: destination[:destination_website],
+        cost: destination[:cost],
+        hours: destination[:hours],
+        notes_about_visiting: destination[:notes_about_visiting],
+        closed_holidays: destination[:closed_holidays]
+      )
+  else
+    Destination.create!(
       english_name: destination[:english_name],
       native_language_name: destination[:native_language_name],
       category: destination[:category],
@@ -191,6 +211,8 @@ destinations.each do |destination|
       notes_about_visiting: destination[:notes_about_visiting],
       closed_holidays: destination[:closed_holidays]
     )
+  end
+
 end
 
 
@@ -208,11 +230,29 @@ addresses = [{
                 
 
 addresses.each do |address| 
-  Address.find_or_create_by!(
+  puts "===================="
+  puts "Saving address..."
+  puts "Street address: #{address[:street_address]}"
+  puts "City: #{address[:city_id]}, Destination: #{address[:destination_id]}"
+  puts "===================="
+
+  find_address = Address.where(street_address: address[:street_address]).first
+
+  if find_address.present?
+    Address.update(find_address.id,
       street_address: address[:street_address],
       phone_number: address[:phone_number],
       zip: address[:zip],
       city_id: address[:city_id], 
       destination_id: address[:destination_id]
     )
+  else
+    Address.create!(
+      street_address: address[:street_address],
+      phone_number: address[:phone_number],
+      zip: address[:zip],
+      city_id: address[:city_id], 
+      destination_id: address[:destination_id]
+    )
+  end
 end
