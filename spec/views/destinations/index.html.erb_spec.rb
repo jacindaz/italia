@@ -1,18 +1,17 @@
-require "spec_helper"
+require "rails_helper"
 
-describe 'destinations' do
-  # context 'when the product has a url' do
-  #   it 'displays the url' do
-  #   end
-  # end
+RSpec.describe 'destinations/index' do
+  context 'when the destination object has a description' do 
+    it 'displays the description' do 
+      destination1 = FactoryGirl.create(:destination_with_address)
+      destination2 = FactoryGirl.create(:destination_with_address)
+      assign(:destinations, [destination1, destination2])
 
-  # context 'when the product url is nil' do
-  #   it "displays 'None'" do
-  #     assign(:product, build(:product, url: nil)
+      render 
 
-  #     render
+      expect(rendered).to have_content destination1.english_name
+      expect(rendered).to have_content destination2.english_name
+    end
+  end
 
-  #     expect(rendered).to have_content 'None'
-  #   end
-  # end
 end
