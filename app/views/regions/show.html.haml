@@ -1,7 +1,7 @@
 .row.border-bottom.margin-bottom.padding-half-bottom
   .col-md-8
     %h2.no-spacing
-      = link_to @region.native_language_name, country_regions_path
+      = link_to @region.native_language_name, country_regions_path(@country)
       - if @region.english_name != @region.native_language_name
         %h4.italic.inline.no-spacing= "(english: #{@region.english_name})"
   .col-md-4
