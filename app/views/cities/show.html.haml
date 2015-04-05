@@ -12,7 +12,7 @@
   .col-md-3
     %h4= Region
   .col-md-9
-    = link_to @region.native_language_name, country_regions_path
+    = link_to @region.native_language_name, country_region_path(@country, @region)
     .italic.inline.no-spacing= "(english: #{@region.english_name})" if @region.english_name != @region.native_language_name
 
 // Description ------------------------------------

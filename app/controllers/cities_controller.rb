@@ -3,6 +3,7 @@ class CitiesController < ApplicationController
   def index
     @country = Country.find(params[:country_id]) || Country.find(params[:city][:country_id])
     @regions = Region.all
+    @cities = City.all
   end
 
   def show

@@ -41,6 +41,12 @@ class DestinationsController < ApplicationController
     end
   end
 
+  def destroy 
+    @destination = Destination.find(params[:id])
+    @destination.destroy
+    redirect_to destinations_path
+  end
+
   private
 
   def destination_params

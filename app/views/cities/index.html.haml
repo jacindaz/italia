@@ -1,8 +1,25 @@
-%h2 Cities
+.row.border-bottom.margin-bottom.padding-half-bottom
+  .col-md-8
+    %h2.no-spacing 
+      = "Cities in #{@country.english_name}"
+  .col-md-4
+    = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
+
 - if @regions
-  %ul
-  - @regions.each do |region|
-    - if region.cities
-      - region.cities.each do |city|
-        %li.list-style-none= link_to city.english_name, country_city_path(region.country, city)
-  
+  .row
+    .col-md-2
+      = render partial: "global_partials/sidebar", locals: { country: @country, regions: nil, cities: @cities}
+    .col-md-10
+      - @cities.each do |city|
+        .media.margin-all
+          .media-left
+            = image_tag "italy-thumbnail.png", class: "media-object"
+          .media-body.padding-left
+            %h4.media-heading
+              = link_to city.native_language_name, country_city_path(@country, city), id: "#{city.native_language_name}"
+              - if city.english_name != city.native_language_name
+                = "(#{city.english_name})"
+            = city.description
+            %p.margin-half-top= link_to city.city_website, city.city_website, target: '_blank'
+- else
+  %p.margin-top= "We're sorry! There aren't any cities for #{@country.english_name} yet."
