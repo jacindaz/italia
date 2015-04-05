@@ -1,5 +1,11 @@
 #sidebar
-  %ul
-    - regions.each do |region|
-      %li.list-style-none= link_to region.native_language_name, country_regions_path(country, anchor: "#{region.native_language_name}")
-    %li.list-style-none= link_to "Back to Top", country_regions_path(country, anchor: "top")
+  - if regions
+    %ul
+      - regions.each do |region|
+        %li.list-style-none= link_to region.native_language_name, country_regions_path(country, anchor: "#{region.native_language_name}")
+      %li.list-style-none= link_to "Back to Top", country_regions_path(country, anchor: "top")
+  - elsif cities
+    %ul
+      - cities.each do |city|
+        %li.list-style-none= link_to city.native_language_name, country_cities_path(country, anchor: "#{city.native_language_name}")
+      %li.list-style-none= link_to "Back to Top", country_cities_path(country, anchor: "top")
