@@ -32,6 +32,9 @@ gem 'spring',        group: :development
 gem "paperclip", "~> 4.2"
 gem 'validate_url'
 
+# gem "dropbox-sdk"
+gem "paperclip-dropbox", ">= 1.1.7"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -45,6 +48,8 @@ gem 'validate_url'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
+  gem 'dotenv-rails'
+  
   gem 'noisy_partials', git: 'git://github.com/gwshaw/noisy_partials.git'
   gem 'method_source'
   gem 'pry-nav'
