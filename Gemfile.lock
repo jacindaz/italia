@@ -257,7 +257,6 @@ DEPENDENCIES
   jquery-ui-rails
   method_source
   noisy_partials!
-  paperclip (~> 4.2)
   paperclip-dropbox (>= 1.1.7)
   pg
   pry-nav
