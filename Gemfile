@@ -29,7 +29,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
-gem "paperclip", "~> 4.2"
+# gem "paperclip", "~> 4.2"
 gem 'validate_url'
 
 # Use ActiveModel has_secure_password
@@ -45,6 +45,8 @@ gem 'validate_url'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
+  gem 'dotenv-rails'
+  
   gem 'noisy_partials', git: 'git://github.com/gwshaw/noisy_partials.git'
   gem 'method_source'
   gem 'pry-nav'
@@ -60,3 +62,6 @@ group :development, :test do
 end
 
 gem 'capybara-screenshot', :group => :test
+
+# gem "dropbox-sdk"
+gem "paperclip-dropbox", ">= 1.1.7"

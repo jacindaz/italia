@@ -1,3 +1,5 @@
+-#= require "paperclip-dropbox"
+
 .row.border-bottom.margin-bottom.padding-half-bottom
   .col-md-8
     %h2.no-spacing Destinations
@@ -8,7 +10,7 @@
   - @destinations.each do |destination|
     .media.margin-all
       .media-left
-        = image_tag destination.image.url(:medium)
+        = image_tag destination.image.url if destination.image.exists?
       .media-body.padding-left
         %h4.media-heading
           = link_to destination.english_name, destination_path(destination)
