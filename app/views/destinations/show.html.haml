@@ -10,7 +10,7 @@
 
 .row.margin-bottom
   .col-md-4
-    = image_tag @destination.image.url(:medium)
+    = image_tag @destination.image.url(:medium) if @destination.image.exists?
   .col-md-8
     %strong Address
     %p
