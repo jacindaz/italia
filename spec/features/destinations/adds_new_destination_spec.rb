@@ -43,7 +43,12 @@ feature 'saving a new destination' do
     scenario 'user submitting a blank destination without an address should see appropriate errors' do
       visit new_destination_path(destination_no_address)
       click_on "Save"
+      
       expect(page).to have_content "Your destination couldn't be saved because:"
+      expect(page).to have_content "English Name can't be blank"
+
+      expect(page).to have_content "Your destination couldn't be saved because:"
+      expect(page).to have_content "Street Address can't be blank"
     end
 
   end 
