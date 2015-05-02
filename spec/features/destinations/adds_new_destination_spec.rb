@@ -37,7 +37,7 @@ feature 'saving a new destination' do
       expect(page).to have_content destination.description
       expect(page).to have_content destination.destination_website
       expect(page).to have_content destination.address.street_address
-      expect(page).to have_css("img[src*='test.jpeg']")
+      expect(page).to have_css("img[src*='medium.jpeg']")
     end
 
     scenario 'user submitting a blank destination without an address should see appropriate errors' do
@@ -60,7 +60,7 @@ feature 'saving a new destination' do
     click_on "Save"
 
     expect(current_path).to eq destination_path(Destination.last)
-    expect(page).to have_css("img[src*='test.jpeg']")
+    expect(page).to have_css("img[src*='medium.jpeg']")
   end
 
 

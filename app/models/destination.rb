@@ -16,6 +16,7 @@ class Destination < ActiveRecord::Base
       square: '200x200>',
       medium: '300x300>'
     }, 
+    path: "#{Rails.env}/:class/:attachment/:id/:style.:extension",
     :default_url => "/images/:style/missing.png"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
