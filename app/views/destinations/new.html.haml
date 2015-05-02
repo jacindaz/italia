@@ -10,6 +10,11 @@
             - if field.to_s[0,7] == "address"
               - field = field.to_s[8..-1]
             %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+      - if @address.errors.any?
+        Your address couldn't be saved because:
+        %ul
+          - @address.errors.messages.each do |field, error|
+            %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
 
       .form-group
         = f.label :english_name, "Destination English Name"

@@ -22,10 +22,10 @@ class DestinationsController < ApplicationController
     @destination = Destination.new(destination_params)
     @address = Address.new(address_params) if params[:address]
     @destination.save
-    @destination.address = @address
-    @address.save unless @address.nil?
-    
+    @address.save
+
     if !@destination.errors.messages.present? && !@address.errors.messages.present? 
+      @destination.address = @address
       redirect_to destination_path(@destination)
     else
       render :'destinations/new'
