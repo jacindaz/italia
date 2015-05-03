@@ -1,5 +1,6 @@
 class Destination < ActiveRecord::Base
   CATEGORIES = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store", "gelateria", "coffee shop", "restaurant"]
+  MAX_FILESIZE = 10.megabytes.freeze
 
   validates :english_name, presence: true, uniqueness: { scope: :native_language_name}
   validates :category, presence: true, inclusion: { in: CATEGORIES}
@@ -20,10 +21,12 @@ class Destination < ActiveRecord::Base
     :default_url => "/images/:style/missing.png"
 
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+  validates_attachment_size :image, :less_than => MAX_FILESIZE, :message => "must be less than #{MAX_FILESIZE/1.megabyte}MB"
+  # validates_attachment_presence :image
   
   serialize :closed_holidays, Array
   
-  has_one :address
+  has_one :address, dependent: :destroy
   accepts_nested_attributes_for :address, allow_destroy: true
 
   def self.categories_for_select

@@ -95,6 +95,9 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fakes3 (0.2.1)
+      builder
+      thor
     globalid (0.3.3)
       activesupport (>= 4.1.0)
     haml (4.0.6)
@@ -249,6 +252,7 @@ DEPENDENCIES
   coffee-rails
   dotenv-rails
   factory_girl_rails (~> 4.0)
+  fakes3
   haml
   haml-rails
   jbuilder (~> 2.0)

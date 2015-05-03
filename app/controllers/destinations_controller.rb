@@ -21,6 +21,9 @@ class DestinationsController < ApplicationController
   def create
     @destination = Destination.new(destination_params)
     @address = Address.new(address_params) if params[:address]
+
+    binding.pry 
+
     @destination.save
     @address.save
 
@@ -33,6 +36,7 @@ class DestinationsController < ApplicationController
   end
 
   def update
+    binding.pry
     @destination = Destination.find(params[:id])
     if @destination.update(destination_params)
       redirect_to destination_path(@destination)
