@@ -33,9 +33,9 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  config.active_record.raise_in_transactional_callbacks = true
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
-  Paperclip::Attachment.default_options[:path] = "#{Rails.root}/spec/test_files/:class/:id_partition/:style.:extension"
 end
