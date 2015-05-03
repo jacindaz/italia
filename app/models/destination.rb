@@ -8,7 +8,17 @@ class Destination < ActiveRecord::Base
   # Paperclip ReadMe includes this line, but currently blowing up
   # attr_accessible :image    
 
-  has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
+  #  The > and # symbols will tell ImageMagick how the image 
+  # will be resized (the > will proportionally reduce the size of the image)
+  has_attached_file :image, 
+    styles: {
+      thumb: '100x100>',
+      square: '200x200>',
+      medium: '300x300>'
+    }, 
+    path: "#{Rails.env}/:class/:attachment/:id/:style.:extension",
+    :default_url => "/images/:style/missing.png"
+
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
   
   serialize :closed_holidays, Array

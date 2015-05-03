@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 gem "paperclip", "~> 4.2"
+gem 'aws-sdk', '< 2.0'
 gem 'validate_url'
 
 # Use ActiveModel has_secure_password
@@ -45,6 +46,8 @@ gem 'validate_url'
 # gem 'debugger', group: [:development, :test]
 
 group :development, :test do
+  gem 'dotenv-rails'
+
   gem 'noisy_partials', git: 'git://github.com/gwshaw/noisy_partials.git'
   gem 'method_source'
   gem 'pry-nav'
@@ -60,3 +63,4 @@ group :development, :test do
 end
 
 gem 'capybara-screenshot', :group => :test
+

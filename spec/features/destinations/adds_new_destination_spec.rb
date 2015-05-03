@@ -37,13 +37,18 @@ feature 'saving a new destination' do
       expect(page).to have_content destination.description
       expect(page).to have_content destination.destination_website
       expect(page).to have_content destination.address.street_address
-      expect(page).to have_css("img[src*='test.jpeg']")
+      expect(page).to have_css("img[src*='medium.jpeg']")
     end
 
     scenario 'user submitting a blank destination without an address should see appropriate errors' do
       visit new_destination_path(destination_no_address)
       click_on "Save"
+      
       expect(page).to have_content "Your destination couldn't be saved because:"
+      expect(page).to have_content "English Name can't be blank"
+
+      expect(page).to have_content "Your destination couldn't be saved because:"
+      expect(page).to have_content "Street Address can't be blank"
     end
 
   end 
@@ -55,7 +60,7 @@ feature 'saving a new destination' do
     click_on "Save"
 
     expect(current_path).to eq destination_path(Destination.last)
-    expect(page).to have_css("img[src*='test.jpeg']")
+    expect(page).to have_css("img[src*='medium.jpeg']")
   end
 
 
