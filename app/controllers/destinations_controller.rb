@@ -22,8 +22,6 @@ class DestinationsController < ApplicationController
     @destination = Destination.new(destination_params)
     @address = Address.new(address_params) if params[:address]
 
-    binding.pry 
-
     @destination.save
     @address.save
 
