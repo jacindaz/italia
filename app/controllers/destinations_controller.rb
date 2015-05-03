@@ -36,7 +36,6 @@ class DestinationsController < ApplicationController
   end
 
   def update
-    binding.pry
     @destination = Destination.find(params[:id])
     if @destination.update(destination_params)
       redirect_to destination_path(@destination)

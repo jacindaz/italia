@@ -81,16 +81,9 @@ feature 'saving a new destination' do
     destination = FactoryGirl.create(:destination_with_address)
     visit edit_destination_path(destination)
     
-    binding.pry
-
-    # Mymodel.any_instance.stubs(:save_attached_files).returns(true)
-
     attach_file('destination_image', File.join(Rails.root, 'spec', 'fixtures', 'files', 'test.jpeg'))
-    # Destination.image.stubs(:image).returns(true)
-    # click_on "Save"
-    page.find('.btn').click
-
-    binding.pry
+    click_on "Save"
+    # page.find('.btn').click
 
     expect(current_path).to eq destination_path(Destination.last)
     expect(page).to have_css("img[src*='test.jpeg']")

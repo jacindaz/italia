@@ -15,5 +15,6 @@
 /log/*.log
 /tmp
 *.js.js
+public/system/destinations/*
 
 .env
