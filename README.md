@@ -4,6 +4,7 @@
 ## Roadmap!
 
 ### Testing To Do's
+* try out Coveralls
 * add view testing - does clicking from one view to another work?
 
 ### Design
@@ -13,9 +14,7 @@
 
 ### Features
 * rich text editor for all models with a "description" field
-* uploading images for Destinations
 * uploading images for Regions/Cities
-* uploading images via Amazon AWS
 * interactive map with Italy regions
 * Italian "word of the day"
 
@@ -38,3 +37,5 @@
 ## Completed!
 * ability to edit Destinations
 * uploading images for existing destinations
+* uploading images for Destinations via AWS S3
+* uploading images via Amazon AWS
