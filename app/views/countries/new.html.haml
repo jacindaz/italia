@@ -1,0 +1,28 @@
+%h2 Add a Country
+
+.inner-div
+  = form_for(@country) do |f|
+    - if @country.errors.any?
+      Your country couldn't be saved because:
+      %ul
+        - @country.errors.messages.each do |field, error|
+          %li.errors-colors= "#{field.to_s.titleize} #{error[0]}"
+
+    .form-group
+      = f.label :english_name, "Name in English"
+      = f.text_field :english_name, class: "form-control"
+
+    .form-group
+      = f.label :native_language_name, "Name in Native Language"
+      = f.text_field :native_language_name, class: "form-control" 
+
+    .form-group
+      = f.label :description, "Description (400 words or fewer)"
+      = f.text_area :description, class: "form-control"
+
+    .form-group
+      = f.label :country_website, "Country Website (if any)"
+      = f.text_field :country_website, class: "form-control"
+
+    .form-group
+      = f.submit "Save", class: "btn btn-default"

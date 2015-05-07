@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  root 'countries#show', defaults: { id: "1"}
-  resources :countries, only: [:index, :show] do 
+  root 'countries#index'
+  resources :countries, only: [:index, :show, :new, :create] do 
     get 'test' => 'countries#testing_map'
     get 'test_haml' => 'countries#test_map_haml'
     resources :regions, only: [:index, :show, :new, :create]

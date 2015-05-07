@@ -9,7 +9,7 @@
 - if @regions
   .row
     .col-md-2
-      = render partial: "global_partials/sidebar", locals: { country: @country,regions: @regions}
+      = render partial: "global_partials/sidebar", locals: { regions: @regions}
     .col-md-10
       - @regions.each do |region|
         .media.margin-all
