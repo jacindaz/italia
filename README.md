@@ -39,3 +39,4 @@
 * uploading images for existing destinations
 * uploading images for Destinations via AWS S3
 * uploading images via Amazon AWS
+* ability to add new Countries
