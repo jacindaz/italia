@@ -1,6 +1,22 @@
 %h2 Countries
-- @countries.each do |country|
-  = link_to country.english_name, country_path(country)
  
+- if @countries
+  .row
+    .col-md-2
+      = render partial: "global_partials/sidebar", locals: { country: @country,countries: @countries}
+    .col-md-10
+      - @countries.each do |country|
+        .media.margin-all
+          .media-left
+            = image_tag "italy-thumbnail.png", class: "media-object"
+          .media-body.padding-left
+            %h4.media-heading
+              = link_to country.native_language_name, country_path(country), id: "#{country.native_language_name}"
+              - if country.english_name != country.native_language_name
+                = "(#{country.english_name})"
+            = country.description
+            %p.margin-half-top= link_to country.country_website, country.country_website, target: '_blank'
+
+%hr
 %h3 Add a new Country
 = link_to "Add a Country", new_country_path, class: "btn btn-success btn-sm"

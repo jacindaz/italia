@@ -1,5 +1,9 @@
 #sidebar
-  - if regions
+  - if countries
+    - countries.each do |country|
+      %li.list-style-none= link_to country.native_language_name, country_path(country, anchor: "#{country.native_language_name}")
+    %li.list-style-none= link_to "Back to Top", countries_path(anchor: "top")
+  - elsif regions
     %ul
       - regions.each do |region|
         %li.list-style-none= link_to region.native_language_name, country_regions_path(country, anchor: "#{region.native_language_name}")
