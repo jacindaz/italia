@@ -5,7 +5,7 @@
       - if @country.english_name != @country.native_language_name
         %h4.italic.inline.no-spacing= "(english: #{@country.english_name})"
   .col-md-4
-    = render partial: "global_partials/sub_header", locals: { country: @country, region: nil}
+    = render partial: "global_partials/sub_header", locals: { country: @country }
 
 .margin-top        
   = render partial: "countries/country_partials/#{@country.english_name.parameterize.underscore}"
