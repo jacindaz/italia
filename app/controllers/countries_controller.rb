@@ -16,6 +16,23 @@ class CountriesController < ApplicationController
     render "cities/index"
   end
 
+  def new
+    @country = Country.new
+  end
+
+  def create
+    @country = Country.new(country_params)
+    if @country.save
+      redirect_to country_path(@country)
+    else
+      render :'countries/new'
+    end
+  end
+
+  def update
+
+  end
+
   def test_map_haml
   end
 
@@ -23,6 +40,10 @@ class CountriesController < ApplicationController
   end
 
   private
+
+  def country_params
+    params.require(:country).permit(:english_name, :native_language_name, :description, :country_website)
+  end
 
   def find_city_id
     binding.pry

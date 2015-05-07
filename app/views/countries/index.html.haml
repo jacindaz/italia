@@ -2,3 +2,5 @@
 - @countries.each do |country|
   = link_to country.english_name, country_path(country)
  
+%h3 Add a new Country
+= link_to "Add a Country", new_country_path, class: "btn btn-success btn-sm"
