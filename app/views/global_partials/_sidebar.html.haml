@@ -1,15 +1,16 @@
 #sidebar
-  - if countries
-    - countries.each do |country|
-      %li.list-style-none= link_to country.native_language_name, country_path(country, anchor: "#{country.native_language_name}")
-    %li.list-style-none= link_to "Back to Top", countries_path(anchor: "top")
-  - elsif regions
+  - if defined?(countries)
+    %ul
+      - countries.each do |country|
+        %li.list-style-none= link_to country.native_language_name, country_path(country, anchor: "#{country.native_language_name}")
+      %li.list-style-none= link_to "Back to Top", countries_path(anchor: "top")
+  - elsif defined?(regions)
     %ul
       - regions.each do |region|
-        %li.list-style-none= link_to region.native_language_name, country_regions_path(country, anchor: "#{region.native_language_name}")
-      %li.list-style-none= link_to "Back to Top", country_regions_path(country, anchor: "top")
-  - elsif cities
+        %li.list-style-none= link_to region.native_language_name, country_regions_path(region.country, anchor: "#{region.native_language_name}")
+      %li.list-style-none= link_to "Back to Top", country_regions_path(regions.first.country, anchor: "top")
+  - elsif defined?(cities)
     %ul
       - cities.each do |city|
-        %li.list-style-none= link_to city.native_language_name, country_cities_path(country, anchor: "#{city.native_language_name}")
-      %li.list-style-none= link_to "Back to Top", country_cities_path(country, anchor: "top")
+        %li.list-style-none= link_to city.native_language_name, country_cities_path(city.region.country, anchor: "#{city.native_language_name}")
+      %li.list-style-none= link_to "Back to Top", country_cities_path(cities.first.region.country, anchor: "top")
