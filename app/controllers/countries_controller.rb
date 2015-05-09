@@ -7,6 +7,7 @@ class CountriesController < ApplicationController
   def show
     @country = Country.find(params[:id])
     @regions = @country.regions
+    @country_partial = country_partial(@country)
   end
 
   def all_cities
@@ -45,11 +46,16 @@ class CountriesController < ApplicationController
     params.require(:country).permit(:english_name, :native_language_name, :description, :country_website)
   end
 
-  def find_city_id
-    binding.pry
-  end
-
   def all_cities_params
     params.require(:country).permit(:id).merge(region_id: "")
+  end
+
+  def country_partial(country)
+    country_lowercase = country.english_name.downcase
+    if Country::UNITED_STATES.include?(country_lowercase)
+      return "united_states"
+    else
+      return "#{country.english_name.parameterize.underscore}"
+    end
   end
 end

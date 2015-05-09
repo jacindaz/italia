@@ -13,4 +13,5 @@ class Region < ActiveRecord::Base
     too_short: "must have at least %{count} words.",
     too_long: "must have less than %{count} words."
   }
+
 end

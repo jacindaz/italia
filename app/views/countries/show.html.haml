@@ -8,4 +8,4 @@
     = render partial: "global_partials/sub_header", locals: { country: @country }
 
 .margin-top        
-  = render partial: "countries/country_partials/#{@country.english_name.parameterize.underscore}"
+  = render partial: "countries/country_partials/#{@country_partial}"
