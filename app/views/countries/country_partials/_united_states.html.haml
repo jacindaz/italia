@@ -1,1 +1,21 @@
-The US rocks
+// Country ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= Country
+  .col-md-9
+    = link_to @country.native_language_name, country_path(@country)
+    .italic.inline.no-spacing= "(english: #{@country.english_name})" if @country.english_name != @country.native_language_name
+
+// Description ------------------------------------
+.row.padding-half-bottom
+  .col-md-3
+    %h4= "About #{@country.native_language_name}"
+  .col-md-9
+    %p= @country.description
+
+// Website ------------------------------------
+.row.padding-half-bottom.border-bottom
+  .col-md-3
+    %h4 Website
+  .col-md-9
+    %p= link_to "#{@country.country_website}", @country.country_website
