@@ -19,10 +19,14 @@
         <% country_id = params["id"] %>
       <% end %>
 
-      <% if Country.find(country_id).united_states? %>
-        <%= image_tag "whitehouse_0.jpg", style: "width: 100%", id: "top" %>
+      <% if country_id.present? %>
+        <% if Country.find(country_id).united_states? %>
+          <%= image_tag "whitehouse_0.jpg", style: "width: 100%", id: "top" %>
+        <% elsif Country.find(country_id).italy? %>
+          <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
+        <% end %>
       <% else %>
-        <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
+        <%= image_tag "general-travel-header.jpg", style: "width: 100%", id: "top" %>
       <% end %>
 
     <% end %>
