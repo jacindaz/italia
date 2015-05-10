@@ -14,4 +14,12 @@ class Country < ActiveRecord::Base
 
   UNITED_STATES = ["united states", "the united states of america", "the united states", "usa", "the us", "us"]
 
+  def find_cities_in_a_country
+    cities = []
+    self.regions.each do |region|
+      cities << region.cities
+    end
+    cities.flatten
+  end
+
 end

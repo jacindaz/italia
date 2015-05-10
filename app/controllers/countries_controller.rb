@@ -7,6 +7,8 @@ class CountriesController < ApplicationController
   def show
     @country = Country.find(params[:id])
     @regions = @country.regions
+    @cities = @country.find_cities_in_a_country
+
     @country_partial = country_partial(@country)
   end
 
