@@ -11,7 +11,11 @@
 <body>
 
     <%= link_to image_path root_url do %>
-        <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
+        <% if params[:id] == "2" %>
+          <%= image_tag "whitehouse_0.jpg", style: "width: 100%", id: "top" %>
+        <% else %>
+          <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
+        <% end %>
     <% end %>
 
     <div id="body">
