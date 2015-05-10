@@ -14,3 +14,4 @@
       - cities.each do |city|
         %li.list-style-none= link_to city.native_language_name, country_cities_path(city.region.country, anchor: "#{city.native_language_name}")
       %li.list-style-none= link_to "Back to Top", country_cities_path(cities.first.region.country, anchor: "top")
+      

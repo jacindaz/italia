@@ -7,6 +7,8 @@ class CountriesController < ApplicationController
   def show
     @country = Country.find(params[:id])
     @regions = @country.regions
+    @cities = @country.find_cities_in_a_country
+
     @country_partial = country_partial(@country)
   end
 
@@ -51,8 +53,7 @@ class CountriesController < ApplicationController
   end
 
   def country_partial(country)
-    country_lowercase = country.english_name.downcase
-    if Country::UNITED_STATES.include?(country_lowercase)
+    if country.united_states?
       return "united_states"
     else
       return "#{country.english_name.parameterize.underscore}"

@@ -13,5 +13,22 @@ class Country < ActiveRecord::Base
   }
 
   UNITED_STATES = ["united states", "the united states of america", "the united states", "usa", "the us", "us"]
+  ITALY = ["italy", "italia", "the italy", "l'italia"]
+
+  def find_cities_in_a_country
+    cities = []
+    self.regions.each do |region|
+      cities << region.cities
+    end
+    cities.flatten
+  end
+
+  def united_states?
+    Country::UNITED_STATES.include?(english_name.downcase)
+  end
+
+  def italy?
+    Country::ITALY.include?(english_name.downcase) || Country::ITALY.include?(native_language_name.downcase)
+  end
 
 end
