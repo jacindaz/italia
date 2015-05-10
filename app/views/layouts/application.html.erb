@@ -16,7 +16,7 @@
       <% if params["country_id"].presence %>
         <% country_id = params["country_id"] %>
       <% else %>
-        <% country_id = params["id"] %>
+        <% country_id = params["id"] if params["controller"] == "countries" %>
       <% end %>
 
       <% if country_id.present? %>
