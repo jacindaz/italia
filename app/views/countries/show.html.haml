@@ -14,13 +14,15 @@
 - if @country.united_states?
   %h3 States
 - else
-  %h3 Regions
+  %h3 
+    = link_to "Regions", country_regions_path(@country)
 %ul
 - @regions.each do |region|
   %li 
     =link_to region.english_name, country_region_path(@country, region)
 
-%h3.margin-top Cities
+%h3.margin-top 
+  = link_to "Cities", country_cities_path(@country)
 %ul
 - @cities.each do |city|
   %li 

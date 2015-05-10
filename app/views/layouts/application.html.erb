@@ -11,11 +11,20 @@
 <body>
 
     <%= link_to image_path root_url do %>
-        <% if params[:id] == "2" %>
-          <%= image_tag "whitehouse_0.jpg", style: "width: 100%", id: "top" %>
-        <% else %>
-          <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
-        <% end %>
+
+      <% country_id = '' %>
+      <% if params["country_id"].presence %>
+        <% country_id = params["country_id"] %>
+      <% else %>
+        <% country_id = params["id"] %>
+      <% end %>
+
+      <% if Country.find(country_id).united_states? %>
+        <%= image_tag "whitehouse_0.jpg", style: "width: 100%", id: "top" %>
+      <% else %>
+        <%= image_tag "piemonte-landscape-header.jpeg", style: "width: 100%", id: "top" %>
+      <% end %>
+
     <% end %>
 
     <div id="body">
