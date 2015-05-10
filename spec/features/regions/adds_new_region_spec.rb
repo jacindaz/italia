@@ -7,7 +7,7 @@ feature 'saving a new region' do
     let(:region) { FactoryGirl.build(:region, country: country) }
 
     scenario 'user creates a new region using a form' do
-      visit new_country_region_path(country)
+      visit new_region_path(country)
 
       within("form") do
         fill_in "region_english_name", with: region.english_name
@@ -26,7 +26,7 @@ feature 'saving a new region' do
     end
 
     scenario 'user entering a blank region should see appropriate errors' do
-      visit new_country_region_path(country, region)
+      visit new_region_path(country, region)
       click_on "Save"
       expect(page).to have_content "Your region couldn't be saved because:"
     end
