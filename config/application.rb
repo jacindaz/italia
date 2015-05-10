@@ -8,8 +8,6 @@ Bundler.require(*Rails.groups)
 module Italia
   class Application < Rails::Application
 
-    config.assets.precompile += ["italy_map/jquery-maphighlight.js", "italy_map/map-highlighting.js"]
-
     config.generators do |g|
       g.test_framework :rspec
       g.integration_tool :rspec
