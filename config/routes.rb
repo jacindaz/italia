@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   resources :countries, only: [:index, :show, :new, :create] do 
     get 'test' => 'countries#testing_map'
     get 'test_haml' => 'countries#test_map_haml'
-    resources :regions, only: [:index, :show, :new, :create]
+    resources :regions, only: [:index, :show]
     resources :cities, only: [:index, :show, :new, :create]
   end
 
   resources :itineraries, only: [:index, :new, :create]
   resources :destinations
+
+  resources :regions, only: [:new, :create]
 end
 
 

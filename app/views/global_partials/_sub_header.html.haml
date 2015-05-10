@@ -1,6 +1,6 @@
 - if country.present?
   %p
-    .margin-quarter-bottom.inline= link_to "Add a Region", new_country_region_path(country), class: "btn btn-success btn-sm"
+    .margin-quarter-bottom.inline= link_to "Add a Region", new_region_path, class: "btn btn-success btn-sm"
     .margin-quarter-bottom.inline= link_to "Add a City", new_country_city_path(country), class: "btn btn-success btn-sm"
 %p
   .margin-quarter-top.inline= link_to "Add an Itinerary", new_itinerary_path(Itinerary.new), class: "btn btn-success btn-sm"

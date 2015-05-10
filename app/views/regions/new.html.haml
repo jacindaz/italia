@@ -1,12 +1,16 @@
 %h2 Add a Region
 
 .inner-div
-  = form_for([@country, @region], url: country_regions_path(@country)) do |f|
+  = form_for(@region, url: regions_path) do |f|
     - if @region.errors.any?
       Your region couldn't be saved because:
       %ul
         - @region.errors.messages.each do |field, error|
           %li.errors-colors= "#{field.to_s.capitalize} #{error[0]}"
+
+    .form-group
+      = f.label :country_id, "Select a Country"
+      = f.collection_select :country_id, Country.all, :id, :english_name
 
     .form-group
       = f.label "Name in English"
