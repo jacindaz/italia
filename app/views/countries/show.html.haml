@@ -9,3 +9,15 @@
 
 .margin-top        
   = render partial: "countries/country_partials/#{@country_partial}"
+
+%h3.margin-top States
+%ul
+- @regions.each do |region|
+  %li 
+    =link_to region.english_name, country_region_path(@country, region)
+
+%h3.margin-top Cities
+%ul
+- @cities.each do |city|
+  %li 
+    =link_to city.english_name, country_city_path(@country, city)
