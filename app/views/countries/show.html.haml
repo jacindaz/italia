@@ -10,7 +10,11 @@
 .margin-top        
   = render partial: "countries/country_partials/#{@country_partial}"
 
-%h3.margin-top States
+.margin-top 
+- if @country.united_states?
+  %h3 States
+- else
+  %h3 Regions
 %ul
 - @regions.each do |region|
   %li 

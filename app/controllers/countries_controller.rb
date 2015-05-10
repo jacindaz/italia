@@ -53,8 +53,7 @@ class CountriesController < ApplicationController
   end
 
   def country_partial(country)
-    country_lowercase = country.english_name.downcase
-    if Country::UNITED_STATES.include?(country_lowercase)
+    if country.united_states?
       return "united_states"
     else
       return "#{country.english_name.parameterize.underscore}"

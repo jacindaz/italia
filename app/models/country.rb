@@ -22,4 +22,8 @@ class Country < ActiveRecord::Base
     cities.flatten
   end
 
+  def united_states?
+    Country::UNITED_STATES.include?(english_name.downcase)
+  end
+
 end
