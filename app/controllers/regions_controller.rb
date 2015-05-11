@@ -2,7 +2,7 @@ class RegionsController < ApplicationController
 
   def index
     @country = Country.find(params[:country_id])
-    @regions = Region.all
+    @regions = @country.regions
   end
 
   def show
