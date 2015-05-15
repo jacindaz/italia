@@ -260,6 +260,7 @@ DEPENDENCIES
   jquery-ui-rails
   method_source
   noisy_partials!
+  nokogiri
   paperclip (~> 4.2)
   pg
   pry-nav

@@ -66,3 +66,4 @@ gem 'capybara-screenshot', :group => :test
 
 # for API usage
 gem 'httparty'
+gem 'nokogiri'
