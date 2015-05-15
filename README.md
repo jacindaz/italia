@@ -6,6 +6,7 @@
 ### Testing To Do's
 * try out Coveralls
 * add view testing - does clicking from one view to another work?
+* controller tests!!! (don't have any!!!)
 
 ### Design
 * make responsive!! looks horrible right now
