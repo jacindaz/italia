@@ -18,18 +18,40 @@ class TripAdvisor
 		JSON.parse(self.class.get("/api/partner/2.0/location/#{location_id}/attractions?limit=#{@limit}&offset=#{@offset}", headers: @options).body)["data"]
 	end
 
-	def self.scrape_new_orleans_top_30_attractions
+	def attraction_by_id
+		# http://api.tripadvisor.com/api//partner/2.0/location/210266,638047/attractions?key=5e21e5e014b841b392276ec53ae450c5
+		scrape = TripAdvisor.scrape_new_orleans_attractions_no_tours
+		ids = scrape.map{ |a| a[:id] }.reject(&:nil?).join(",")
+		JSON.parse(self.class.get("/api/partner/2.0/location/#{ids}", headers: @options).body)["data"]
+	end
+
+	def self.scrape_new_orleans_attractions_no_tours
 		encode_url = URI::encode("http://www.tripadvisor.com/Attractions-g60864-Activities-New_Orleans_Louisiana.html")
 		page = Nokogiri::HTML(open("#{encode_url}"))
 		attractions_div = page.xpath('//div[contains(@class, "property_title")]')
 
 		attractions_link_text = []
 		attractions_div.each do |attraction|
+
+			link = "http://www.tripadvisor.com" + "#{attraction.children[1].attributes["href"].value}"
+			split_destination_link_string = link.split("-d")[1]
+
 			attractions_link_text << { 
-					link: "http://www.tripadvisor.com" + "#{attraction.children[1].attributes["href"].value}", 
-					text: attraction.children[1].children[0].text 
+					link: link, 
+					text: attraction.children[1].children[0].text,
+					id: (split_destination_link_string.split("-")[0].to_i if split_destination_link_string)
 				}
 		end
+
+		attractions_link_text
+
+		# ids = []
+		# attractions_link_text.each do |attraction|
+		# 	split_destination_link_string = attraction[:link].split("-d")[1]
+		# 	if split_destination_link_string 
+		# 		ids << split_destination_link_string.split("-")[0].to_i
+		# 	end
+		# end
 
 	end
 end
