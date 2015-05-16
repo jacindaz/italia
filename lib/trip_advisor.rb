@@ -1,3 +1,6 @@
+# require "activerecord-import/base"
+# ActiveRecord::Import.require_adapter('mysql2')
+
 class TripAdvisor
 	include HTTParty
 	base_uri 'api.tripadvisor.com'
@@ -34,49 +37,39 @@ class TripAdvisor
 		destination_hash = { english_name: destination_info["name"],
 				category: Destination.category_matching(destination_info["subcategory"][0]["name"]),
 				destination_website: destination_info["web_url"],
-				cost: 0 }
+				cost: 0}
 		destination = Destination.new(destination_hash)
+		address = save_address(destination_info["address_obj"])
 
-		if destination.valid?
-			ActiveRecord::Base.transaction do 
-				Destination.find_or_create_by(destination_hash)
-				destination_saved = Destination.where(english_name: destination.english_name).first
-				save_address(destination_info["address_obj"].merge({destination_id: destination_saved.id}))
+		ActiveRecord::Base.transaction do 
+			Destination.find_or_create_by(destination_hash.merge({ address_id: address.id }))
+			destination_saved = Destination.where(english_name: destination.english_name).first
+			destination_saved.address = address
 
-				puts "==================="
-				puts "Destination saved: #{destination.english_name}, #{destination.category}"
-				puts "==================="
-			end
-		else
 			puts "==================="
-			puts "Destination not saved: #{destination.english_name}, #{destination.category}"
+			puts "Destination saved: #{destination.english_name}, #{destination.category}"
 			puts "==================="
 		end
-
 	end
 
-	def save_address(address_info)
-			# instead of using ActiveRecord here, could use SQL to make faster
-			street_address1 = address_info["street1"].to_s
-			street_address2 = address_info["street2"].to_s
+def save_address(address_info)
+		# instead of using ActiveRecord here, could use SQL to make faster
+		street_address1 = address_info["street1"].to_s
+		street_address2 = address_info["street2"].to_s
+		city = City.where(english_name: 'New Orleans').first
 
-		address = Address.new(
+		address = Address.find_or_create_by(
 			street_address: street_address1 + street_address2,
 			phone_number: '',
 			zip: address_info["postalcode"],
-			city_id: City.where(english_name: 'New Orleans').first.id.to_i
+			city_id: city.id.to_i
 			)
+		address.city = city
 
-		if address.valid?
-			address.save!
-			puts "==================="
-			puts "Address saved: #{address.street_address}, #{address.zip}"
-			puts "==================="
-		else
-			puts "==================="
-			puts "Address not saved: #{address.street_address}, #{address.zip}"
-			puts "==================="
-		end
+		puts "==================="
+		puts "Address saved: #{address.street_address}, #{address.zip}"
+		puts "==================="
+		address
 	end
 
 	def attractions_by_id
@@ -88,6 +81,9 @@ class TripAdvisor
 			id_batch = id_batch.join(",")
 			response_batches << JSON.parse(self.class.get("/api/partner/2.0/location/#{id_batch}/attractions?", headers: @options).body)["data"]
 		end
+		puts "\n================"
+		puts "#{response_batches}"
+		puts "================\n"
 		response_batches.flatten
 	end
 

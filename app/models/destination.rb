@@ -23,7 +23,7 @@ class Destination < ActiveRecord::Base
   
   serialize :closed_holidays, Array
   
-  has_one :address
+  belongs_to :address
   accepts_nested_attributes_for :address, allow_destroy: true
 
   def self.categories_for_select
