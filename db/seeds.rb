@@ -143,6 +143,44 @@ cities.each do |city|
 end
 
 
+addresses = [{ 
+                street_address: "Viale Vaticano", 
+                phone_number: "0039 06 69884676 - 0039 06 69883145",
+                zip: "00165",
+                city_id: City.where(english_name: "Rome").first.id.to_int
+                },
+                {street_address: "Via Ricasoli 58-60",
+                zip: "50122", 
+                city_id: City.where(english_name: "Florence").first.id.to_int
+                }]
+                
+
+addresses.each do |address| 
+  puts "===================="
+  puts "Saving address..."
+  puts "Street address: #{address[:street_address]}"
+  puts "City: #{address[:city_id]}"
+  puts "===================="
+
+  find_address = Address.where(street_address: address[:street_address]).first
+
+  if find_address.present?
+    Address.update(find_address.id,
+      street_address: address[:street_address],
+      phone_number: address[:phone_number],
+      zip: address[:zip],
+      city_id: address[:city_id]
+    )
+  else
+    Address.create!(
+      street_address: address[:street_address],
+      phone_number: address[:phone_number],
+      zip: address[:zip],
+      city_id: address[:city_id]
+    )
+  end
+end
+
 destinations = [{
   english_name: "Accademia Gallery",
   native_language_name: "Galleria dell'Academia",
@@ -150,7 +188,8 @@ destinations = [{
   description: "The Galleria dell’Accademia, or Accademia Gallery, is without a doubt most famous for its sculptures by the great Renaissance artist, Michelangelo. His Prisoners (or Slaves), his St. Matthew and, above all, the magnificent statue of David within the Tribune are what first draw most of the hundreds of thousands of visitors the museum welcomes every year.", 
   destination_website: "http://www.accademia.org/",
   cost: 23,
-  hours: "open Tuesday through Sunday, 8:15am – 6:50pm"
+  hours: "open Tuesday through Sunday, 8:15am – 6:50pm",
+  address_id: Address.where(street_address: "Via Ricasoli 58-60").first.id.to_i
   },{
   english_name: "Vatican Museums",
   native_language_name: "Musei Vaticani",
@@ -159,52 +198,8 @@ destinations = [{
   destination_website: 'http://mv.vatican.va/3_EN/pages/MV_Home.html',
   cost: 16,
   hours: '(ticket office) Monday - Sunday, 9am - 4pm. The museum closes at 6pm.',
-  notes_about_visiting: 'Every last Sunday of the month, entrance is free between 9am - 12:30pm, and the Museum closes at 2pm.' } ]
-  # },{
-  # english_name: ,
-  # native_language_name: ,
-  # category: ,
-  # description: , 
-  # destination_website: ,
-  # cost: ,
-  # hours: ,
-  # notes_about_visiting: ,
-  # closed_holidays: ,
-  # address_id: 
-  # },{
-  # english_name: ,
-  # native_language_name: ,
-  # category: ,
-  # description: , 
-  # destination_website: ,
-  # cost: ,
-  # hours: ,
-  # notes_about_visiting: ,
-  # closed_holidays: ,
-  # address_id: 
-  # },{
-  # english_name: ,
-  # native_language_name: ,
-  # category: ,
-  # description: , 
-  # destination_website: ,
-  # cost: ,
-  # hours: ,
-  # notes_about_visiting: ,
-  # closed_holidays: ,
-  # address_id: 
-  # },{
-  # english_name: ,
-  # native_language_name: ,
-  # category: ,
-  # description: , 
-  # destination_website: ,
-  # cost: ,
-  # hours: ,
-  # notes_about_visiting: ,
-  # closed_holidays: ,
-  # address_id: 
-  # },
+  notes_about_visiting: 'Every last Sunday of the month, entrance is free between 9am - 12:30pm, and the Museum closes at 2pm.',
+  address_id: Address.where(street_address: "Viale Vaticano").first.id.to_i } ]
 
 
 destinations.each do |destination| 
@@ -225,7 +220,8 @@ destinations.each do |destination|
         cost: destination[:cost],
         hours: destination[:hours],
         notes_about_visiting: destination[:notes_about_visiting],
-        closed_holidays: destination[:closed_holidays]
+        closed_holidays: destination[:closed_holidays],
+        address_id: destination[:address_id]
       )
   else
     Destination.create!(
@@ -241,46 +237,4 @@ destinations.each do |destination|
     )
   end
 
-end
-
-
-addresses = [{ 
-                street_address: "Viale Vaticano", 
-                phone_number: "0039 06 69884676 - 0039 06 69883145",
-                zip: "00165",
-                city_id: City.where(english_name: "Rome").first.id.to_int, 
-                destination_id: Destination.where(english_name: "Vatican Museums").first.id.to_int
-                },
-                {street_address: "Via Ricasoli 58-60",
-                zip: "50122", 
-                city_id: City.where(english_name: "Florence").first.id.to_int,
-                destination_id: Destination.where(english_name: "Accademia Gallery").first.id.to_int }] 
-                
-
-addresses.each do |address| 
-  puts "===================="
-  puts "Saving address..."
-  puts "Street address: #{address[:street_address]}"
-  puts "City: #{address[:city_id]}, Destination: #{address[:destination_id]}"
-  puts "===================="
-
-  find_address = Address.where(street_address: address[:street_address]).first
-
-  if find_address.present?
-    Address.update(find_address.id,
-      street_address: address[:street_address],
-      phone_number: address[:phone_number],
-      zip: address[:zip],
-      city_id: address[:city_id], 
-      destination_id: address[:destination_id]
-    )
-  else
-    Address.create!(
-      street_address: address[:street_address],
-      phone_number: address[:phone_number],
-      zip: address[:zip],
-      city_id: address[:city_id], 
-      destination_id: address[:destination_id]
-    )
-  end
 end
