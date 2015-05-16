@@ -112,6 +112,10 @@ class TripAdvisor
 					id: (split_destination_link_string.split("-")[0].to_i if split_destination_link_string)
 				}
 		end
+		puts "\n================"
+		puts "#{attractions_link_text}"
+		puts "================\n"
+	
 		attractions_link_text
 	end
 end
