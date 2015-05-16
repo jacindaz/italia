@@ -233,7 +233,8 @@ destinations.each do |destination|
       cost: destination[:cost],
       hours: destination[:hours],
       notes_about_visiting: destination[:notes_about_visiting],
-      closed_holidays: destination[:closed_holidays]
+      closed_holidays: destination[:closed_holidays],
+      address_id: destination[:address_id]
     )
   end
 

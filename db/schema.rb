@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20150516185637) do
   create_table "addresses", force: :cascade do |t|
     t.string   "street_address", null: false
     t.string   "phone_number"
+    t.integer  "cafe_id"
+    t.integer  "restaurant_id"
     t.integer  "city_id",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -29,7 +31,7 @@ ActiveRecord::Schema.define(version: 20150516185637) do
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
-    t.string   "is_capital",           null: false
+    t.boolean  "is_capital",           null: false
     t.string   "city_website"
     t.integer  "region_id"
     t.datetime "created_at",           null: false
