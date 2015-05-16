@@ -21,11 +21,11 @@ class DestinationsController < ApplicationController
   def create
     @destination = Destination.new(destination_params)
     @address = Address.new(address_params) if params[:address]
-    @destination.save
     @address.save
+    @destination.address = @address
+    @destination.save
 
     if !@destination.errors.messages.present? && !@address.errors.messages.present? 
-      @destination.address = @address
       redirect_to destination_path(@destination)
     else
       render :'destinations/new'
@@ -50,11 +50,11 @@ class DestinationsController < ApplicationController
   private
 
   def destination_params
-    params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, address_attributes: [:street_address, :phone_number, :city_id, :zip, :id])
+    params.require(:destination).permit(:english_name, :native_language_name,:category, :cost, :hours, :description, :destination_website, :image, :address_id, address_attributes: [:street_address, :phone_number, :city_id, :zip, :id])
   end
 
   def address_params
-    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip, :destination_id)
+    params.require(:address).permit(:street_address, :phone_number, :city_id, :zip)
   end
 
 end
