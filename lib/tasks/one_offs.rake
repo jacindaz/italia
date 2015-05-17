@@ -8,7 +8,7 @@ desc "one off data cleanup tasks"
       puts "\n---------------------------------------------------------"
       puts "Starting destination_name:copy_english_name_to_native_lang_name at #{DateTime.now}"
 
-      destinations = Destination.where(native_language_name: nil)
+      destinations = Destination.where(native_language_name: (nil || ""))
       total_records = destinations.count
       progress_bar = ProgressBar.new(total_records)
 

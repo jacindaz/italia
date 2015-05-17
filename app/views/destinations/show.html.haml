@@ -8,6 +8,9 @@
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: @country, region: @region}
 
+%h5.margin-bottom
+  = link_to "Back to #{@city.native_language_name} page", country_city_path(@country, @city)
+
 .row.margin-bottom
   .col-md-4
     = image_tag @destination.image.url(:medium)
@@ -15,7 +18,7 @@
     %strong Address
     %p
       = "#{@destination.address.street_address}, "
-      = link_to @city.native_language_name, country_cities_path(@country)
+      = link_to @city.native_language_name, country_city_path(@country, @city)
       = "(#{@city.english_name})" if @city.english_name != @city.native_language_name
       = ", #{@destination.address.zip} #{@destination.address.city.region.country.english_name}"
 
