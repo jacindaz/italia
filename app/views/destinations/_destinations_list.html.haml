@@ -1,0 +1,14 @@
+- if destinations.any?
+  - destinations.each do |destination|
+    .media.margin-all
+      .media-left
+        = image_tag destination.image.url(:thumb), class: "media-object"
+      .media-body.padding-left
+        %h4.media-heading
+          = link_to destination.english_name, destination_path(destination)
+        = destination.description
+        %p.margin-half-top= link_to destination.destination_website, destination.destination_website, target: '_blank'
+- else
+  %h4.margin-top
+    = "We're sorry! There aren't any destinations yet. Please"
+    =link_to "add one!", new_destination_path

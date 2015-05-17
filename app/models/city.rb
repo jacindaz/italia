@@ -1,6 +1,5 @@
 class City < ActiveRecord::Base
   belongs_to :region
-  has_many :destinations
 
   has_one :itinerary, through: :itinerary_city 
   has_one :itinerary_city
@@ -16,4 +15,15 @@ class City < ActiveRecord::Base
     too_short: "must have at least %{count} words.",
     too_long: "must have less than %{count} words."
   }
+
+  def destinations
+    destinations = []
+    Destination.all.includes(:address, address: [:city]).each do |d|
+      if d.address.city == self
+        destinations << d
+      end
+    end
+    destinations
+  end
+
 end
