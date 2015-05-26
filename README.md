@@ -18,6 +18,7 @@
 * uploading images for Regions/Cities
 * interactive map with Italy regions
 * Italian "word of the day"
+* check out the Wikipedia API for destination info
 
 ### Models
 * Cafe/Restaurant
