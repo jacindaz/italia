@@ -1,6 +1,12 @@
 .row.border-bottom.margin-bottom.padding-half-bottom
   .col-md-8
     %h2.no-spacing Destinations
+
+    .margin-half-top
+      = form_tag destinations_path, method: :get do
+        = select_tag :sort, options_from_collection_for_select(@cities, "id", "english_name", params[:sort])
+        = submit_tag "Sort"
+
   .col-md-4
     = render partial: "global_partials/sub_header", locals: { country: Country.where(english_name: "Italy").first, region: nil, city: nil, destination: nil}
 
