@@ -1,6 +1,7 @@
 class DestinationsController < ApplicationController
   def index
     @destinations = Destination.all
+    @cities = City.all
   end
 
   def show
