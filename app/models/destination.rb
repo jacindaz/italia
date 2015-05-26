@@ -49,4 +49,14 @@ class Destination < ActiveRecord::Base
     return "other"
   end
 
+  def self.destinations_for_city(city_id)
+    d_for_city = []
+    Destination.all.each do |d|
+      if d.address.city.id == city_id
+        d_for_city << d 
+      end
+    end
+    return d_for_city
+  end
+
 end

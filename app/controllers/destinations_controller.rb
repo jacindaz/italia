@@ -1,6 +1,13 @@
 class DestinationsController < ApplicationController
   def index
-    @destinations = Destination.all
+    if params["sort"].blank?
+      @destinations = Destination.all
+    else
+      city_id = City.find(params["sort"].to_i).id
+      @destinations = Destination.destinations_for_city(city_id)
+    end
+    
+    @cities = City.all
   end
 
   def show
