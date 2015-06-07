@@ -68,3 +68,6 @@ gem 'capybara-screenshot', :group => :test
 # for API usage
 gem 'httparty'
 gem 'nokogiri'
+
+# for faster object saving
+ gem "activerecord-import", :require => false
