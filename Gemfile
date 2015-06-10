@@ -62,5 +62,7 @@ group :development, :test do
   gem 'valid_attribute'
 end
 
-gem 'capybara-screenshot', :group => :test
-
+group :test do 
+  gem 'capybara-screenshot'
+  gem "codeclimate-test-reporter", require: nil
+end
