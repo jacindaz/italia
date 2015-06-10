@@ -67,7 +67,6 @@ group :test do
   gem 'capybara-screenshot'
   gem "codeclimate-test-reporter", require: nil
 end
-gem 'capybara-screenshot', :group => :test
 
 # for API usage
 gem 'httparty'
