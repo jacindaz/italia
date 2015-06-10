@@ -1,5 +1,5 @@
 class Destination < ActiveRecord::Base
-  CATEGORIES = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store", "gelateria", "coffee shop", "restaurant"]
+  CATEGORIES = ["museum", "church", "historic building", "park", "garden", "castle", "archaelogical sight", "historic street", "historic square", "store", "gelateria", "coffee shop", "restaurant", "landmark", "theatre", "other", "shopping"]
 
   validates :english_name, presence: true, uniqueness: { scope: :native_language_name}
   validates :category, presence: true, inclusion: { in: CATEGORIES}
@@ -23,7 +23,7 @@ class Destination < ActiveRecord::Base
   
   serialize :closed_holidays, Array
   
-  has_one :address
+  belongs_to :address
   accepts_nested_attributes_for :address, allow_destroy: true
 
   def self.categories_for_select
@@ -36,6 +36,27 @@ class Destination < ActiveRecord::Base
       ["#{address.street_address}, #{city.english_name} #{address.zip}, #{city.region.country.english_name}", 
         address.id]
     end
+  end
+
+  def self.category_matching(external_category)
+    Destination::CATEGORIES.each do |predefined_category| 
+      ext_cat = external_category.downcase
+      two_way_inclusion = (ext_cat.include?(predefined_category) || predefined_category.include?(ext_cat))
+      if two_way_inclusion
+        return predefined_category
+      end
+    end
+    return "other"
+  end
+
+  def self.destinations_for_city(city_id)
+    d_for_city = []
+    Destination.all.each do |d|
+      if d.address.city.id == city_id
+        d_for_city << d 
+      end
+    end
+    return d_for_city
   end
 
 end

@@ -27,11 +27,12 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-gem 'spring',        group: :development
+# gem 'spring', '~> 1.3.3',       group: :development
 
 gem "paperclip", "~> 4.2"
 gem 'aws-sdk', '< 2.0'
 gem 'validate_url'
+gem 'progress_bar', require: false
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -66,3 +67,8 @@ group :test do
   gem 'capybara-screenshot'
   gem "codeclimate-test-reporter", require: nil
 end
+gem 'capybara-screenshot', :group => :test
+
+# for API usage
+gem 'httparty'
+gem 'nokogiri'

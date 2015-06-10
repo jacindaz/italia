@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325113420) do
+ActiveRecord::Schema.define(version: 20150516185637) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,18 +19,19 @@ ActiveRecord::Schema.define(version: 20150325113420) do
   create_table "addresses", force: :cascade do |t|
     t.string   "street_address", null: false
     t.string   "phone_number"
+    t.integer  "cafe_id"
+    t.integer  "restaurant_id"
     t.integer  "city_id",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "zip"
-    t.integer  "destination_id"
   end
 
   create_table "cities", force: :cascade do |t|
     t.string   "english_name",         null: false
     t.string   "native_language_name"
     t.text     "description"
-    t.string   "is_capital",           null: false
+    t.boolean  "is_capital",           null: false
     t.string   "city_website"
     t.integer  "region_id"
     t.datetime "created_at",           null: false
@@ -70,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150325113420) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "address_id",                        null: false
   end
 
   create_table "hours", force: :cascade do |t|

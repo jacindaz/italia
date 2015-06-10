@@ -6,6 +6,7 @@
 ### Testing To Do's
 * try out Coveralls
 * add view testing - does clicking from one view to another work?
+* controller tests!!! (don't have any!!!)
 
 ### Design
 * make responsive!! looks horrible right now
@@ -17,6 +18,7 @@
 * uploading images for Regions/Cities
 * interactive map with Italy regions
 * Italian "word of the day"
+* check out the Wikipedia API for destination info
 
 ### Models
 * Cafe/Restaurant

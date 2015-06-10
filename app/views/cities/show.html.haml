@@ -29,3 +29,7 @@
   .col-md-9
     %p= link_to "#{@city.city_website}", @city.city_website
 
+.border-top
+  // Destinations
+  %h3 Destinations
+  = render partial: "destinations/destinations_list", locals: { destinations: @city.destinations }
