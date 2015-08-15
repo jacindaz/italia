@@ -1,23 +1,23 @@
 production:
   adapter: postgresql
   encoding: unicode
-  database: italia_production
+  database: travel_planning_production
   pool: 5
-  username: 
-  password: 
+  username:
+  password:
 
 development:
   adapter: postgresql
   encoding: unicode
-  database: italia_development
+  database: travel_planning_development
   pool: 5
-  username: 
-  password: 
+  username:
+  password:
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: italia_test
+  database: travel_planning_test
   pool: 5
-  username: 
-  password: 
+  username:
+  password:
